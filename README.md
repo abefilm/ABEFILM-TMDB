@@ -157,5 +157,17 @@ discover/movie?with_genres=35&region=PH&sort_by=popularity.desc
 
 ## Example API URL
 
-Fetch popular action movies released in 2024 in the US:
+Fetch popular action movies released in 2024 in the US: ?with_genres=28&region=US&primary_release_year=2024&sort_by=popularity.desc
+
+
+---
+
+## Support & Contribution
+
+Feel free to open issues or pull requests to help improve the project.
+
+---
+
+Thank you for using **ABEFILM** — your Blogger-based gateway to movies and TV shows powered by TMDB!
+
 
