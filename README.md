@@ -4,7 +4,14 @@ Welcome to **ABEFILM**, a dynamic movie and TV series website built on the Blogg
 
 ## Introduction
 
+# ABEFILM TMDB API Integration for Blogger
+
+## Introduction
+
 ABEFILM uses TMDB API endpoints to display movie and TV show data within Blogger widgets and custom scripts. The site supports various categories and advanced filtering by genre, release year, region, and language — designed for easy use and customization on Blogger.
+
+**Note:**  
+No posting or data submission is done through this integration. It only fetches and displays data from TMDB.
 
 ---
 
