@@ -1,4 +1,4 @@
-const apiKeyEl = document.querySelector("#HTML01 .widget-content");
+ const apiKeyEl = document.querySelector("#HTML01 .widget-content");
 const endpointEl = document.querySelector("#Text1 .widget-content");
 const API_KEY = apiKeyEl?.textContent.trim();
 const BASE_URL = endpointEl?.textContent.trim() || "https://api.themoviedb.org/3";
@@ -258,6 +258,30 @@ async function renderEpisodes(seasonNum) {
   const res = await fetch(`${BASE_URL}/tv/${id}/season/${seasonNum}?api_key=${API_KEY}&language=en-US`);
   const data = await res.json();
   const episodeWrap = document.getElementById("episode-buttons");
+
+  const titleEl = document.querySelector(".info h1");
+  const metaEl = document.querySelector(".meta");
+  const posterEl = document.querySelector(".poster img");
+  const backdropEl = document.querySelector(".poster");
+
+  const originalTitle = document.querySelector(".info h1")?.dataset?.originalTitle || titleEl.innerText.split(" S")[0];
+  titleEl.innerText = `${originalTitle} S${seasonNum}`;
+  titleEl.dataset.originalTitle = originalTitle; // Save once
+
+  if (data.air_date) {
+    const newYear = data.air_date.split("-")[0];
+    metaEl.innerHTML = metaEl.innerHTML.replace(/\d{4}/, newYear); // Replace year only
+  }
+
+  if (data.poster_path) {
+    posterEl.src = `${IMG_URL}${data.poster_path}`;
+  }
+
+  if (data.backdrop_path) {
+    backdropEl.style.setProperty('--backdrop-url', `url('${IMG_URL}${data.backdrop_path}')`);
+  }
+
+  // Render episode buttons
   episodeWrap.innerHTML = "";
 
   const isMobile = window.innerWidth <= 600;
@@ -272,9 +296,9 @@ async function renderEpisodes(seasonNum) {
       const btn = document.createElement("button");
       btn.className = "btn episode-btn";
       btn.textContent = String(ep.episode_number).padStart(2, "0");
-     btn.addEventListener("click", () => {
-  window.location.href = `/p/player.html?id=${id}&type=tv&season=${seasonNum}&ep=${ep.episode_number}`;
-});
+      btn.addEventListener("click", () => {
+        window.location.href = `/p/player.html?id=${id}&type=tv&season=${seasonNum}&ep=${ep.episode_number}`;
+      });
       episodeWrap.appendChild(btn);
     });
 
@@ -284,7 +308,7 @@ async function renderEpisodes(seasonNum) {
       toggleBtn.textContent = showAll ? "Hide" : "More";
       toggleBtn.addEventListener("click", () => {
         isExpanded = !isExpanded;
-        renderEpButtons(episodes, isExpanded);
+        renderEpButtons(data.episodes, isExpanded);
       });
       episodeWrap.appendChild(toggleBtn);
     }
