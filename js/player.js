@@ -189,15 +189,15 @@ if (overviewEl && toggleBtn && window.innerWidth <= 768) {
     <div class="cast-scroll">
       ${cast.map(actor => {
         const img = actor.profile_path
-          ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-          : "https://i.imgur.com/obaaZjk.png";
-        return `
-          <div class="cast-card">
-            <img src="${img}" alt="${actor.name}" onerror="this.onerror=null;this.src='https://i.imgur.com/obaaZjk.png';">
-            <div class="cast-name">${actor.name}</div>
-            <div class="cast-role">${actor.character}</div>
-          </div>
-        `;
+  ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
+  : "https://i.imgur.com/obaaZjk.png";
+return `
+  <div class="cast-card">
+    <img src="${img}" alt="${actor.name}" onerror="this.onerror=null;this.src='https://i.imgur.com/obaaZjk.png';">
+    <div class="cast-name">${actor.name}</div>
+    <div class="cast-role">${actor.character}</div>
+  </div>
+`;
       }).join("")}
     </div>
     <button class="cast-scroll-btn right" aria-label="Scroll Right">›</button>
