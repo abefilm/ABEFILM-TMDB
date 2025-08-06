@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
               <div class="movie-info">
                 <div>
                   <div class="movie-title">${title}</div>
-                  <div class="movie-meta">${type.toUpperCase()} • ${rating} • ${rated} • ${year}</div>
+                  <div class="movie-meta">${type} • ${rating} • ${rated} • ${year}</div>
                   <div class="movie-genres"><span>${genres}</span></div>
                   <div class="movie-overview">${overview}</div>
                 </div>
