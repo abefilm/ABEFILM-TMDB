@@ -156,12 +156,24 @@ setIframeSrc(epParam);
       </div>
       <div class="footer-genres"><strong>Genres:</strong> ${genreList}</div>
       <div class="footer-overview">${overview || "No overview available."}</div>
+<span class="read-more-toggle">More</span>
+
     </div>
     <div class="footer-right">
       <h3>Recommended</h3>
       <div class="recommendation-grid"></div>
     </div>
   `;
+
+const overviewEl = footer.querySelector(".footer-overview");
+const toggleBtn = footer.querySelector(".read-more-toggle");
+
+if (overviewEl && toggleBtn && window.innerWidth <= 768) {
+  toggleBtn.addEventListener("click", () => {
+    overviewEl.classList.toggle("expanded");
+    toggleBtn.textContent = overviewEl.classList.contains("expanded") ? "Less" : "More";
+  });
+}
 
   fetch(`https://api.themoviedb.org/3/${number_of_episodes ? "tv" : "movie"}/${info.id}/credits?api_key=${API_KEY}`)
     .then(res => res.json())
@@ -181,7 +193,7 @@ setIframeSrc(epParam);
           : "https://i.imgur.com/obaaZjk.png";
         return `
           <div class="cast-card">
-            <img src="${img}" alt="${actor.name}">
+            <img src="${img}" alt="${actor.name}" onerror="this.onerror=null;this.src='https://i.imgur.com/obaaZjk.png';">
             <div class="cast-name">${actor.name}</div>
             <div class="cast-role">${actor.character}</div>
           </div>
@@ -191,7 +203,6 @@ setIframeSrc(epParam);
     <button class="cast-scroll-btn right" aria-label="Scroll Right">›</button>
   </div>
 `;
-
       footer.querySelector(".footer-left").appendChild(castWrapper);
       }
     }) 
