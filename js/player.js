@@ -178,7 +178,7 @@ setIframeSrc(epParam);
       ${cast.map(actor => {
         const img = actor.profile_path
           ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-          : "https://via.placeholder.com/80x120?text=No+Image";
+          : "https://i.imgur.com/obaaZjk.png";
         return `
           <div class="cast-card">
             <img src="${img}" alt="${actor.name}">
@@ -222,7 +222,7 @@ setIframeSrc(epParam);
           const title = item.title || item.name || "Untitled";
           const poster = item.poster_path
             ? `https://image.tmdb.org/t/p/w185${item.poster_path}`
-            : "https://via.placeholder.com/120x180?text=No+Image";
+            : "https://i.imgur.com/YyHsyEr.png";
 
           const mediaType = type === "movie" ? "movie" : "tv";
 
