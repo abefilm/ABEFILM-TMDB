@@ -9,18 +9,49 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const urlParams = new URLSearchParams(window.location.search);
+function saveWatchState(server, season, episode) {
+  const state = { server, season, episode };
+  localStorage.setItem(storageKey, JSON.stringify(state));
+}
+
+function loadWatchState() {
+  const data = localStorage.getItem(storageKey);
+  return data ? JSON.parse(data) : null;
+}
   const id = urlParams.get("id");
   const type = urlParams.get("type");
-  const epParam = parseInt(urlParams.get("ep") || "1");
-  const SEASON_NUMBER = 1;
+  const storageKey = `watch_state_${id}_${type}`;
+
+  function updateDocumentTitle(id, type, season) {
+  fetch(`https://api.themoviedb.org/3/${type}/${id}?api_key=${API_KEY}&language=en-US`)
+    .then(res => res.json())
+    .then(data => {
+      const title = data.title || data.name || "Untitled";
+      const suffix = type === "tv" ? ` S${season}` : "";
+      document.title = `${title}${suffix} - Watch Now | AbeFilm`;
+    })
+    .catch(err => {
+      console.error("Title update failed:", err);
+    });
+}
 
   const playerEl = document.getElementById("video-left");
   const episodeButtons = document.getElementById("player-episode-buttons");
   const serverButtons = document.getElementById("server-buttons");
+  const seasonButtons = document.createElement("div");
+seasonButtons.id = "season-buttons";
+seasonButtons.classList.add("season-button-container");
 
-  let currentEpisode = epParam;
-  let currentServer = null;
-  let servers = {};
+serverButtons.insertAdjacentElement("afterend", seasonButtons);
+
+const savedState = loadWatchState();
+const savedSeason = savedState?.season;
+const seasonParam = parseInt(urlParams.get("season") || savedSeason || "1");
+const epParam = parseInt(urlParams.get("ep") || savedState?.episode || "1");
+
+let currentEpisode = savedState?.episode || epParam;
+let currentServer = savedState?.server || null;
+let servers = {};
 
   function loadServerTemplates() {
     const serverSection = document.getElementById("video-sources");
@@ -60,7 +91,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const src = type === "movie"
       ? server.movie(id)
-      : server.tv(id, SEASON_NUMBER, episode);
+      : server.tv(id, seasonParam, episode);
 
     playerEl.innerHTML = src
       ? `<iframe src="${src}" frameborder="0" allowfullscreen loading="lazy" style="width:100%;height:100%;max-height:100vh;"></iframe>
@@ -80,6 +111,7 @@ window.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".server-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         currentServer = key;
+        saveWatchState(currentServer, seasonParam, currentEpisode);
         setIframeSrc(currentEpisode);
       });
 
@@ -96,6 +128,7 @@ window.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("click", () => {
         document.querySelectorAll(".player-episode-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
+        saveWatchState(currentServer, seasonParam, i);
         setIframeSrc(i);
       });
 
@@ -134,7 +167,13 @@ setIframeSrc(epParam);
   } = info;
 
   const typeText = number_of_episodes ? "TV" : "Movie";
-  const year = (release_date || first_air_date || "").split("-")[0] || "N/A";
+  let year = (release_date || first_air_date || "").split("-")[0]; 
+if (type === "tv" && info?.seasons && seasonParam) {
+  const selectedSeason = info.seasons.find(season => season.season_number == seasonParam);
+  if (selectedSeason?.air_date) {
+    year = selectedSeason.air_date.split("-")[0];
+  }
+}
   const rating = vote_average ? vote_average.toFixed(1) : "N/A";
   const runtimeText = runtime || episode_run_time?.[0] || "?";
   const genreList = genres?.map(g => g.name).join(", ") || "Unknown";
@@ -146,7 +185,7 @@ setIframeSrc(epParam);
   footer.innerHTML = `
     <div class="footer-left">
       <div class="footer-title-rating">
-        <strong>${title || name || "Untitled"} (${year})</strong>
+        <strong>${(title || name || "Untitled")}${number_of_episodes ? ` S${seasonParam}` : ""} (${year})</strong>
       </div>
       <div class="footer-meta">
         <span class="footer-rating">⭐ ${rating}</span>
@@ -228,7 +267,7 @@ return `
           container.innerHTML = "<p style='color:#ccc'>No recommendations available.</p>";
           return;
         }
-
+        
         container.innerHTML = results.map(item => {
           const title = item.title || item.name || "Untitled";
           const poster = item.poster_path
@@ -262,8 +301,8 @@ return `
       });
   }
 
-  // Main logic
   if (id && type) {
+ updateDocumentTitle(id, type, seasonParam);
     loadServerTemplates();
 
     if (Object.keys(servers).length > 0) {
@@ -279,9 +318,22 @@ return `
         .then(info => {
           populateFooter(info);
           fetchRecommendations(info.id, type);
-        });
 
-      fetch(`https://api.themoviedb.org/3/tv/${id}/season/${SEASON_NUMBER}?api_key=${API_KEY}`)
+        if (info.seasons && info.seasons.length > 0) {
+      seasonButtons.innerHTML = info.seasons
+  .filter(season => season.season_number !== 0)
+  .map(season => {
+    const isActive = season.season_number === seasonParam;
+    return `
+      <a href="?id=${id}&type=tv&season=${season.season_number}" 
+         class="season-btn${isActive ? " active" : ""}">
+        S${season.season_number}
+      </a>`;
+  }).join("");
+    }
+        });
+      
+     fetch(`https://api.themoviedb.org/3/tv/${id}/season/${seasonParam}?api_key=${API_KEY}`)
         .then(res => res.json())
         .then(data => {
           const totalEpisodes = data.episodes?.length || 0;
@@ -292,12 +344,31 @@ return `
           }
         });
     } else if (type === "movie") {
-      fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
-        .then(res => res.json())
-        .then(info => {
-          populateFooter(info);
-          fetchRecommendations(info.id, type);
-        });
+  fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
+    .then(res => res.json())
+    .then(info => {
+      populateFooter(info);
+      fetchRecommendations(info.id, type);
+
+      if (info.belongs_to_collection?.id) {
+        fetch(`https://api.themoviedb.org/3/collection/${info.belongs_to_collection.id}?api_key=${API_KEY}`)
+          .then(res => res.json())
+          .then(collection => {
+            if (collection.parts && collection.parts.length > 1) {
+             seasonButtons.innerHTML = collection.parts
+  .sort((a, b) => new Date(a.release_date) - new Date(b.release_date))
+  .map((movie, index) => {
+    const isActive = movie.id == id;
+    return `
+      <a href="?id=${movie.id}&type=movie&part=${index + 1}" 
+         class="season-btn${isActive ? " active" : ""}">
+        Part ${index + 1}
+      </a>`;
+  }).join("");
+            }
+          });
+      }
+    });
 
       createMovieEpisodeDummy();
       setIframeSrc();
