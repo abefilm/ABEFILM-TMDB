@@ -105,7 +105,7 @@ try {
         const avatarPath = review.author_details?.avatar_path;
         const avatar = avatarPath
           ? avatarPath.startsWith('/https') ? avatarPath.slice(1) : `https://image.tmdb.org/t/p/w45${avatarPath}`
-          : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(authorName); // fallback avatar
+          : 'https://ui-avatars.com/api/?name=' + encodeURIComponent(authorName); 
 
         const createdAt = new Date(review.created_at).toLocaleDateString();
 
@@ -321,12 +321,12 @@ async function renderMovieEpisode(movieId) {
     });
 
     const epBtn = document.createElement("button");
-    epBtn.className = "btn episode-btn";
-    epBtn.textContent = "Watch";
-    epBtn.addEventListener("click", () => {
-      alert("Play: " + movieData.title);
-    });
-    episodeWrap.appendChild(epBtn);
+epBtn.className = "btn episode-btn";
+epBtn.textContent = "01";
+epBtn.addEventListener("click", () => {
+  window.location.href = `/p/player.html?id=${movieId}&type=movie`;
+});
+episodeWrap.appendChild(epBtn);
 
   } else {
     const seasonBtn = document.createElement("button");
@@ -337,9 +337,12 @@ async function renderMovieEpisode(movieId) {
     const epBtn = document.createElement("button");
     epBtn.className = "btn episode-btn";
     epBtn.textContent = "01";
-    epBtn.addEventListener("click", () => {
-      alert("Play Movie - Episode 01");
-    });
+epBtn.addEventListener("click", () => {
+  const movieId = new URLSearchParams(window.location.search).get("id");
+  const movieType = new URLSearchParams(window.location.search).get("type") || "movie";
+  window.location.href = `/p/player.html?id=${movieId}&type=${movieType}`;
+});
+
     episodeWrap.appendChild(epBtn);
   }
 }
@@ -360,18 +363,16 @@ async function fetchRecommendations() {
     data.results.slice(0, 12).forEach((item) => {
       const link = document.createElement("a");
       link.href = `./details.html?id=${item.id}&type=${type}`;
-      link.className = "more-like-item abefilm-hover-card"; // your hover class
+      link.className = "more-like-item abefilm-hover-card"; 
 
       const imageWrap = document.createElement("div");
-      imageWrap.className = "abefilm-image-wrap"; // wrapper for image + play button
+      imageWrap.className = "abefilm-image-wrap"; 
 
       const image = document.createElement("img");
 image.src = item.poster_path
   ? `${IMG_URL}${item.poster_path}`
   : "https://i.imgur.com/YyHsyEr.png";
 image.alt = item.title || item.name;
-
-// Fallback if image fails to load
 image.onerror = () => {
   image.src = "https://i.imgur.com/YyHsyEr.png";
 };
@@ -471,7 +472,7 @@ document.addEventListener("click", function (e) {
     const trailerContainer = document.getElementById("modal-trailer-container");
 
     modal.classList.remove("active");
-    trailerContainer.innerHTML = ""; // Stop trailer
+    trailerContainer.innerHTML = ""; 
   }
 });
 
@@ -487,6 +488,3 @@ document.addEventListener("click", function (e) {
       alert("Missing ID or type in URL.");
     }
   }
-
-
-
