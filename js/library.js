@@ -140,10 +140,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }).join("");
 
         container.insertAdjacentHTML("beforeend", content);
-// Click handler for movie card and play button
 container.querySelectorAll(".movie-card, .play-button").forEach(el => {
   el.addEventListener("click", (e) => {
-    e.stopPropagation(); // Prevent event bubbling
+    e.stopPropagation(); 
     const card = e.currentTarget;
     const id = card.getAttribute("data-id");
     const type = card.getAttribute("data-type");
@@ -172,4 +171,3 @@ container.querySelectorAll(".movie-card, .play-button").forEach(el => {
     }
   }
 });
-//]]>
