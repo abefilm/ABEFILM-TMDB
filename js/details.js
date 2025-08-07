@@ -266,11 +266,11 @@ async function renderEpisodes(seasonNum) {
 
   const originalTitle = document.querySelector(".info h1")?.dataset?.originalTitle || titleEl.innerText.split(" S")[0];
   titleEl.innerText = `${originalTitle} S${seasonNum}`;
-  titleEl.dataset.originalTitle = originalTitle; // Save once
+  titleEl.dataset.originalTitle = originalTitle; 
 
   if (data.air_date) {
     const newYear = data.air_date.split("-")[0];
-    metaEl.innerHTML = metaEl.innerHTML.replace(/\d{4}/, newYear); // Replace year only
+    metaEl.innerHTML = metaEl.innerHTML.replace(/\d{4}/, newYear); 
   }
 
   if (data.poster_path) {
@@ -281,7 +281,6 @@ async function renderEpisodes(seasonNum) {
     backdropEl.style.setProperty('--backdrop-url', `url('${IMG_URL}${data.backdrop_path}')`);
   }
 
-  // Render episode buttons
   episodeWrap.innerHTML = "";
 
   const isMobile = window.innerWidth <= 600;
