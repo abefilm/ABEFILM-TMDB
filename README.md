@@ -19,7 +19,7 @@ Welcome to ABEFILM, a dynamic movie and TV series website built on the Blogger p
   <tr>
     <td><img src="https://i.imgur.com/UEIKnDD.png" alt="Desktop 4" width="250"/></td>
     <td><img src="https://i.imgur.com/PCPAawp.png" alt="Desktop 5" width="250"/></td>
-    <td></td>
+    <td><img src="https://i.imgur.com/koJk7St.png" alt="Desktop 6" width="250"/></td>
   </tr>
 </table>
 
