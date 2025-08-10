@@ -253,4 +253,9 @@ Feel free to open issues or pull requests to help improve the project.
 
 ---
 
+## Join Our Community
+
+Join our [Telegram Group](https://t.me/abeflixgroupchat) to discuss, get support, and stay updated!
+
+
 Thank you for using **ABEFILM** — your Blogger-based gateway to movies and TV shows powered by TMDB!
