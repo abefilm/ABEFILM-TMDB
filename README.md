@@ -1,8 +1,8 @@
 # MOVIEBOX - Blogger Movie & TV Template Powered by TMDB API
 
+[img src="[https://i.imgur.com/emvLhKu.png](https://i.imgur.com/4Ef1E6x.png)" alt="moviebox tmdb" width="250"/>](https://i.imgur.com/4Ef1E6x.png)
 ---
 ## Introduction
-
 Welcome to ABEFILM, a dynamic movie and TV series website built on the Blogger platform, powered by The Movie Database (TMDB) API. This project enables users to browse, search, and explore movies, TV series, anime, and animations with real-time data fetched directly from TMDB.
 
 ---
