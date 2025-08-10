@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // Define common variables once for use in all subsequent sections
   const path = window.location.href;
   const isMobile = window.innerWidth <= 768;
+  const homeURL = location.origin + "/";
+
+  // Page-specific flags
+  const isHomepage = location.pathname === "/" ||
+                     location.pathname.endsWith("/index.html") ||
+                     (location.hostname.includes("blogspot.com") && !location.pathname.includes("/p/"));
   const isDetailsPage = path.includes('/details.html');
   const isPlayerPage = path.includes('/player.html');
   const isLibraryPage = path.includes('/library.html');
@@ -27,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (text13 && desc) { desc.innerHTML = text13.innerHTML; }
   if (text14 && credit) {
     credit.innerHTML = text14.innerHTML;
-    // Insert current year if span exists
     const yearSpan = credit.querySelector('#currentYear');
     if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
   }
@@ -51,7 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const detailsContent = document.getElementById('details-content');
   const playerContent = document.getElementById('player-content');
   const libraryContent = document.getElementById('library');
-  // Note: aboutUsContainer, privacyPolicyContainer, disclaimerContainer are already defined above
 
   if (detailsContent) detailsContent.style.display = isDetailsPage ? 'block' : 'none';
   if (playerContent) playerContent.style.display = isPlayerPage ? 'block' : 'none';
@@ -70,7 +74,61 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
-  // ---= 4. UI INTERACTIONS & EVENT LISTENERS =---
+  // ---= 4. HOMEPAGE HASH-BASED NAVIGATION =---
+
+  const hashToSection = {
+    home: 'tmdb-section-1',
+    movies: 'tmdb-section-2',
+    tvseries: 'tmdb-section-3',
+    animation: 'tmdb-section-4',
+    kdramas: 'tmdb-section-5',
+    cdramas: 'tmdb-section-6',
+    anime: 'tmdb-section-7',
+    'western-movies': 'tmdb-section-8',
+    'western-series': 'tmdb-section-9'
+  };
+
+  // Redirect to homepage if a hash link is clicked on a non-homepage
+  document.querySelectorAll('.side-menu a[href^="#"], .bottom-navbar a[href^="#"], .anchor-links a[href^="#"]').forEach(link => {
+    link.addEventListener("click", function (e) {
+      if (!isHomepage) {
+        e.preventDefault();
+        window.location.href = homeURL + this.getAttribute("href");
+      }
+    });
+  });
+
+  // Redirect if a non-homepage is loaded directly with a hash
+  if (!isHomepage && location.hash && hashToSection[location.hash.replace('#','')]) {
+    window.location.href = homeURL + location.hash;
+    return; // Stop further script execution on this page
+  }
+  
+  // If on the homepage, manage section visibility based on hash
+  if (isHomepage) {
+    const updateSectionsFromHash = () => {
+      const currentHash = window.location.hash.replace('#', '') || 'home';
+
+      Object.entries(hashToSection).forEach(([key, sectionId]) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.style.display = (key === currentHash) ? 'block' : 'none';
+        }
+      });
+
+      // Highlight active link in all menus
+      document.querySelectorAll('.side-menu a, .bottom-navbar a, .anchor-links a').forEach(link => {
+        const linkHash = link.getAttribute('href')?.replace('#', '');
+        link.classList.toggle('active', linkHash === currentHash);
+      });
+    };
+    
+    updateSectionsFromHash(); // Run on initial load
+    window.addEventListener('hashchange', updateSectionsFromHash); // Run when hash changes
+  }
+
+
+  // ---= 5. UI INTERACTIONS & EVENT LISTENERS =---
 
   // Helper function for custom toast notifications
   let toastTimer;
@@ -100,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     };
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check on page load
+    handleScroll(); // Initial check
   }
 
   // Mobile Sidebar Toggle
@@ -118,14 +176,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // General Buttons: Share, Top, Back History
+  // General Action Buttons: Share, Top, Back
   document.querySelector('.share-btn')?.addEventListener('click', () => {
     if (navigator.share) {
-      navigator.share({
-        title: document.title,
-        text: 'Check this out!',
-        url: window.location.href
-      }).catch(err => console.warn('Share failed:', err));
+      navigator.share({ title: document.title, url: window.location.href })
+        .catch(err => console.warn('Share failed:', err));
     } else {
       navigator.clipboard.writeText(window.location.href)
         .then(() => showToastNotification('Link copied to clipboard!', 'success'))
@@ -142,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (window.history.length > 1) {
       window.history.back();
     } else {
-      window.location.href = '/'; // Fallback to homepage
+      window.location.href = '/'; // Fallback
     }
   });
 
@@ -160,7 +215,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // --- GLOBAL CLICK LISTENER FOR DELEGATED EVENTS ---
-// This listener is outside DOMContentLoaded to catch clicks on dynamically added elements.
 document.addEventListener("click", function (e) {
   // Cast Scroller Buttons
   if (e.target.classList.contains("cast-scroll-btn")) {
@@ -168,7 +222,7 @@ document.addEventListener("click", function (e) {
     if (scrollContainer) {
       const direction = e.target.classList.contains("left") ? -1 : 1;
       const card = scrollContainer.querySelector('.cast-card');
-      const scrollAmount = (card ? card.offsetWidth * 2.5 : 200); // Scroll by 2.5 card widths
+      const scrollAmount = (card ? card.offsetWidth * 2.5 : 200);
       scrollContainer.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
     }
   }
