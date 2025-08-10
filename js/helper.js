@@ -147,18 +147,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 3000);
   }
 
-  // Sticky Header on Scroll
+  // *** MODIFIED: Sticky Header on Scroll ***
   const topHeader = document.querySelector(".top-header");
   if (topHeader) {
     const handleScroll = () => {
-      if (window.innerWidth > 768) {
-        topHeader.style.background = (window.scrollY > 10) ? "#111" : "transparent";
-      } else {
-        topHeader.style.background = "#111"; // Always solid on mobile
+      // This condition checks if it's the homepage AND not a mobile device
+      if (isHomepage && !isMobile) {
+        // Add or remove the 'scrolled' class based on scroll position (100px)
+        topHeader.classList.toggle('scrolled', window.scrollY > 100);
+      } else if (!isMobile) {
+        // For all OTHER desktop pages, ensure the header is always solid
+        topHeader.classList.add('scrolled');
       }
+      // On mobile, this JS does nothing, allowing CSS to control the background
     };
+    
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll(); // Run once on page load to set the initial state
   }
 
   // Mobile Sidebar Toggle
