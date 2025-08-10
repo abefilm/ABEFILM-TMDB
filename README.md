@@ -1,4 +1,4 @@
-# ABEFILM - Blogger Movie & TV Template Powered by TMDB API
+# MOVIEBOX - Blogger Movie & TV Template Powered by TMDB API
 
 ---
 ## Introduction
