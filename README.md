@@ -229,15 +229,44 @@ No posting or data submission is done through this integration. It only fetches 
 
 ---
 
-## How to Use
+# How to Use This Template
 
-1. Obtain your TMDB API Key from [https://www.themoviedb.org/](https://www.themoviedb.org/).  
-2. Insert your API key in your Blogger widget or script configuration.  
-3. Select an endpoint from the above lists to fetch and display desired content.  
-4. Customize endpoints by adding filters such as genres, release year, region, or language.  
-5. Embed widgets/scripts into your Blogger site.  
-6. Navigate site sections using hash URLs: `#home`, `#movies`, `#tvseries`, `#animation`.  
+1.  **Obtain Your API Key**
+    
+    Get a free API key from [The Movie Database (TMDb)](https://www.themoviedb.org/). You will need to create a free account.
 
+2.  **Add Your API Key to Your Site**
+    
+    This template requires your API key to be available globally. Go to your Blogger theme editor (or wherever you can add custom scripts). Add the following code just before the closing `</body>` tag, replacing `YOUR_TMDB_API_KEY` with your actual key.
+    
+    ```html
+    <script>
+      window.apiKey = "YOUR_TMDB_API_KEY";
+    </script>
+    ```
+
+3.  **Configure Homepage Content via Widgets**
+    
+    The homepage content is controlled by placing TMDb API endpoints into your platform's **HTML/JavaScript** widgets.
+    
+    *   **For the Main Slider**: Edit a specific widget (the template may look for an ID like `#Text1`) and place the desired slider endpoint inside.
+        *   *Example*: `trending/movie/week`
+    
+    *   **For Content Rows**: Add more HTML/JavaScript widgets for each row you want to display (e.g., "Popular Movies," "Top Rated TV Shows"). Place the corresponding endpoint in each widget.
+        *   *Example*: `movie/popular`
+        *   *Example*: `tv/top_rated`
+
+4.  **Customize Content (Optional)**
+    
+    Filter the content by adding URL parameters to your endpoints.
+    
+    *   *Example (Show only Action movies)*: `discover/movie?with_genres=28`
+    *   *Example (Show popular movies from 2024)*: `discover/movie?sort_by=popularity.desc&year=2024`
+
+5.  **Save and View**
+    
+    Save your changes. The template will automatically fetch the data and build the pages. Navigation between the homepage, details pages (`/p/details.html`), and the player (`/p/player.html`) is handled by the theme's built-in links.
+    
 ---
 
 ## Example API URL
