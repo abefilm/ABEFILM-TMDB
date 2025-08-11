@@ -237,7 +237,7 @@ No posting or data submission is done through this integration. It only fetches 
 
 2.  **Add Your API Key to Your Site**
     
-    This template requires your API key to be available globally. Go to your Blogger theme editor (or wherever you can add custom scripts). Add the following code just before the closing `</body>` tag, replacing `YOUR_TMDB_API_KEY` with your actual key.
+  To use this template, your TMDB API key must be available globally. In Blogger go to Layout →  TMDB API Gadget (Top), and paste the code below, replacing YOUR_TMDB_API_KEY with your TMDB API key.
     
     ```html
     <script>
