@@ -233,7 +233,7 @@ No posting or data submission is done through this integration. It only fetches 
 
 1.  **Obtain Your API Key**
     
-    Get a free API key from [The Movie Database (TMDb)](https://www.themoviedb.org/). You will need to create a free account.
+    Get a free API key from [The Movie Database (TMDb)](https://www.themoviedb.org/settings/api). You will need to create a free account.
 
 2.  **Add Your API Key to Your Site**
     
