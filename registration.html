@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>License Management Tool</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <!-- Container for the entire tool -->
+  <div class="main-tool-container">
+    <div class="header-bar">
+      <h1>License Tool</h1>
+      <div id="admin-login-controls">
+        <span id="admin-email-display" style="display: none;"></span>
+        <button id="admin-login-btn" class="btn-secondary" onclick="showAdminLogin()">Admin Login</button>
+        <button id="admin-logout-btn" class="btn-danger" onclick="adminLogout()" style="display: none;">Logout</button>
+      </div>
+    </div>
+
+    <div class="main-container">
+      <div class="tabs-container">
+        <button id="customer-tab" class="tab-button active" onclick="switchView('register')">Registration</button>
+        <button id="admin-tab" class="tab-button" onclick="switchView('admin')" style="display: none;">Admin Panel</button>
+      </div>
+
+      <!-- Views -->
+      <div id="register-page" class="page-container" style="display: block;">
+          <h2>Register Your License</h2>
+          <p>Activate your theme by registering your domain.</p>
+          <input type="text" id="registerDomain" placeholder="Enter your domain (e.g., example.com)" />
+          <input type="text" id="registerLicenseKey" placeholder="Enter your license key" />
+          <div class="btn-row">
+            <button class="btn-primary" onclick="registerLicense()">Register License</button>
+            <button class="btn-danger" onclick="removeDomain()">Remove Domain</button>
+          </div>
+          <div id="registerLicenseInfo" class="info-box">
+            <h3>License Information</h3>
+            <p><strong>Website Registered:</strong> <span id="infoDomain"></span></p>
+            <p><strong>Expiration Date:</strong> <span id="infoExpiry"></span></p>
+            <p><strong>Theme:</strong> <span id="infoTheme"></span></p>
+          </div>
+      </div>
+      
+      <div id="admin-page" class="page-container">
+          <h2>License Key Admin</h2>
+          <p>Generate new license keys for customers.</p>
+          <label for="themeName">Theme Name</label>
+          <select id="themeName"> <option value="Moviebox">Moviebox</option> <option value="Abefilmv4">Abefilmv4</option> </select>
+          <label for="licenseType">License Type</label>
+          <select id="licenseType"> <option value="forever">Forever License</option> <option value="1day">1 Day Trial</option> <option value="1hour">1 Hour Trial</option> </select>
+          <button class="btn-primary" onclick="generateLicense()">Generate License Key</button>
+          <input type="text" id="adminLicenseKey" readonly placeholder="Generated License Key">
+          <div class="btn-row">
+            <button class="btn-success" onclick="copyLicense()">Copy License</button>
+            <button class="btn-secondary" onclick="saveLicense()">Save License</button>
+          </div>
+      </div>
+
+      <div id="message" class="message"></div>
+    </div>
+  </div>
+
+  <div id="admin-login-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h3>Admin Login</h3>
+        <input type="email" id="adminEmail" placeholder="Admin Email" required/>
+        <input type="password" id="adminPassword" placeholder="Admin Password" required/>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="hideAdminLogin()">Cancel</button>
+          <button class="btn-primary" onclick="handleAdminLogin()">Login</button>
+        </div>
+      </div>
+  </div>
+</body>
+</html>
