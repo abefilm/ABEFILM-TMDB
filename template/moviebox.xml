@@ -1,1 +1,1152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'><b:attr name='xmlns' value=''/><b:attr name='xmlns:b' value=''/><b:attr name='xmlns:expr' value=''/><b:attr name='xmlns:data' value=''/>
+  <head>
+  <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+  <meta expr:charset='data:blog.encoding'/>
+  <meta content='initial-scale=1.0, width=device-width, minimal-ui' name='viewport'/>
+     <!-- Preload the first image -->
+  <link as='image' fetchpriority='high' id='dynamic-preload' rel='preload'/>
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css' rel='stylesheet'/>
+  <script src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js'/>  
+  <script defer='defer' src='https://cdn.jsdelivr.net/gh/abefilm/MOVIEBOX-TMDB@main/js/movieboxv1.js'/>
+  <title><data:view.title.escaped/></title>
+  <b:if cond='!data:view.isError'>
+    <b:if cond='data:blog.metaDescription'>
+      <meta expr:content='data:blog.metaDescription.escaped' name='description'/>
+      <b:elseif cond='data:view.isSingleItem'/>
+      <meta expr:content='data:post.snippet.escaped snippet { length: 147, links: false, linebreaks: false, ellipsis: false }' name='description'/>
+      <b:else/>
+      <meta expr:content='data:blog.pageName.escaped ? data:blog.pageName.escaped : data:blog.title' name='description'/>
+    </b:if>
+    <meta expr:content='data:blog.title.escaped + &quot; - &quot; + data:blog.metaDescription.escaped' property='og:title'/>
+    <meta expr:content='data:blog.metaDescription.escaped' property='og:description'/>
+    <b:if cond='data:view.isMultipleItems and data:view.isHomepage'>
+      <meta content='website' property='og:type'/>
+    </b:if>
+    <meta expr:content='data:blog.title.escaped' property='og:site_name'/>
+    <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+    <meta expr:content='data:blog.locale' property='og:locale'/>
+    <meta content='ID_FACEBOOK' property='fb:app_id'/>
+    <b:if cond='data:blog.postImageUrl'>
+      <meta expr:content='resizeImage(data:blog.postImageUrl, 0)' property='og:image'/>
+      <b:else/>
+      <meta content='ADD_YOUR_IMAGE_URL_HERE' property='og:image'/>
+    </b:if>
+    <meta content='1200' property='og:image:width'/>
+    <meta content='630' property='og:image:height'/>
+    <meta content='summary_large_image' name='twitter:card'/>
+    <meta expr:content='data:blog.title.escaped' name='twitter:site'/>
+    <meta expr:content='data:blog.title.escaped + &quot; - &quot; + data:blog.metaDescription.escaped' property='twitter:title'/>
+    <meta expr:content='data:blog.metaDescription.escaped' property='twitter:description'/>
+    <b:if cond='data:blog.postImageUrl'>
+      <meta expr:content='resizeImage(data:blog.postImageUrl, 0)' name='twitter:image:src'/>
+      <b:else/>
+      <meta content='ADD_YOUR_IMAGE_URL_HERE' name='twitter:image:src'/>
+    </b:if>
+    <meta content='1200' property='og:image:width'/>
+    <meta content='630' property='og:image:height'/>
+    <link expr:href='data:blog.canonicalUrl' rel='canonical'/>
+    <link expr:href='data:blog.canonicalUrl + &quot;?hl=&quot; + data:blog.locale' hreflang='x-default' rel='alternate'/>
+    <b:tag as='image' cond='data:view.isMultipleItems and data:widgets.Blog.first.posts[1].featuredImage' expr:href='data:widgets.Blog.first.posts[1].featuredImage' name='link' rel='preload'/>
+    <b:tag as='image' cond='data:view.isMultipleItems and data:widgets.Blog.first.posts[2].featuredImage' expr:href='data:widgets.Blog.first.posts[2].featuredImage' name='link' rel='preload'/>
+    <link expr:href='data:blog.blogspotFaviconUrl' rel='icon'/>
+    <link expr:href='data:blog.blogspotFaviconUrl' rel='shortcut icon' type='image/icon'/>
+    <link expr:href='data:blog.blogspotFaviconUrl' rel='apple-touch-icon' sizes='152x152'/>
+    <link expr:href='data:blog.blogspotFaviconUrl' rel='apple-touch-icon' sizes='120x120'/>
+    <link expr:href='data:blog.blogspotFaviconUrl' rel='apple-touch-icon' sizes='114x114'/>
+    <link expr:href='data:blog.blogspotFaviconUrl' rel='apple-touch-icon' sizes='72x72'/>
+    <b:tag as='image' cond='data:view.isPost' expr:href='resizeImage(data:blog.postImageUrl, 0)' name='link' rel='preload'/>
+    <meta content='blogger' name='generator'/>
+    <link expr:href='data:blog.homepageUrl.canonical + &quot;feeds/posts/default&quot;' expr:title='data:blog.title + &quot; - Atom&quot;' rel='alternate' type='application/atom+xml'/>
+    <link expr:href='data:blog.homepageUrl.canonical + &quot;feeds/posts/default?alt=rss&quot;' expr:title='data:blog.title + &quot; - Feed&quot;' rel='alternate' type='application/rss+xml'/>
+    <link expr:href='data:blog.homepageUrl.canonical + &quot;feeds/comments/default?alt=rss&quot;' expr:title='data:blog.title + &quot; - Comments Feed&quot;' rel='alternate' type='application/rss+xml'/>
+  <meta expr:content='data:skin.vars.mobile' name='theme-color'/>
+  <meta expr:content='data:skin.vars.mobile' name='msapplication-navbutton-color'/>
+  <meta expr:content='data:skin.vars.mobile' name='apple-mobile-web-app-status-bar-style'/> 
+    <!--[ Open graph ]-->
+    <meta expr:content='data:blog.pageName.escaped ? data:blog.pageName.escaped : data:blog.title.escaped' property='og:title'/>
+    <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+    <meta expr:content='data:blog.title.escaped' property='og:site_name'/>
+    <b:if cond='data:view.isMultipleItems'>
+      <meta content='website' property='og:type'/>
+      <b:if cond='data:blog.metaDescription'>
+        <meta expr:content='data:blog.metaDescription.escaped' property='og:description'/>         
+        <b:else/>
+        <meta expr:content='data:blog.pageName.escaped ? data:blog.pageName.escaped : data:blog.title' property='og:description'/>
+      </b:if>
+      <b:else/>
+      <meta content='article' property='og:type'/>
+      <b:if cond='data:blog.metaDescription'>
+        <meta expr:content='data:blog.metaDescription.escaped' property='og:description'/>            
+        <b:else/>
+        <meta expr:content='data:post.snippet.escaped snippet { length: 147, links: false, linebreaks: false, ellipsis: false }' property='og:description'/>
+      </b:if>
+    </b:if>
+    <meta expr:content='data:blog.pageName.escaped ? data:blog.pageName.escaped : data:blog.title.escaped' property='og:image:alt'/>
+    <b:if cond='data:blog.postImageUrl'>
+      <meta expr:content='resizeImage(data:blog.postImageUrl, 0)' property='og:image'/>
+      <b:else/>
+      <meta content='ADD_YOUR_IMAGE_URL_HERE' property='og:image'/>
+    </b:if>
 
+  </b:if>
+<b:if cond='not data:view.isLayoutMode'>
+    <b:skin version='1.0.0'><![CDATA[/*
+<Variable name="keycolor" description="Main Color" type="color" default="#ffa31a" value="#d52c1f"/>
+*/
+
+/*!************************************************
+ * Blogger Template Style
+ * Name      : MOVIEBOX TMDB
+ * License   : Premium
+ * Version   : V1 - https://abefilmmoviebox.blogspot.com/
+ * Creator   : Master Oppa - https://t.me/abeflixgroupchat
+ **************************************************/
+
+
+:root {
+  --keycolor: $(keycolor);
+  --background: #111;
+  --bg-sidebar: #101114;
+  --keycolor-start: #ff7f50;
+  --keycolor-end: #ff4500;
+}
+
+
+/* CSS Framework by Master Oppa */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html, body{font-size:100%;overflow-x: hidden!important;text-size-adjust:none;-webkit-tap-highlight-color:transparent;padding-bottom:2rem;}body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,figure,menu,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,select,th,td,div{margin:0;padding:0;outline:0}ul,ol{list-style:none}a{text-decoration:none;color:var(--keycolor)}a:link,a:visited,a:hover,a:active{text-decoration:none;user-select:none;color:var(--bg-text)}img{width:100%;height:100%;border:0;vertical-align:top}html,body{font-family:"SF Pro",Roboto,"Noto Sans",sans-serif;min-width:320px;background-color:var(--background)}
+.widget-content{display:none;}h3.title{color:#fff;margin-bottom:1.5rem;border-left:solid 3px var(--keycolor);padding-left:5px;}
+.widget{min-height:200px;}
+
+/* Content Slider Styles */
+.content-slider{position:relative;margin-left:200px;width:calc(100% - 200px);overflow:hidden;font-family:sans-serif}.slider-wrapper{position:relative;width:100%;height:65vh}@media(max-width:768px){ .content-slider{width:100%;margin:5rem 0 0 0;}.slider-wrapper{height:240px}}.slide{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background-color:#000;background-size:cover!important;background-position:center!important;background-repeat:no-repeat;z-index:1}.slide::before{content:"";position:absolute;top:0;left:0;right:0;bottom:0;z-index:2;pointer-events:none;background:linear-gradient(to top,var(--bg-sidebar,rgba(0,0,0,1)),transparent 30%),linear-gradient(to right,var(--bg-sidebar,rgba(0,0,0,1)),transparent 30%),linear-gradient(to bottom,transparent 70%,var(--bg-sidebar,rgba(0,0,0,1)))}.slide-caption{position:absolute;top:100px;left:60px;color:#fff;z-index:3;display:flex;align-items:center;gap:12px}.slide-caption img{height:100px;width:auto;object-fit:contain}.slider-arrow{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;color:#fff;background:transparent;border:none;cursor:pointer;z-index:4;padding:0 10px;border-radius:4px;transition:background 0.3s}@media(max-width:768px){.slider-arrow{display:none}}.slider-arrow.left{left:20px}.slider-arrow.right{right:20px}.slider-thumbnails{position:absolute;bottom:15px;left:20px;z-index:3;display:flex;flex-direction:column;align-items:flex-start;gap:20px;width:calc(100% - 40px)}.slider-title{color:#fff;font-size:1rem;font-weight:400;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.slider-thumbnails-row{display:flex;gap:8px}.thumb-wrapper{width:90px}.thumbnail-dot{width:80px;height:45px;background-size: cover;background-position: center;border-radius:6px;opacity:.5;cursor:pointer;transition:filter 0.3s,opacity 0.3s,transform 0.3s}@media(max-width:768px){.slider-thumbnails{flex-direction:row;align-items:center;justify-content:space-between}.slider-title{font-size:.9rem;max-width:70%;margin-bottom:5px}.slider-thumbnails-row{gap:6px;justify-content:flex-end}.thumb-wrapper{width:8px;height:8px;flex-shrink:0}.thumbnail-dot{width:8px;height:4px;border-radius:1px;background-color:gray;display:block}.thumb-wrapper.active .thumbnail-dot{background-color:white!important}}.thumbnail-dot.active{opacity:1;filter:none;transform:scale(1.05)}.thumbnail-dot:not(.active):hover{opacity:.9}
+@media(max-width:768px){.slide-caption img {height: 30px;}.slide-caption{top: 50px;left: 20px;}}
+
+
+.tmdb-section{margin:40px 30px 0 220px;padding:0 10px 15px;overflow:visible}@media(max-width:768px){.tmdb-section{width:100%;margin:0;padding:0 15px 15px}}.tmdb-wrapper{position:relative;margin-bottom:30px;padding-right:5px}@media(max-width:768px){.tmdb-wrapper{padding-right:0}}.tmdb-row{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:10px;scrollbar-width:none;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}.tmdb-row::-webkit-scrollbar{display:none}.tmdb-card{scroll-snap-align:start;flex:0 0 auto;width:calc(100%/7 - 10px);max-width:calc(100%/7 - 10px);position:relative;text-align:center;cursor:pointer}@media(max-width:768px){.tmdb-card{width:calc((100% - 20px)/3);max-width:calc((100% - 20px)/3);height:auto}}.tmdb-card img{width:100%;height:100%;object-fit:cover;display:block}.tmdb-thumb{position:relative}.tmdb-thumb img{width:100%;height:215px;object-fit:cover;border-radius:6px;display:block}@media(max-width:768px){.tmdb-thumb{aspect-ratio:2/3;width:100%}.tmdb-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}}.tmdb-thumb::before{content:"";position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);z-index:1;border-radius:0 0 6px 6px}.tmdb-meta{position:absolute;font-size:.75rem;color:#fff;z-index:2;text-shadow:0 0 4px rgba(0,0,0,.8)}.tmdb-meta.tmdb-year{bottom:5px;left:5px}.tmdb-meta.tmdb-rating{bottom:5px;right:5px}.tmdb-rating i{color:var(--keycolor)}.play-btn{position:absolute;top:50%;left:50%;z-index:3;transform:translate(-50%,-50%);opacity:0;transition:.3s ease;font-size:2rem;color:#fff;text-shadow:0 0 10px rgba(0,0,0,.8);pointer-events:none}.play-btn svg{width:48px;height:48px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))}.hover-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);border-radius:6px;z-index:2;opacity:0;transition:opacity .3s ease}.tmdb-card:hover .hover-overlay,.tmdb-card:hover .play-btn{opacity:1}.tmdb-title{font-size:.9rem;margin-top:6px;color:#fff;line-height:1.3;height:2.6em;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}@media(max-width:768px){.tmdb-title{font-size:.8rem;margin-top:4px;line-height:1.3;text-align:left}.tmdb-meta{font-size:.6rem}}.tmdb-scroll{position:absolute;top:40%;transform:translateY(-50%);z-index:99;background:rgba(17,17,17,.7);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:32px;font-weight:700;padding:0;width:40px;height:40px;cursor:pointer;border-radius:50%;user-select:none;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;line-height:1;padding-bottom:4px}.tmdb-wrapper:hover .tmdb-scroll{opacity:1;pointer-events:auto}.tmdb-scroll.left{left:-20px}.tmdb-scroll.right{right:-10px}@media(max-width:768px){.tmdb-scroll{display:none!important}}
+
+/* Loader */
+.tmdb-thumb.shimmer{height:150px;background:linear-gradient(90deg,#222 25%,#333 50%,#222 75%);background-size:200% 100%;animation:shimmer 1.2s infinite;border-radius:6px;position:relative;overflow:hidden}@media(min-width:768px){.tmdb-thumb.shimmer{height:230px}}.tmdb-title.shimmer{height:12px;margin:10px 0 30px 0;width:60%;border-radius:4px;background:linear-gradient(90deg,#222 25%,#333 50%,#222 75%);background-size:200% 100%;animation:shimmer 1.2s infinite}@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}.tmdb-thumb .tmdb-logo{width:40px;height:40px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.6;pointer-events:none}
+
+
+/* Movie Details, Episodes, Cast, Reviews, More like this */
+#season-buttons,#episode-buttons{margin:10px 0 20px 0;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start}.ep-btn,.episode-btn{text-align:center;padding:12px 0;background: #232426;color:#fff;border:none;border-radius:5px;font-size:14px;box-sizing:border-box;flex:0 0 calc(8.333% - 6px);max-width:calc(6.333% - 6px);cursor:pointer}.ep-btn.active,.episode-btn.active{background:transparent;color:var(--keycolor);border:1px solid var(--keycolor);font-weight:bold;transition:.3s}.show-more,.hide-btn{background-color:transparent;color:#fff;border:1px solid #373d5b;border-radius:5px;cursor:pointer}@media(max-width:600px){.ep-btn,.episode-btn{flex:0 0 calc(20% - 6px);max-width:calc(20% - 6px);font-size:12px;}}#movie-details-container{max-width:100%;margin:5rem 2rem 0 14rem;color:#fff}@media(max-width:768px){#movie-details-container{margin: 5rem 0 2rem 0;}}.detail-wrap{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem}.info-rating-wrapper{display:flex;flex-wrap:wrap;width:100%;gap:1.5rem;align-items:flex-start}.vote-count{color:grey;font-size:1.2rem;margin-top:5px}.poster{flex:0 0 auto}.poster img{width:150px;max-height:220px;border-radius:8px;display:block}.info{flex:1 1 auto;min-width:200px;border-right:1px solid #41455361}.info h1{font-size:1.7rem;margin:0}.meta{font-size:.95rem;margin-top:.3rem;color:#c9c9c9;line-height: 1.5rem;}.meta span{color:#696969;margin:0 5px}.tagline{color:#d7d7d7;margin:0.5rem 0;line-height:1.6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}.rating{flex:0 0 80px;font-size:1.8rem;color:#d7c250;text-align:right;white-space:nowrap;padding-top:.5rem}.rating span{color:grey;font-size:1.2rem;margin-left:5px}.buttons{display:flex;gap:12px;margin:16px 0;flex-wrap:wrap}@media(max-width:768px){.buttons{justify-content:center}}.share, .watch{padding:6px 13px;font-size:16px;font-weight:bold;border:none;border-radius:8px;cursor:pointer;transition:background .3s,transform .2s;display:flex;align-items:center;gap:8px;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}.watch{background:var(--keycolor);color:#fff}.share{background:#14171e;color:#fff;border:1px solid #1a1d25}.watch i{font-size:26px}.share i{font-size:18px}.tabs{margin-top:2rem;display:flex;gap:1rem}.tab{padding:.5rem 0;cursor:pointer;color:#bbb;border-bottom:3px solid transparent}.tab.active{color:#fff;border-bottom-color:var(--keycolor)}.episode-placeholder{padding:1rem 0}.episode-wrapper{margin-top:10px; padding:10px 15px;border-radius:8px; border:solid 1px #41455361;}@media(max-width:768px){.episode-wrapper{padding:0;border:none}}.season-button-container{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:10px;padding:10px 0;scrollbar-width:thin;scrollbar-color:#666 transparent}
+#season-buttons{display:flex;flex-wrap:nowrap;gap:10px;overflow-x:auto;padding-bottom:10px;justify-content:flex-start;margin-bottom:10px;}
+@media(max-width:600px){#season-buttons{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:5px;white-space: nowrap;}#season-buttons::-webkit-scrollbar{display:none}}
+
+#season-buttons::-webkit-scrollbar{display:none}.season-btn{flex:0 0 auto;padding:10px;background-color:#615f5f3d;color:#ccc;border:1px solid #444;border-radius:4px;text-decoration:none;font-weight:500;font-size:14px;transition:all 0.2s ease-in-out;min-width:66px;white-space:nowrap}@media(max-width:768px){.season-btn{min-width:58px;}}.season-btn:hover{background-color:#333;color:#fff;border-color:#555}.season-btn.active{background-color:var(--keycolor,#007bff);color:#fff;border-color:var(--keycolor,#007bff);font-weight:bold}
+
+
+@media(min-width:768px){.detail-wrap{flex-direction:row;align-items:flex-start}.poster{flex:0 0 150px;max-height:230px;}.info-rating-wrapper{display:flex;flex-direction:row;justify-content:space-between;flex:1;gap:1rem}.info{flex:1}.rating{flex:0 0 auto;min-width:80px;text-align:center;font-size:2.4rem;padding-left:1rem;margin: auto 0;}}@media(max-width:768px){.poster{width:100%;background-image:var(--backdrop-url);background-size:cover;background-position:center;height:160px;position:relative;overflow:visible;display:flex;justify-content:center;align-items:flex-end;padding-bottom:0;isolation:isolate}.poster::before{content:"";position:absolute;inset:0;box-shadow:0 4px 30px rgba(0,0,0,.1);backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);z-index:0}.poster::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0px,rgba(255,255,255,.05) 1px,transparent 1px,transparent 8px),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0px,rgba(255,255,255,.05) 1px,transparent 1px,transparent 8px);z-index:0;border-radius:8px;pointer-events:none}.poster img{position:absolute;bottom:-64px;left:20px;width:90px;height:auto;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.5);z-index:1}.info{margin:3.5rem 1rem 0 1rem;border:none}.info h1{font-size:1.5rem;}.rating,.tabs,.episode-placeholder{margin:0 1rem} .episode-placeholder h3{margin-bottom:15px;}.rating{display:flex;align-items:center;gap:4px;flex-wrap:nowrap;font-size:1.1rem}.vote-count{margin:0;font-size:1rem}.buttons{margin:0}.watch, .share{padding:4px 13px}}.details-extra-section{display:flex;gap:24px;color:#f5f5f5;flex-wrap:wrap}@media(max-width:768px){.details-extra-section{margin:0 1rem}}.left-column{flex:2;min-width:300px;max-width:66%;}.right-column{flex:1;min-width:240px;max-width:300px}@media(max-width:768px){.left-column, .right-column{max-width:100%}}.left-column h3,.right-column h3{margin-top:0;margin-bottom:12px;font-size:20px;padding-bottom:4px}
+
+#trailer-modal{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:rgba(0,0,0,.9);display:none;justify-content:center;align-items:center;z-index:9999}#trailer-modal.active{display:flex}#trailer-container{width:100%;height:100%;background:#000;border-radius:0;overflow:hidden;position:relative}#modal-trailer-container{width:100%;margin:0;padding:0;max-width:800px}iframe{width:100%!important;height:270px}#trailer-container iframe{width:100%;height:100%;border:none;display:block}#trailer-modal .close-btn{position:absolute;top:20px;right:30px;font-size:28px;color:#fff;cursor:pointer;z-index:10001}.poster-play-btn{position:absolute;bottom:-112px;left:46%;transform:translate(-50%,-50%);background:transparent;padding:12px;border-radius:50%;cursor:pointer;z-index:10;transition:background .3s ease}.poster-play-btn::after{content:"Play Trailer";display:block;margin-top:8px;text-align:center;color:#fff;font-size:14px;font-weight:500;letter-spacing:.5px;text-shadow:0 1px 4px rgba(0,0,0,.6)}.poster-play-btn svg{width:46px;height:46px;border:1px solid #fff;border-radius:50%}.hidden{display:none}@media(min-width:768px){iframe{height:400px}.poster-play-btn{position:relative;top:-170px;left:50%;transform:translateX(-50%);padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center}.poster-play-btn::after{font-size:16px}.poster-play-btn svg{width:48px;height:48px}#trailer-modal .close-btn{top:30px;right:40px;font-size:32px}}
+
+.cast-scroll-wrapper{position:relative;display:flex;align-items:center}.cast-scroll{display:flex;overflow-x:auto;scroll-behavior:smooth;gap:20px;padding:10px 0;flex:1;scrollbar-width:none}.cast-scroll::-webkit-scrollbar{display:none}.cast-card{flex:0 0 calc((100% - (5 * 20px)) / 6);max-width:145px}.cast-card img{width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:8px;margin-bottom:6px}.cast-card div{font-size:15px;font-weight:500}.cast-card small{font-size:12px;color:#aaa}.cast-card div,.cast-card small{display:block;max-width:100%;white-space:normal;word-wrap:break-word;text-align:center;margin:5px 0}.scroll-btn{position:absolute;top:40%;transform:translateY(-50%);background:transparent;color:white;border:none;font-size:40px;font-weight:bold;cursor:pointer;z-index:2}.scroll-btn.left{left:-18px}.scroll-btn.right{right:-15px}.cast-scroll{scroll-snap-type:x mandatory}.cast-card{scroll-snap-align:start}@media(max-width:768px){.cast-card{flex:0 0 calc((100% - (2 * 10px)) / 3);max-width:105px}.cast-scroll{gap:10px}.scroll-btn{font-size:36px}.scroll-btn.left{left:-12px}.scroll-btn.right{right:-13px}}.user-reviews{margin:25px 0}.user-review{background:#181a1e40;padding:12px;border-radius:8px;margin:10px 0;color:#eee;font-size:14px;line-height:1.4}.user-reviews p{color:#bbb;padding:10px;border:1px solid #41455361;border-radius:10px;text-align:center}
+
+#disqus_thread{margin-top:5px;}
+
+.review-header{display:flex;align-items:center;margin-bottom:10px}.review-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;margin-right:10px}.review-content{margin:0;color:#ccc}.more-like-grid{display:grid;gap:12px;grid-template-columns:repeat(3,1fr)}.more-like-item{text-align:center;}.more-like-item img{min-width:115px;width:100%;height:auto;border-radius:4px;margin-bottom:4px}
+@media(max-width:768px){.more-like-item img{min-width:100px;}}.more-like-item div{font-size:12px;color:#ccc;}@media(min-width:768px){.more-like-grid{grid-template-columns:repeat(3,1fr);margin-top:22px}}@media(max-width:768px){.more-like-grid{gap:1}}.abefilm-image-wrap{position:relative;overflow:hidden}.abefilm-play-button{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:2}.abefilm-image-wrap::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.4);opacity:0;transition:opacity .3s ease;z-index:1}.more-like-item:hover .abefilm-play-button{opacity:1;pointer-events:auto}.more-like-item:hover .abefilm-image-wrap::before{opacity:1}.more-like-item p{font-size:13px;color:#ccc;margin:6px 0 0;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;height:2.6em}@media(max-width:768px){.more-like-item p{font-size:12px}}
+
+#player-content{background:#101115;border-bottom:solid 1px #24252c;}.player-container{display:flex;flex-direction:column;padding:30px;box-sizing:border-box;overflow:hidden}.player-wrapper{display:flex;height:70vh;box-sizing:border-box}.video-section{flex:3;height:100%;background:#141414}.video-section iframe{width:100%;height:100%;max-height:100%;border:none}.server-switch{position:sticky;top:0;z-index:2;padding:4px 0;line-height:2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;gap:8px;scrollbar-width:thin;scrollbar-color:#999 transparent}
+.server-switch::-webkit-scrollbar{height:6px}.server-switch::-webkit-scrollbar-track{background:transparent}.server-switch::-webkit-scrollbar-thumb{background-color:#999;border-radius:10px}.server-switch::-webkit-scrollbar-thumb:hover{background-color:#666}.server-btn{flex:0 0 auto;white-space:nowrap;padding:6px 12px;border:none;border-radius:6px;margin-right:5px;background:#444;color:white;font-size:13px;cursor:pointer}.server-switch button.active{border-color:var(--keycolor);color:var(--keycolor)}.episode-section{flex:1;padding:10px 15px 0 15px;height:100%;color:white;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;position:relative}.player-episode-wrap{flex:1;overflow-y:auto;max-height:70vh;display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-content:start;padding-right:5px;margin-top:10px}.player-episode-wrap::-webkit-scrollbar{width:6px}.player-episode-wrap::-webkit-scrollbar-thumb{background-color:#666;border-radius:6px}.player-episode-wrap::-webkit-scrollbar-track{background-color:transparent}.player-episode-wrap .player-episode-btn{padding:10px 0;background:transparent;border:1px solid #444;color:white;cursor:pointer;border-radius:4px;text-align:center;height:45px;display:flex;align-items:center;justify-content:center}.player-episode-btn.active{border-color:var(--keycolor);color:var(--keycolor)}@media screen and (max-width:768px){.player-container{padding:0;height:auto}.player-wrapper{flex-direction:column;height:auto}.video-section{width:100%;aspect-ratio:16/9;max-height:none;overflow:hidden}.episode-section{width:100%;padding:10px 15px 10px 15px;max-height:none;height:auto;overflow:visible}.player-episode-wrap{grid-template-columns:repeat(6,1fr);gap:8px;max-height:190px;overflow-y:auto}.player-episode-wrap .player-episode-btn{height:40px;font-size:13px}.server-switch{padding:0;gap:6px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}.server-switch::-webkit-scrollbar{display:none}.server-btn{font-size:12px;padding:5px 10px}.episode-section::-webkit-scrollbar{width:5px}.episode-section::-webkit-scrollbar-thumb{background-color:#666;border-radius:6px}}.player-footer{display:flex;flex-wrap:wrap;color:white;box-sizing:border-box;gap:20px;padding-top:25px}.footer-left{width:75%;box-sizing:border-box;padding:0 2rem 0 2rem;max-width:1000px;}.footer-right{width:25%;box-sizing:border-box;}.footer-right h3{margin-bottom:15px;font-size:16px;color:white}.recommendation-grid{display:grid;gap:12px;margin-top:10px;grid-template-columns:repeat(3,1fr)}.rec-item{margin-bottom:10px;}.rec-item img{width:100%;border-radius:6px;height:auto;max-height:160px;object-fit:cover}.rec-thumb{position:relative;display:inline-block;overflow:hidden;border-radius:8px}.abefilm-hover-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0);z-index:1;transition:background .3s ease;pointer-events:none;border-radius:8px}.rec-thumb:hover .abefilm-hover-overlay{background:rgba(0,0,0,.4)}.abefilm-play-button{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none}.rec-item:hover .abefilm-play-button{opacity:1}.rec-item span{display:block;margin-top:5px;font-size:13px;color:#eee;text-align:left;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;line-height:1.4em;max-height:2.8em}.player-footer .footer-title-rating{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;font-size:22px;font-weight:bold;margin-bottom:8px}.player-footer .footer-rating{font-size:14px;font-weight:normal;color:#f0f0f0;border-right:solid 1px grey;padding-right:10px}.player-footer .footer-meta{margin-bottom:10px;font-size:14px;color:#bbb}.type-meta{margin-left:5px}.player-footer .footer-genres,.player-footer .footer-cast{margin-top:8px;font-size:15px}.player-footer .footer-overview{margin-top:12px;font-size:16px;color:#ccc}.read-more-toggle {display:none;}@media (max-width:768px){.player-footer .footer-title-rating{font-size:18px;}.player-footer .footer-genres, .player-footer .footer-cast{font-size:14px;}
+.player-footer .footer-overview{font-size:15px;}.footer-overview {overflow: hidden;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;position: relative;transition: all 0.3s ease;}.footer-overview.expanded {-webkit-line-clamp: unset;max-height: none;}.read-more-toggle {display: block;color: var(--keycolor, #0af);cursor: pointer;margin-top: 5px;text-align: right; }
+
+.player-footer{flex-direction:column;padding:10px}.footer-left,.footer-right{width:100%}.footer-left{padding:0 10px}.footer-right h3{margin-left:1rem}.player-footer .footer-title-rating{flex-direction:column;align-items:flex-start;gap:4px}.player-footer .footer-rating{align-self:flex-start}.recommendation-grid{grid-template-columns:repeat(3,1fr);padding:10px}}@media (min-width:768px){.rec-item img{max-height:200px}.rec-item span{font-size:12px}}
+.footer-cast-scroll-wrapper{margin-top:15px}.cast-role{font-size:.7rem!important;color:#bbb}.cast-scroll-btn{position:absolute;top:40%;transform:translateY(-50%);background:none;border:none;font-size:2.4rem;color:#fff;cursor:pointer;z-index:2;padding:4px 8px}.cast-scroll-btn.left{left:-30px}.cast-scroll-btn.right{right:-30px}@media(max-width:600px){.cast-card .name{font-size:.8rem}.cast-role{font-size:.7rem!important;color:#bbb}.cast-scroll-btn.left{left:-22px}.cast-scroll-btn.right{right:-22px}}
+
+@media (min-width:1024px){#library{padding:6rem 2rem 2rem 14.5rem}#library-content{grid-template-columns:repeat(7,1fr)}}
+.library-header{font-size:1.4rem;color:#ccc}
+
+@media (max-width:768px){#library{padding: 1rem}#library-content{grid-template-columns:repeat(3,1fr)}}#library-filters-wrapper{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:1rem 0}#search-bar{padding:.6rem 1rem;font-size:0.8rem;border-radius:6px;border:1px solid #444;background-color:transparent;color:#fff;min-width:160px;height:36px;box-sizing:border-box;flex:0 1 auto;transition:all .3s ease}#search-bar::placeholder{color:#888}#search-bar:focus{border-color:#888;outline:none;background-color:#222}#search-bar:hover{border-color:#666;background-color:#333}#library-filters select{padding:.6rem 1rem;background-color:transparent;color:#ccc;border:1px solid #444;border-radius:6px;font-size:0.8rem;min-width:130px;transition:all .3s ease;appearance:none;cursor:pointer;position:relative;z-index:1}#library-filters select::-ms-expand{display:none}#library-filters select:hover{border-color:#666;background-color:#333}#library-filters select:focus{border-color:#888;outline:none}@media (max-width:600px){#library-filters-wrapper{display:block;width:100%}#search-bar{width:100%;margin-bottom:10px}#library-filters{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}#library-filters select{width:100%;max-width:100%}.movie-card{height:145px}.movie-thumbnail{width:100px;height:100%}.movie-title{font-size:1rem}.movie-meta,.movie-genres,.movie-overview{font-size:.8rem}.movie-overview{-webkit-line-clamp:2}.movie-actions button{font-size:.9rem;padding:8px 25px}.movie-rank{font-size:1rem;padding:3px 6px}}#library-content{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem!important;margin-top:30px;}@media (min-width:1024px){#library-content{grid-template-columns:repeat(3,1fr)!important}}.movie-card{display:flex!important;overflow:hidden!important;transition:transform .3s ease,box-shadow .3s ease;height:200px}.movie-card:hover{transform:scale(1.02)}.movie-thumbnail{position:relative;width:140px;flex-shrink:0;height:100%;overflow:hidden}.movie-thumbnail img{width:100%;height:100%;border-radius:6px;object-fit:cover}.movie-rank{position:absolute;top:0;left:0;color:#fff;font-size:1.2rem;padding:6px 12px;border-radius:6px 0 6px 0;font-weight:bold}.rank-1{background:linear-gradient(135deg,#f300ad,#930e95)}.rank-2{background:linear-gradient(135deg,#ff6a00,#ee0979)}.rank-3{background:linear-gradient(135deg,#36d1dc,#5b86e5)}.rank-4{background:linear-gradient(135deg,#00c9ff,#92fe9d)}.rank-5{background:linear-gradient(135deg,#7F00FF,#E100FF)}.rank-6{background:linear-gradient(135deg,#f7b01e,#ad6b28)}.rank-7{background:linear-gradient(135deg,#1c2eff,#00ffcb)}.rank-8{background:linear-gradient(135deg,#1d976c,#93f9b9)}.rank-9{background:linear-gradient(135deg,#f953c6,#b91d73)}.rank-10{background:linear-gradient(135deg,#4e54c8,#8f94fb)}.rank-default{background:var(--keycolor,#555)}.movie-info{padding:0 .5rem 0 1rem;flex-grow:1;display:flex;flex-direction:column;justify-content:space-between;height:100%;overflow:hidden}.movie-title{font-size:1.1rem;color:#fff;font-weight:500;margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.movie-meta{text-transform: capitalize;font-size:.85rem;color:#ababab;margin-bottom:.5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.movie-genres{color:#ababab;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.movie-overview{font-size:0.9rem;color:#ccc;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}.movie-actions{margin-top:.5rem}.movie-actions button{background:#e1e1e1;color:#000;border:none;padding:9px 30px;font-size:1rem;border-radius:4px;cursor:pointer;transition:background .3s;display:flex;align-items:center;gap:8px}.movie-actions button:hover{background:#fff}.movie-actions button svg{width:20px;height:20px}@media (max-width:600px){.movie-card{height:145px}.movie-thumbnail{position:relative;width:100px;height:100%;flex-shrink:0;overflow:hidden}.movie-title{font-size:1rem}.movie-meta,.movie-genres,.movie-overview{font-size:.8rem}.movie-overview{-webkit-line-clamp:2}.movie-actions button{font-size:.9rem;padding:8px 25px}.movie-rank{font-size:1rem;padding:3px 6px}}.filter-scroll-wrapper{max-height:200px;overflow-y:auto;padding-right:5px;scrollbar-width:thin;scrollbar-color:#666 #222}.filter-scroll-wrapper::-webkit-scrollbar{width:8px}.filter-scroll-wrapper::-webkit-scrollbar-track{background:#222;border-radius:4px}.filter-scroll-wrapper::-webkit-scrollbar-thumb{background-color:#666;border-radius:4px;border:2px solid #222}.filter-scroll-wrapper::-webkit-scrollbar-thumb:hover{background-color:#aaa}
+
+
+.side-menu{position:fixed;left:0;top:0;height:100vh;width:200px;background:#111;padding:16px 0;box-sizing:border-box;overflow-x:hidden;border-right:solid 1px #41455361;transition:transform .3s ease;z-index:1000}.sidebar-header{display:flex;align-items:center;gap:15px;padding:0 10px 15px;background:var(--bg-sidebar);border-bottom:1px solid #333;margin-bottom:20px}.logo{width:28px;height:28px;object-fit:contain}.site-title{flex:1;font-size:16px;font-weight:700;color:#fff}.side-menu a{display:flex;align-items:center;gap:12px;margin:10px;padding:10px;text-decoration:none;color:#fff;font-size:16px;transition:background .2s}.side-menu a.active,.side-menu a:hover{background:#3333375c;font-weight:700;border-radius:10px;color:var(--keycolor)}.side-menu a svg{flex-shrink:0;width:30px;height:30px;fill:none}.side-menu svg.active{stroke:var(--keycolor)!important}.sidebar-fade-right{position:fixed;top:0;left:200px;width:40px;height:100vh;background:linear-gradient(to right,var(--bg-sidebar),transparent);z-index:49;pointer-events:none}.more{margin-top:2rem;padding-top:1rem;border-top:solid 1px #41455361}.download-app{text-align:center;}.download-app a img{width:150px;}
+.social-icons{white-space:nowrap;margin:0;text-align:center}.social-icons a{display:inline-block;margin:5px;padding:0}.social-icons img{width:24px;height:24px;vertical-align:middle;transition:none!important;transform:none!important}.social-icons a:hover,.social-icons img:hover{background:none}.download-app a:hover{background:transparent}.bottom-navbar{display:none}.top-buttons svg{width:30px;height:30px;stroke:#fff;fill:none}@media(max-width:768px){.side-menu,.sidebar-fade-right{display:none!important}.bottom-navbar{display:flex;position:fixed;bottom:0;left:0;width:100%;height:60px;background-color:#111;justify-content:space-around;align-items:center;z-index:9999}.bottom-navbar a{flex:1;text-align:center;font-size:12px;color:#bbb;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0}.bottom-navbar a.active,.bottom-navbar a:hover{color:var(--keycolor,#00bcd4)}.bottom-navbar a svg{width:25px;height:25px}}@media(min-width:769px){.bottom-navbar{display:none!important}}.follow-us{display:block;margin-top:1rem;color:#929292;font-size:14px;}.bookmark-modal{position:fixed;top:65px;right:104px;background:#171717;color:#fff;border-radius:8px;padding: 12px 0px 12px 12px;width:280px;max-height:620px;overflow:visible;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:9999;display:none;transition:all 0.3s ease-in-out;border:1px solid #444}@media(max-width:780px){.bookmark-modal{top:60px;right:6px;}.bookmark-modal::before, .bookmark-modal::after{right:12px!important;}}
+
+.bookmark-content{max-height:580px;overflow-y:auto;padding-right:10px}.bookmark-modal::before{content:"";position:absolute;top:-11px;right:30px;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:11px solid #444;z-index:1}.bookmark-modal::after{content:"";position:absolute;top:-10px;right:30px;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:10px solid #171717;z-index:2}.bookmark-content::-webkit-scrollbar{width:8px}.bookmark-content::-webkit-scrollbar-track{background:#222;border-radius:4px}.bookmark-content::-webkit-scrollbar-thumb{background:#555;border-radius:4px}.bookmark-content::-webkit-scrollbar-thumb:hover{background:#888}.bookmark-content h3{margin:0 0 8px;font-size:16px;color:#fff;font-weight:normal}#bookmark-list{list-style:none;margin:1rem 0 0;padding:0}#bookmark-list li{margin-bottom:10px;display:flex;align-items:center;gap:8px;color:#b4b5b8;}#bookmark-list img{width:50px;height:70px;object-fit:cover;border-radius:4px}#bookmark-list a{text-decoration:none;color:#fff;font-size:14px;flex:1}.bookmark-link{display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit;flex:1}#bookmark-list a:hover{text-decoration:underline}.delete-bookmark svg{width:25px;height:25px}.bookmark-title{margin-left:10px}.buttons{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0}.buttons button{font-size:14px;padding:10px 16px;border:none;border-radius:8px;color:white;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;font-weight:bold}.buttons .watch{background-color:var(--keycolor,#e50914);font-size:15px;padding:8px 20px;flex-grow:0;flex-shrink:0}.buttons .bookmark,.buttons .share{background-color:#615f5f3d;padding:9px 14px;flex-grow:0;flex-shrink:0}.delete-bookmark{background:transparent;border:none}@media(max-width:480px){.buttons{flex-direction:row}.buttons .watch{width:100%;order:1}.buttons .bookmark,.buttons .share{width:48%;order:2}}@media(min-width:481px){.buttons{justify-content:flex-start}.buttons button{flex:none}}.bookmark-tooltip{position:absolute;top:50px;right:40px;background:#222;color:#fff;padding:6px 10px;border-radius:6px;font-size:13px;z-index:9999;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,0.2)}.bookmark-tooltip .triangle{position:absolute;top:-6px;right:10px;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid #222}.bookmark-btn{position:relative}#bookmark-count{position:absolute;top:-5px;left:14px;width:16px;height:16px;background-color:var(--keycolor);color:#fff;font-size:9px;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1;overflow:hidden;text-align:center}@media(max-width:780px){#bookmark-count{top:0;left:16px}}
+#custom-toast-notification{position:fixed;top:0;left:50%;transform:translateX(-50%);padding:12px 20px;border-radius:5px;background-color:#333;color:#fff;font-family:sans-serif;z-index:10000;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease,top .3s ease;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.15)}#custom-toast-notification.toast-show{top:20px;opacity:1;visibility:visible}#custom-toast-notification.success{background-color:var(--keycolor)}#custom-toast-notification.info{background-color:var(--keycolor)}
+
+.search-dropdown{position:absolute;top:100%;left:0;width:400px;max-height:527px;background-color:#111;border:1px solid #19191a;border-radius:6px;overflow-y:auto;z-index:9999;list-style:none;padding:0;margin:0;display:none;margin-top:5px;scrollbar-width:thin;scrollbar-color:#555 #222}.search-dropdown li{padding:10px;color:#fff;border-bottom:1px solid #19191a;cursor:pointer;display:flex;align-items:center;gap:10px}.search-dropdown li:hover{background-color:#222}.search-dropdown img{width:60px;height:85px;object-fit:cover;border-radius:4px}.search-info{display:flex;flex-direction:column;line-height:1.5;overflow:hidden}.search-info p,.search-info small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;max-width:100%}.search-info p{font-size:14px}.search-info small{font-size:.8rem;color:#ccc}.search-dropdown::-webkit-scrollbar{width:8px}.search-dropdown::-webkit-scrollbar-track{background:#222;border-radius:4px}.search-dropdown::-webkit-scrollbar-thumb{background-color:#555;border-radius:4px;border:2px solid #222}.search-dropdown::-webkit-scrollbar-thumb:hover{background-color:#888}@media(max-width:768px){body.search-active{overflow:hidden;position:fixed;width:100%}.top-header{background:linear-gradient(to bottom,var(--keycolor),#000 73%,#000)!important;left:0;padding:10px 8px;height:auto;flex-wrap:wrap;gap:2px}.search-dropdown{position:fixed;top:90px;left:0;right:0;width:auto;max-width:none;border-radius:0;border-left:none;border-right:none;margin-top:0;overflow-y:auto;max-height:calc(100vh - 100px - 100px)}}
+.top-header.scrolled {background: var(--background);backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px);border-bottom: 1px solid #41455361;}
+
+.top-header{display:flex;align-items:center;justify-content:space-between;background:transparent;padding:4px 60px 0 35px;height:60px;position:fixed;top:0;left:195px;right:0;z-index:100;transition:background .3s,border-bottom .3s;backdrop-filter:none}.top-header .top-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:nowrap;order:2;width:100%}.logo-container{display:none}.logo-img{height:34px}.search-container{position:relative;flex:1;max-width:300px;margin-left:2rem}.search-container i{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#f1f1f1;font-size:16px;pointer-events:none;border-left:1px solid #80808054;padding:0 3px 0 10px}.search-input{width:100%;padding:6px 40px 6px 8px;background:#4d4e5521;border:1px solid #787e874a;border-radius:5px;color:#fff;font-size:14px;outline:none}.top-buttons{display:flex;align-items:center;gap:20px}.top-buttons a{color:#fff;font-size:20px;display:flex;align-items:center;text-decoration:none}.top-buttons .label{display:inline;margin-left:6px;font-size:14px;vertical-align:middle}.anchor-links{display:flex;align-items:center;gap:16px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;order:1;min-width:400px}.anchor-links a{color:#cfcfcf;white-space:nowrap}.anchor-links a:hover{color:#fff}.anchor-links::-webkit-scrollbar{display:none}@media(max-width:768px){.top-header{background:linear-gradient(to bottom,var(--keycolor),#000 73%,#000)!important;left:0;padding:10px 8px;height:auto;flex-wrap:wrap;gap:2px;}.top-header::before{content:"";position:absolute;top:0;left:0;height:75px;width:100%;background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.62), transparent););z-index:-1;pointer-events:none}.top-header::after{content:"";position:absolute;top:0;right:0;height:100%;width:50px;background: linear-gradient(to left, rgba(0,0,0,0.75), transparent);z-index:-1;pointer-events:none}.top-header .top-row{flex-wrap:nowrap;padding:0;background:none;order:1}.logo-container{display:flex;align-items:center;margin-right:8px}.search-container{flex:1;max-width:none;margin-left:0;}.top-buttons{gap:0}.top-buttons a{font-size:18px;padding:4px}.top-buttons .label{display:none}.anchor-links{order:2;width:100%;justify-content:flex-start;margin:8px 0 0;padding: 4px 72px 4px 4px;background:transparent}}a,a:visited,a:hover{border:none!important;box-shadow:none!important;text-decoration:none}@media(max-width:768px){.top-buttons .library-btn{display:none!important}}
+
+#about-us,#privacy-policy,#disclaimer{max-width:100%;margin:3rem 3rem 3rem 14rem;padding:20px 20px 35px 35px;font-family:'Segoe UI',Roboto,sans-serif;color:#fff;line-height:1.7}#about-us h1,#privacy-policy h1,#disclaimer h1,#about-us h2,#privacy-policy h2,#disclaimer h2,#about-us h3,#privacy-policy h3,#disclaimer h3{color:#fff;margin-top:1.5em;font-weight:600}#about-us p,#privacy-policy p,#disclaimer p,#about-us li,#privacy-policy li,#disclaimer li{margin-bottom:1em;font-size:1rem}#about-us ul,#privacy-policy ul,#disclaimer ul{padding-left:20px;margin-bottom:1em}@media(max-width:768px){#about-us,#privacy-policy,#disclaimer{padding:15px;margin:70px 10px 30px 10px;font-size:.95rem}#about-us h1,#privacy-policy h1,#disclaimer h1{font-size:1.5rem}#about-us h2,#privacy-policy h2,#disclaimer h2{font-size:1.25rem}}
+
+.mobile-sidebar{position:fixed;top:0;left:-100%;width:70%;max-width:250px;height:100%;background-color:#111;color:#fff;overflow-y:auto;transition:left .3s ease-in-out;z-index:9999;box-shadow:2px 0 8px rgba(0,0,0,.3)}.mobile-sidebar.active{left:0}.sidebar-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:9998}.sidebar-overlay.active{display:block}.mobile-sidebar .logo-img{height:auto;max-height:86px;max-width:100%;margin:0 0 20px 0;border-bottom:1px solid #49525f38;display:block;padding:20px 30px}.mobile-sidebar ul{list-style:none;padding:0;margin:0}.mobile-sidebar li{margin-bottom:1.2rem}.mobile-sidebar a{display:block;color:#ccc;text-decoration:none;font-size:1rem;padding:10px 15px;margin:0 10px;border-radius:8px;transition:background .2s ease}.mobile-sidebar svg{width:25px;height:25px;vertical-align:middle;margin-right:10px}.mobile-sidebar a:hover{background-color:#333}@media (max-width:769px){.more{margin:1rem 0;padding:1rem 0;border-bottom:solid 1px #41455361}.social-icons{text-align:center;margin-top:20px}.social-icons .icon-row{display:flex;justify-content:center;gap:15px;margin-bottom:10px;padding:0}.social-icons a{display:flex;padding:0;margin:0;line-height:0}.social-icons img{width:28px;height:28px;transition:transform .3s ease;display:block}.social-icons img:hover{transform:scale(1.1)}.social-icons .follow-us{font-size:12px;color:#ccc;margin-bottom:5px}.download-app a:active,.download-app a:focus,.download-app a:hover{opacity:1!important;text-decoration:none!important;transform:none!important;filter:none!important;transition:none!important;background:0 0!important}.social-icons a:hover,.social-icons img:hover{background:0 0}}@media (min-width:769px){.mobile-sidebar,.sidebar-overlay{display:none!important}}
+
+footer{background:#111;color:#fff;padding:2rem 1rem;text-align:center;font-family:Arial,sans-serif}.footer-container{max-width:600px;margin:0 auto 1rem auto}.website-name{font-size:1.8rem;font-weight:bold;margin-bottom:.5rem;color:var(--keycolor)}.website-description{font-size:1rem;margin-bottom:1rem;color:#ccc}.credit{font-size:.9rem;color:#777}@media(max-width:600px){.footer-container{padding:0 1rem}}
+
+.comment-container{color:#fff;max-width:780px;margin:2rem auto 0 auto!important}@media (max-width:768px){.comment-container{margin:1rem!important}}.reaction-container{text-align:center;padding:20px;border-bottom:solid 1px #41455361;margin-bottom:20px}.reaction-container h4{margin:0 0 5px 0;font-weight:500;font-size:1.4em}.reaction-container .responses{color:var(--text-secondary);font-size:1em;margin:15px}.reaction-bar{display:flex;justify-content:center;align-items:center;gap:25px;flex-wrap:wrap;margin:2rem}.reaction{cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;transition:transform .2s ease}.reaction{-webkit-user-select:none;-ms-user-select:none;user-select:none}.reaction.reacted{transform:scale(1.2)}.reaction:hover:not(.reacted){transform:scale(1.1)}.reaction .emoji{font-size:44px}@media (max-width:768px){.reaction .emoji{font-size:34px}}.reaction .label{font-size:12px;color:var(--text-secondary)}.reaction .count{font-size:12px;font-weight:bold;color:#fff;background-color:rgba(255,255,255,0.1);padding:2px 6px;border-radius:8px;min-width:10px;text-align:center}.comment-input-area{position:relative}#message{padding-bottom:60px}#submit{position:absolute;bottom:15px;right:15px;margin:0}.comment-box,.comment{padding:0}.comment-box h3{margin:20px 0}.comment-header img{width:40px;height:40px;border-radius:50%;object-fit:cover}.comment-header{display:flex;align-items:center;gap:10px;margin:15px 0 4px 0;background:var(--background)}.comment-header strong{font-size:1rem;margin-right:6px}.comment-header small{color:#999}.comment-footer{margin:0 20px;padding:10px 28px 40px 28px;font-size:.85em;border-left:solid 1px #22252c;border-bottom:solid 1px #22252c;border-radius:0 0 0 10px;color:#555;display:flex;align-items:center;gap:15px;cursor:pointer}.comment-body{margin:0 20px;padding-left:28px;font-size:1rem;border-left:solid 1px #22252c}.comment.reply-box.last-reply .comment-footer{border-left:none;border-bottom:none}.comment.reply-box.last-reply .comment-body{border-left:none}#commentCount{color:var(--keycolor)}.tab-content input[type=text],.tab-content input[type=email],.tab-content input[type=password]{width:100%;padding:12px 16px;margin-top:10px;font-size:1rem;color:#f0f0f0;background-color:#50515614;border:1px solid #363637;border-radius:8px;box-sizing:border-box;transition:border-color .3s,box-shadow .3s;box-shadow:inset 0 0 5px rgba(146,149,189,0.1)}input[type=text]::placeholder,input[type=email]::placeholder,input[type=password]::placeholder{color:#888}input[type=text]:focus,input[type=email]:focus,input[type=password]:focus{outline:none;border-color:var(--keycolor);box-shadow:0 0 0 2px rgba(255,102,0,0.3)}textarea#message,.reply-message{width:100%;min-height:140px;padding:12px 20px;border:1px solid #363637;border-radius:8px;background-color:#50515614;color:#f0f0f0;font-size:1rem;resize:vertical;box-sizing:border-box;transition:border-color .3s,box-shadow .3s;box-shadow:inset 0 0 5px rgba(146,149,189,0.1)}.reply-message{min-height:80px}textarea#message::placeholder,.reply-message::placeholder{color:#888}textarea#message:focus,.reply-message:focus{outline:none;border-color:var(--keycolor);box-shadow:0 0 0 2px rgba(255,102,0,0.3)}.comment-btn{margin-top:10px;background:var(--keycolor);color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;min-width:120px}#guestSignInBtn{background-color:#3c3d49;margin-left:10px}.reply-btn i{font-size:12px}button:hover{opacity:.9}button:disabled{background-color:#555;cursor:not-allowed}.reply-box{margin-top:-35px}.replies{margin-left:40px}.modal{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.6)}.modal-content{background-color:#111;padding:20px;border-radius:8px;width:90%;max-width:500px;box-shadow:0 0 10px rgba(0,0,0,0.3);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}.modal-content h4{margin-bottom:20px}.close{position:absolute;top:10px;right:20px;font-size:28px;cursor:pointer}.modal-content .tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:10px;margin:0 0 20px 0;scrollbar-width:none}.modal-content .tabs::-webkit-scrollbar{display:none}.tab-btn{padding:10px;border:none;background:transparent;color:#fff;border:solid 1px #3e3e4b;cursor:pointer;border-radius:5px}@media (max-width:768px){.modal-content .tabs{gap:5px}.tab-btn{padding:5px 10px}}.tab-btn.active{background:var(--keycolor);color:#fff}.tab-content{display:none;flex-wrap:wrap;gap:10px}.tab-content.active{display:flex}.tab-content img{width:60px;height:60px;border-radius:50%;cursor:pointer;border:2px solid transparent}.tab-content img.selected{border-color:var(--keycolor)}.sort-container{display:flex;justify-content:space-between;align-items:center;margin:20px 0;padding:10px;border:1px solid #363637;border-radius:8px;background-color:#50515614;color:#fff;font-size:.95rem;flex-wrap:wrap;gap:10px}.sort-container label{margin-right:10px;color:#ccc;font-weight:500}.custom-dropdown{position:relative;background-color:#2a2a2a6e;color:#fff;border:1px solid #4444445e;border-radius:6px;width:120px;cursor:pointer;font-size:.9rem;user-select:none}.custom-dropdown .selected-option{padding:8px 12px;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6H0z' fill='%23ff6600'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:10px 6px}.custom-dropdown .dropdown-options{display:none;position:absolute;top:100%;left:0;right:0;background-color:#201f1f;border:1px solid #4444445e;border-top:none;border-radius:6px;z-index:10;padding:0;margin-top:5px;list-style:none;overflow:hidden}.custom-dropdown .dropdown-options li{padding:10px 12px;transition:background .2s ease}.custom-dropdown .dropdown-options li:hover{background-color:#3a3a3a}.custom-dropdown .dropdown-options li.active{color:var(--keycolor)}#loginPrompt{text-align:center;margin-top:20px;padding:20px;border:1px solid #363637;border-radius:8px;background-color:#50515614}#loginPrompt button{margin-top:15px}.comment-form-container{display:none}#userInfoDisplay{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding:10px;background:#50515626;border-radius:8px}@media (max-width:768px){#userInfoDisplay span{font-size:16px}}#userInfoDisplay img{width:50px;height:50px;border-radius:50%;object-fit:cover;cursor:pointer;border:2px solid transparent}#userInfoDisplay img:hover{border-color:var(--keycolor)}#logoutBtn{background-color:var(--keycolor);min-width:unset;padding:8px 15px;margin-left:auto}.comment.no-replies .comment-body{border-left:none}.comment.no-replies .comment-footer{border-left:none;border-bottom:none;padding-bottom:40px}.comment.reply-box.no-replies{border-left:solid 1px #42455f63;padding-left:15px;margin-left:-20px;border-bottom:solid 1px #42455f63;border-radius:0 0 0 10px}.comment.reply-box.no-replies.last-reply{border:none}
+
+]]></b:skin>
+  </b:if>
+    <style>
+ #menu-bottom-wrapper, #tmdb-api-config, #image-carousel, #video-source, #loader, #video-sources, #other-pages, #footer{display:none!important}
+     </style>
+<b:if cond='data:view.isLayoutMode'>
+ <b:template-skin><![CDATA[
+body#layout,body#layout div.section{font-family:Arial,sans-serif}body#layout .locked-widget .widget-content{background-color:#fff}body#layout .add_widget a{margin-left:0;font-size:14px;color:rgba(255,255,255,.6)!important}body#layout .widget-content{padding:12px}body#layout div.section{background:transparent;margin:0 0 15px 0;padding:0;border:0}body#layout div.layout-title{font-size:14px}body#layout:before{content:"MOVIEBOX TMDB - Master Oppa ughhh=)";position:absolute;top:20px;left:25px;border-radius:4px;z-index:1;padding:10px 20px;font-size:18px;color:#fff;background:linear-gradient(90deg,#FC466B 0%,#3F5EFB 100%)}body#layout #tmdb-api-config h4,body#layout #temabanua-trend h4{display:none}body#layout #temabanua-trend>div{margin-top:0!important}body#layout{position:relative;padding:87px 25px 0 25px;max-width:920px;margin:0 auto!important;background-image:linear-gradient(to top,#09203f 0%,#537895 100%)!important;border:1px solid #213243!important}body#layout .visibility .editlink{display:inline-block!important;width:40px!important;height:40px!important;background:url('https://cdn-icons-png.flaticon.com/128/12108/12108525.png') no-repeat center center!important;background-size:20px 20px!important;border-radius:4px!important;text-indent:-9999px!important}body#layout .draggable-widget .widget-wrap2{background: rgba(255, 66, 117, 1) url(https://1.bp.blogspot.com/-yTAuT5aZ1EY/Wy1eEeo4SbI/AAAAAAAACGM/FxOTPwL-Ch0_lyZxLRzhv2EWHINOmCjWACK4BGAYYCw/s22/draggable.png) no-repeat 4px 50% !important;}body#layout #main-logo,body#layout #main-menu,body#layout #head-right{float:left}body#layout #main-logo,body#layout #main-menu,body#layout #head-right{width:32%}body#layout #main-logo,body#layout #main-menu{padding-right:2%}body#layout #menu-mobile{display:inline-block;width:100%}body#layout .main-footer{display:flex}body#layout #footer-widget{width:50%;margin-right:20px}body#layout #footer-right{width:50%}body#layout #copyright{width:49%;display:inline-block;float:left}body#layout #theme-button{display:inline-block;width:49%;float:right}body#layout .Blog:before,body#layout:after{padding:5px 10px;display:block;color:#fff;font-size:12px;background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);position:relative;margin:0 0 15px}body#layout .Blog:before{content:"Post Blog Area";margin-bottom:8px}body#layout:after{content:"Designed by Master Oppa: https://t.me/abeflixgroupchat";visibility:visible}body#layout #main-menu h4:after{content:" - Main Menu Link"}body#layout #main-logo h4:after{content:" - Logo"}body#layout #main-logo h4,body#layout #main-menu h4,body#layout #menu-mobile h4,body#layout .layout-widget-description{font-size:12px!important}body#layout .section h4{padding:8px 10px;display:block;font-size:12px;color:#fff;background-image: radial-gradient( circle farthest-corner at -2% -25%,  rgba(255,66,117,1) 0%, rgba(170,117,229,1) 100.7% );border:1px solid #455668;font-weight:400;margin:0;opacity:.8;line-height:8px}
+
+]]></b:template-skin>
+    </b:if>
+
+  </head>
+  <body>      
+<b:section class='tmdb-api-config' id='tmdb-api-config' name='TMDb API Config' showaddelement='false'>
+        <b:widget id='HTML01' locked='true' title='TMDB API' type='HTML' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[<script>
+ (function(_0x541a93,_0x4abd5e){function _0x2d0fd5(_0x2d67fa,_0x2fa6f9,_0x558da,_0x5b77ab){return _0x166b(_0x2d67fa- -0x195,_0x558da);}function _0x1f1240(_0x401e5a,_0x59ddf0,_0x25f3e6,_0x3eff11){return _0x166b(_0x59ddf0-0x74,_0x401e5a);}var _0x27a51a=_0x541a93();while(!![]){try{var _0x2b2128=-parseInt(_0x1f1240(0x1b4,0x1bb,0x1bb,0x1ce))/(0x41*-0x25+-0xb54+-0xe*-0x17b)*(parseInt(_0x2d0fd5(-0x29,-0x16,-0x33,-0x26))/(-0x661*0x5+-0x6e7*0x1+0x26ce))+parseInt(_0x2d0fd5(-0x32,-0x2b,-0x20,-0x3f))/(-0x1ea7+-0x1*0x11c8+0x3072)+parseInt(_0x2d0fd5(-0x3a,-0x31,-0x4b,-0x50))/(-0x1198+-0x6bb+0x1857)+-parseInt(_0x2d0fd5(-0x34,-0x2b,-0x3c,-0x25))/(0x2*0x415+0x4f0*0x6+0x36f*-0xb)*(-parseInt(_0x2d0fd5(-0x2f,-0x27,-0x1e,-0x3e))/(0x1bec+0x895*0x2+0x38*-0xce))+parseInt(_0x2d0fd5(-0x3b,-0x3c,-0x28,-0x41))/(0x1*-0xc65+-0x3ee+0x105a)+parseInt(_0x2d0fd5(-0x30,-0x3b,-0x45,-0x39))/(-0x1772+-0x1f34+0x36ae)*(-parseInt(_0x2d0fd5(-0x33,-0x3d,-0x37,-0x25))/(0x1*0xccd+0xc9e+-0x1962))+-parseInt(_0x1f1240(0x1a5,0x1b8,0x1af,0x1a5))/(-0x3*0x93a+-0x1198+0x2d50);if(_0x2b2128===_0x4abd5e)break;else _0x27a51a['push'](_0x27a51a['shift']());}catch(_0x34d90e){_0x27a51a['push'](_0x27a51a['shift']());}}}(_0x3d06,0x1b14*-0x29+0x447b9+0x31970));var _0xd39712=(function(){var _0x19d150={};_0x19d150[_0x3a3e7b(0x3bf,0x3aa,0x3a8,0x3a9)]=function(_0xde6cfe,_0x3ec76a){return _0xde6cfe!==_0x3ec76a;};var _0x547f06=_0x19d150,_0x531d44=!![];function _0x3a3e7b(_0x6adc6f,_0x573283,_0x39c2ed,_0x2fb5ab){return _0x166b(_0x39c2ed-0x266,_0x2fb5ab);}return function(_0x574c35,_0x285754){var _0x19721c={'Ivtcr':function(_0x208138,_0x1b6d0c){function _0x3f328b(_0x7f7bc3,_0x539d6a,_0xb0001e,_0x4e03c8){return _0x166b(_0xb0001e- -0x13a,_0x4e03c8);}return _0x547f06[_0x3f328b(-0x2,0x13,0x8,0x12)](_0x208138,_0x1b6d0c);}},_0x5c088b=_0x531d44?function(){function _0x2a66cf(_0x1cda22,_0x26cd13,_0x5d3e89,_0x2598e1){return _0x166b(_0x26cd13-0x18d,_0x1cda22);}function _0x3aeb5f(_0x39d1f1,_0x9c26fe,_0x44ba90,_0x257f4e){return _0x166b(_0x39d1f1-0x151,_0x9c26fe);}if(_0x285754){if(_0x19721c['Ivtcr'](_0x3aeb5f(0x2a3,0x291,0x29a,0x2b6),_0x3aeb5f(0x2ad,0x2a0,0x29e,0x2a6))){var _0x3bac2c=_0x285754[_0x3aeb5f(0x2a6,0x2a9,0x294,0x297)](_0x574c35,arguments);return _0x285754=null,_0x3bac2c;}else{var _0x155093=_0x46ae3e[_0x2a66cf(0x2ea,0x2ea,0x2f0,0x2d7)+'r'][_0x2a66cf(0x2e5,0x2dc,0x2ce,0x2d6)][_0x2a66cf(0x2f4,0x2e6,0x2da,0x2fa)](_0x10323a),_0x4d5cee=_0x421cb5[_0x4b212c],_0x34251a=_0x15673f[_0x4d5cee]||_0x155093;_0x155093[_0x2a66cf(0x2b8,0x2cb,0x2df,0x2d2)]=_0x25c777['bind'](_0x337fd1),_0x155093[_0x2a66cf(0x2f8,0x2e4,0x2d8,0x2e3)]=_0x34251a['toString']['bind'](_0x34251a),_0x3640c6[_0x4d5cee]=_0x155093;}}}:function(){};return _0x531d44=![],_0x5c088b;};}()),_0x51ff15=_0xd39712(this,function(){var _0x52bb60={};_0x52bb60[_0x45f79e(0x48a,0x464,0x46d,0x47c)]=_0xaf377d(0x268,0x267,0x267,0x269)+'+$';var _0x44386c=_0x52bb60;function _0xaf377d(_0x42f39b,_0x5ca321,_0x299f07,_0x51ee77){return _0x166b(_0x5ca321-0x11f,_0x42f39b);}function _0x45f79e(_0x4aa42b,_0x4fe5af,_0x51c78f,_0x38a937){return _0x166b(_0x38a937-0x313,_0x4aa42b);}return _0x51ff15[_0x45f79e(0x454,0x467,0x477,0x46a)]()[_0xaf377d(0x281,0x28a,0x292,0x27e)](_0x44386c[_0x45f79e(0x48b,0x493,0x48e,0x47c)])['toString']()['constructo'+'r'](_0x51ff15)[_0xaf377d(0x29d,0x28a,0x273,0x278)](_0x44386c['buspW']);});function _0x30bd11(_0x35062f,_0x1937a6,_0x562034,_0x48f8dc){return _0x166b(_0x48f8dc-0x3c2,_0x35062f);}_0x51ff15();var _0xb30f75=(function(){var _0x2f0613={};function _0x1fffbd(_0x28c8f1,_0x6ba11e,_0x4637d4,_0x29fd48){return _0x166b(_0x28c8f1- -0x3c7,_0x6ba11e);}_0x2f0613['ioYFv']=function(_0x31823f,_0x46f66b){return _0x31823f===_0x46f66b;};function _0x824a6(_0x1790f6,_0x52ba41,_0x50ee48,_0x3c5c16){return _0x166b(_0x3c5c16-0x3c5,_0x52ba41);}_0x2f0613[_0x1fffbd(-0x286,-0x291,-0x28a,-0x272)]=_0x1fffbd(-0x260,-0x265,-0x26f,-0x25d);var _0x49702d=_0x2f0613,_0x550976=!![];return function(_0xf8a888,_0xbeb6be){function _0xd11a42(_0x15f6bf,_0x64004d,_0x5e6c46,_0x49e505){return _0x1fffbd(_0x5e6c46-0x12a,_0x49e505,_0x5e6c46-0x14f,_0x49e505-0x1cd);}function _0x17b04d(_0x3a66e0,_0x27355e,_0x346d17,_0xc2ba12){return _0x824a6(_0x3a66e0-0x17d,_0x3a66e0,_0x346d17-0x7d,_0xc2ba12- -0x346);}if(_0x49702d['ioYFv'](_0xd11a42(-0x130,-0x138,-0x147,-0x140),_0x49702d[_0x17b04d(0x1c8,0x1aa,0x1ab,0x1c0)])){if(_0x5f0fed){var _0x9015d=_0x20b83b[_0x17b04d(0x1ca,0x1da,0x1d8,0x1d4)](_0x5b48c5,arguments);return _0x4a0190=null,_0x9015d;}}else{var _0x2be8f7=_0x550976?function(){function _0x3ed1ad(_0x5eddc8,_0x8080f8,_0x3ae191,_0x5c14cb){return _0x17b04d(_0x8080f8,_0x8080f8-0xad,_0x3ae191-0xe8,_0x5eddc8- -0x1a);}if(_0xbeb6be){var _0x2c57af=_0xbeb6be[_0x3ed1ad(0x1ba,0x1be,0x1cf,0x1aa)](_0xf8a888,arguments);return _0xbeb6be=null,_0x2c57af;}}:function(){};return _0x550976=![],_0x2be8f7;}};}()),_0x3b2480=_0xb30f75(this,function(){function _0x22b5f8(_0x468fea,_0x2d22ca,_0x111366,_0x2bcd28){return _0x166b(_0x111366- -0x40,_0x468fea);}var _0x45a5d6={'frbTs':function(_0x53ea86,_0x5968f4){return _0x53ea86===_0x5968f4;},'WcDvg':'DQqRO','xNyCS':'lqIvC','qknjP':function(_0x42dab6,_0x2f4449){return _0x42dab6(_0x2f4449);},'VZaIp':function(_0x18e114,_0x3c4121){return _0x18e114+_0x3c4121;},'sVElT':_0x22b5f8(0xf6,0x10c,0x109,0xfd)+_0x22b5f8(0xfd,0x120,0x10b,0x11f),'TWbeG':_0x5a179e(-0x15d,-0x162,-0x155,-0x13d)+'ctor(\x22retu'+_0x22b5f8(0x12f,0x113,0x12a,0x13b)+'\x20)','NUZkJ':'info','yJSeI':'error','zxcUI':_0x22b5f8(0x117,0x10c,0x10d,0x122),'vlYyb':_0x5a179e(-0x162,-0x165,-0x163,-0x167),'LRJoK':_0x22b5f8(0x112,0xfd,0x111,0x103)+'3'};function _0x5a179e(_0x538f54,_0x47db51,_0x5148d9,_0x2be9c3){return _0x166b(_0x5148d9- -0x2a3,_0x2be9c3);}var _0x211b72;try{if(_0x45a5d6[_0x22b5f8(0x11a,0x106,0x110,0x117)](_0x45a5d6[_0x5a179e(-0x139,-0x130,-0x144,-0x13c)],_0x45a5d6[_0x5a179e(-0x145,-0x14e,-0x13b,-0x13e)]))_0xb760b0=_0x591862;else{var _0x475036=_0x45a5d6['qknjP'](Function,_0x45a5d6['VZaIp'](_0x45a5d6[_0x22b5f8(0x11e,0x12a,0x118,0x118)]+_0x45a5d6['TWbeG'],');'));_0x211b72=_0x475036();}}catch(_0x2d0fae){_0x211b72=window;}var _0x4502fa=_0x211b72[_0x5a179e(-0x159,-0x15f,-0x14f,-0x13c)]=_0x211b72[_0x22b5f8(0x117,0xff,0x114,0x106)]||{},_0x2ac8d9=[_0x22b5f8(0x105,0x112,0x106,0xf7),_0x22b5f8(0x10b,0x102,0xff,0xec),_0x45a5d6[_0x22b5f8(0xfb,0x127,0x113,0x121)],_0x45a5d6[_0x22b5f8(0xfb,0xfb,0x105,0x10a)],_0x5a179e(-0x163,-0x15e,-0x160,-0x14d),_0x45a5d6['zxcUI'],_0x45a5d6[_0x5a179e(-0x15b,-0x15d,-0x157,-0x150)]];for(var _0x463518=-0x1e*0x74+-0x437+-0x61*-0x2f;_0x463518<_0x2ac8d9['length'];_0x463518++){var _0x3b03c2=_0x45a5d6[_0x5a179e(-0x150,-0x13d,-0x143,-0x150)]['split']('|'),_0x2f7df5=-0x18a5+0x12*0x3+-0x2b7*-0x9;while(!![]){switch(_0x3b03c2[_0x2f7df5++]){case'0':_0x124011[_0x5a179e(-0x16e,-0x15d,-0x165,-0x162)]=_0xb30f75[_0x22b5f8(0x12c,0x117,0x119,0x12b)](_0xb30f75);continue;case'1':var _0x23140f=_0x2ac8d9[_0x463518];continue;case'2':_0x124011[_0x22b5f8(0x121,0x11a,0x117,0x12d)]=_0x4f54e3[_0x22b5f8(0x101,0x101,0x117,0x127)][_0x22b5f8(0x115,0x130,0x119,0x107)](_0x4f54e3);continue;case'3':_0x4502fa[_0x23140f]=_0x124011;continue;case'4':var _0x124011=_0xb30f75[_0x5a179e(-0x12f,-0x144,-0x146,-0x143)+'r'][_0x5a179e(-0x15d,-0x147,-0x154,-0x166)]['bind'](_0xb30f75);continue;case'5':var _0x4f54e3=_0x4502fa[_0x23140f]||_0x124011;continue;}break;}}});function _0x443191(_0x2a31fc,_0x15f81b,_0x319610,_0x3d3165){return _0x166b(_0x15f81b- -0x3d9,_0x2a31fc);}function _0x3d06(){var _0x44f9e2=['yxbPs2v5','nJiWndH4r3Lozgm','mtm5ogT3BKvqsW','qxj1zgu','Ee55q1m','yNvZCfC','CM4GDgHPCYiPka','C2vHCMnO','mtG2ngPeEeDpDa','x19WCM90B19F','D2fYBG','DhjHy2u','DevnDKS','tvfTBMK','zxHJzxb0Aw9U','ntG0otK2mgDXA2zcqq','EuPtzuK','Bg9N','mZnyyxvnCgy','kcGOlISPkYKRkq','CMv0DxjUicHMDq','zMvKody5nty0nq','BMn0Aw9UkcKG','DMXzEwi','DgfIBgu','E30Uy29UC3rYDq','ChjVDg90ExbL','zNjIvhm','nhWXFdv8mhWYFa','uNPky0K','tLvAA0O','y29UC29Szq','yxbWBhK','rNzMBNC','Dg9tDhjPBMC','C1zfBfq','yMLUza','ndiXmZm3BhjKreLY','mtuXntm5nKDbve1sqW','zMnivgi','y29UC3rYDwn0BW','ogyXowzIndvJza','v2neDMC','tfjkB0S','nJG0nuHNv2LcCa','mta4A0zMDhLA','nduWnJyWuuP0D2zT'];_0x3d06=function(){return _0x44f9e2;};return _0x3d06();}function _0x166b(_0x421cb5,_0x4b212c){var _0x15673f=_0x3d06();return _0x166b=function(_0x25c777,_0x337fd1){_0x25c777=_0x25c777-(-0x2579+0xb23+0x1b94);var _0x3640c6=_0x15673f[_0x25c777];if(_0x166b['lzVitS']===undefined){var _0x584f2b=function(_0x5b2445){var _0xab96ed='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';var _0x1a973f='',_0x4fe760='',_0x2ef750=_0x1a973f+_0x584f2b;for(var _0x40349f=-0x376*0x2+-0x11d1*-0x2+-0x1cb6,_0x4e2718,_0x3f7a68,_0xa3c9bc=-0x10d2+-0x7e3+0x18b5;_0x3f7a68=_0x5b2445['charAt'](_0xa3c9bc++);~_0x3f7a68&&(_0x4e2718=_0x40349f%(0x17b7+-0x4c9+-0x3*0x64e)?_0x4e2718*(-0xcfa+-0x1*0xfd1+0x1*0x1d0b)+_0x3f7a68:_0x3f7a68,_0x40349f++%(0x16e3+0x1f45+-0x3624))?_0x1a973f+=_0x2ef750['charCodeAt'](_0xa3c9bc+(0x1b*0xe9+0x1029+-0x28b2))-(-0x3*-0xae+-0x165c+0x1*0x145c)!==-0x6b*0x36+0x84a*-0x1+0x1edc?String['fromCharCode'](0xef8+-0xca8+-0x151&_0x4e2718>>(-(0xc5+0x21f5+0x65*-0x58)*_0x40349f&0x4ce*-0x5+-0xee+-0x18fa*-0x1)):_0x40349f:0x24e9+0x16bc+-0x3ba5){_0x3f7a68=_0xab96ed['indexOf'](_0x3f7a68);}for(var _0x508de2=-0xd0c+-0x1*0xa15+0x1721*0x1,_0x3db515=_0x1a973f['length'];_0x508de2<_0x3db515;_0x508de2++){_0x4fe760+='%'+('00'+_0x1a973f['charCodeAt'](_0x508de2)['toString'](-0x1b*-0x7+0x26d0+-0x277d))['slice'](-(0x23b8+0x14*0x114+-0x3946));}return decodeURIComponent(_0x4fe760);};_0x166b['RkXqQY']=_0x584f2b,_0x421cb5=arguments,_0x166b['lzVitS']=!![];}var _0x576c7f=_0x15673f[0x5e*0x56+-0x230f+0x37b],_0x445b88=_0x25c777+_0x576c7f,_0x475ae5=_0x421cb5[_0x445b88];if(!_0x475ae5){var _0x52c8fb=function(_0x2341c4){this['YKLtDU']=_0x2341c4,this['BGbRAQ']=[-0x3d*0x65+0x12be+0x554,0x152*-0xd+0x760+0x9ca,0x24a3+-0x78e+0x1*-0x1d15],this['klEasS']=function(){return'newState';},this['jSYLfZ']='\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*',this['KEtjsD']='[\x27|\x22].+[\x27|\x22];?\x20*}';};_0x52c8fb['prototype']['yzZOby']=function(){var _0x5cfcf7=new RegExp(this['jSYLfZ']+this['KEtjsD']),_0x2e18d4=_0x5cfcf7['test'](this['klEasS']['toString']())?--this['BGbRAQ'][-0x3ee*-0x9+-0x12a9+-0x1*0x10b4]:--this['BGbRAQ'][-0x117+-0xba9+0xcc0];return this['VbGgvC'](_0x2e18d4);},_0x52c8fb['prototype']['VbGgvC']=function(_0x4ee337){if(!Boolean(~_0x4ee337))return _0x4ee337;return this['oGiwcF'](this['YKLtDU']);},_0x52c8fb['prototype']['oGiwcF']=function(_0x2512d6){for(var _0x4396e9=-0x1187*0x1+0x1172*0x2+0x7f*-0x23,_0x5b3832=this['BGbRAQ']['length'];_0x4396e9<_0x5b3832;_0x4396e9++){this['BGbRAQ']['push'](Math['round'](Math['random']())),_0x5b3832=this['BGbRAQ']['length'];}return _0x2512d6(this['BGbRAQ'][0x7*-0x337+0xd51+-0x70*-0x15]);},new _0x52c8fb(_0x166b)['yzZOby'](),_0x3640c6=_0x166b['RkXqQY'](_0x3640c6),_0x421cb5[_0x445b88]=_0x3640c6;}else _0x3640c6=_0x475ae5;return _0x3640c6;},_0x166b(_0x421cb5,_0x4b212c);}_0x3b2480(),window[_0x30bd11(0x50e,0x511,0x528,0x526)]=_0x443191(-0x287,-0x28f,-0x29e,-0x29e)+_0x30bd11(0x52f,0x526,0x50e,0x520)+'d382b6e6de'+'83';
+</script>]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+        </b:widget>
+      </b:section>     
+<div class='top-header'>
+  <div class='top-row'> 
+  <div class='logo-container'>
+    <img alt='Logo' class='logo-img' src='https://i.imgur.com/X6kebKx.png'/>
+  </div>
+  <div class='search-container'>
+    <i class='bi bi-search'/>
+    <input class='search-input' placeholder='Search for title...' type='text'/>
+    <ul class='search-dropdown' id='search-results'/>
+  </div>
+  <div class='top-buttons'>  
+      <a class='library-btn' href='/p/library.html' title='Library'>
+     <svg fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3.35288 8.95043C4.00437 6.17301 6.17301 4.00437 8.95043 3.35288C10.9563 2.88237 13.0437 2.88237 15.0496 3.35288C17.827 4.00437 19.9956 6.17301 20.6471 8.95044C21.1176 10.9563 21.1176 13.0437 20.6471 15.0496C19.9956 17.827 17.827 19.9956 15.0496 20.6471C13.0437 21.1176 10.9563 21.1176 8.95044 20.6471C6.17301 19.9956 4.00437 17.827 3.35288 15.0496C2.88237 13.0437 2.88237 10.9563 3.35288 8.95043Z' stroke='var(--keycolor)' stroke-width='1.4'/> <path d='M20.6471 8.95044C19.9956 6.17301 17.827 4.00437 15.0496 3.35288C13.0437 2.88237 10.9563 2.88237 8.95043 3.35288C6.17301 4.00437 4.00437 6.17301 3.35288 8.95043C2.88237 10.9563 2.88237 13.0437 3.35288 15.0496C4.00437 17.827 6.17301 19.9956 8.95044 20.6471C10.9563 21.1176 13.0437 21.1176 15.0496 20.6471' stroke='#6c6e76' stroke-linecap='round' stroke-width='2'/> <path d='M10.1818 11.2959C10.3851 10.7877 10.7878 10.385 11.296 10.1817L13.3337 9.3666C14.15 9.04008 14.9601 9.85016 14.6336 10.6665L13.8185 12.7042C13.6152 13.2124 13.2125 13.6151 12.7043 13.8184L10.6666 14.6334C9.85028 14.96 9.0402 14.1499 9.36673 13.3336L10.1818 11.2959Z' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> </g></svg>
+    <span class='label'>Library</span>
+    </a>   
+   <a class='bookmark-btn' title='Bookmark'>
+     <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M18.5 18.8637V8.07579C18.5 5.99472 17.0378 4.20351 15.0077 3.7977C13.022 3.40077 10.978 3.40077 8.99225 3.7977C6.96219 4.20351 5.5 5.99472 5.5 8.07579V18.8637C5.5 20.1258 6.8627 20.9113 7.94601 20.2737L10.9053 18.5317C11.5814 18.1337 12.4186 18.1337 13.0947 18.5317L16.054 20.2737C17.1373 20.9113 18.5 20.1258 18.5 18.8637Z' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> <path d='M5.5 18.8637C5.5 20.1258 6.8627 20.9113 7.94601 20.2737L10.9053 18.5317C11.5814 18.1337 12.4186 18.1337 13.0947 18.5317L16.054 20.2737C17.1373 20.9113 18.5 20.1258 18.5 18.8637V8.07579C18.5 5.99472 17.0378 4.20351 15.0077 3.7977C13.022 3.40077 10.978 3.40077 8.99225 3.7977' stroke='#6c6e76' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> </g></svg>
+    <span class='label'>Bookmark</span>
+     <span id='bookmark-count'>0</span>
+    </a>
+    
+  </div>
+       </div>
+  <div class='anchor-links'>
+    <a href='#kdramas'>Kdrama</a>
+    <a href='#cdramas'>Cdrama</a>
+    <a href='#anime'>Anime</a>
+    <a href='#western-movies'>Western Movies</a>
+    <a href='#western-series'>Western Series</a>  
+  </div>    
+</div>
+<div class='side-menu'>
+  <div class='sidebar-header'>
+    <img alt='Logo' class='logo' src='https://cdn-icons-png.flaticon.com/128/17115/17115490.png'/>
+    <span class='site-title'>MOVIEBOX</span>
+  </div>   
+  <a class='active' href='#home'>
+   <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M9.71841 18.3202L8.98129 18.1819L8.98129 18.1819L9.71841 18.3202ZM9.73775 18.2172L10.4749 18.3556L10.4749 18.3556L9.73775 18.2172ZM14.2622 18.2172L13.5251 18.3556L13.5251 18.3556L14.2622 18.2172ZM14.2816 18.3202L15.0187 18.1819L15.0187 18.1819L14.2816 18.3202ZM13.9918 20.5518L14.669 20.8741L14.669 20.8741L13.9918 20.5518ZM13.1978 20.4749C13.0198 20.849 13.1787 21.2964 13.5527 21.4744C13.9267 21.6524 14.3742 21.4935 14.5522 21.1195L13.1978 20.4749ZM10.0082 20.5518L9.33099 20.8741L9.33099 20.8741L10.0082 20.5518ZM9.44777 21.1195C9.62576 21.4935 10.0733 21.6524 10.4473 21.4744C10.8213 21.2964 10.9802 20.8489 10.8022 20.4749L9.44777 21.1195ZM11.361 16.4425L11.1605 15.7198L11.1605 15.7198L11.361 16.4425ZM12.6389 16.4425L12.8395 15.7198L12.8395 15.7198L12.6389 16.4425ZM10.4555 18.4586L10.4749 18.3556L9.00063 18.0788L8.98129 18.1819L10.4555 18.4586ZM13.5251 18.3556L13.5444 18.4586L15.0187 18.1819L14.9994 18.0788L13.5251 18.3556ZM13.3145 20.2295L13.1978 20.4749L14.5522 21.1195L14.669 20.8741L13.3145 20.2295ZM9.33099 20.8741L9.44777 21.1195L10.8022 20.4749L10.6854 20.2295L9.33099 20.8741ZM13.5444 18.4586C13.6571 19.0587 13.5764 19.6793 13.3145 20.2295L14.669 20.8741C15.0674 20.0368 15.1898 19.0937 15.0187 18.1819L13.5444 18.4586ZM8.98129 18.1819C8.81014 19.0937 8.93253 20.0368 9.33099 20.8741L10.6854 20.2295C10.4236 19.6793 10.3429 19.0587 10.4555 18.4586L8.98129 18.1819ZM11.5616 17.1652C11.8485 17.0856 12.1514 17.0856 12.4384 17.1652L12.8395 15.7198C12.2901 15.5674 11.7099 15.5674 11.1605 15.7198L11.5616 17.1652ZM14.9994 18.0788C14.7865 16.9449 13.9504 16.028 12.8395 15.7198L12.4384 17.1652C12.9935 17.3192 13.4169 17.7794 13.5251 18.3556L14.9994 18.0788ZM10.4749 18.3556C10.583 17.7794 11.0065 17.3192 11.5616 17.1652L11.1605 15.7198C10.0496 16.028 9.21348 16.9449 9.00063 18.0788L10.4749 18.3556Z' fill='var(--keycolor)'/> <path d='M20.04 9.71903C20.04 9.30482 19.7042 8.96903 19.29 8.96903C18.8758 8.96903 18.54 9.30482 18.54 9.71903H20.04ZM5.45999 9.71903C5.45999 9.30482 5.12421 8.96903 4.70999 8.96903C4.29578 8.96903 3.95999 9.30482 3.95999 9.71903H5.45999ZM14.5132 20.7071L14.3408 19.9772L14.5132 20.7071ZM9.48673 20.7071L9.65916 19.9772L9.48673 20.7071ZM14.8284 5.01423L14.2962 5.54267L14.8284 5.01423ZM20.4678 11.7582C20.7596 12.0521 21.2345 12.0538 21.5284 11.7619C21.8224 11.4701 21.8241 10.9952 21.5322 10.7013L20.4678 11.7582ZM9.17157 5.01423L9.70378 5.54267L9.17157 5.01423ZM2.46779 10.7013C2.17594 10.9952 2.17762 11.4701 2.47155 11.7619C2.76548 12.0538 3.24035 12.0521 3.53221 11.7582L2.46779 10.7013ZM18.54 9.71903V14.6374H20.04V9.71903H18.54ZM5.45999 14.6374V9.71903H3.95999V14.6374H5.45999ZM14.3408 19.9772C12.8011 20.3409 11.1988 20.3409 9.65916 19.9772L9.3143 21.437C11.0808 21.8543 12.9192 21.8543 14.6857 21.437L14.3408 19.9772ZM9.65916 19.9772C7.2026 19.3969 5.45999 17.1877 5.45999 14.6374H3.95999C3.95999 17.8765 6.17421 20.6952 9.3143 21.437L9.65916 19.9772ZM14.6857 21.437C17.8258 20.6952 20.04 17.8765 20.04 14.6374H18.54C18.54 17.1877 16.7974 19.3969 14.3408 19.9772L14.6857 21.437ZM14.2962 5.54267L20.4678 11.7582L21.5322 10.7013L15.3606 4.48578L14.2962 5.54267ZM8.63937 4.48578L2.46779 10.7013L3.53221 11.7582L9.70378 5.54267L8.63937 4.48578ZM15.3606 4.48578C14.7089 3.82945 14.1681 3.28246 13.6818 2.90885C13.1785 2.52211 12.6458 2.25 12 2.25V3.75C12.1827 3.75 12.3974 3.81359 12.7679 4.09826C13.1555 4.39606 13.6146 4.85618 14.2962 5.54267L15.3606 4.48578ZM9.70378 5.54267C10.3854 4.85618 10.8445 4.39606 11.2321 4.09826C11.6026 3.81359 11.8173 3.75 12 3.75V2.25C11.3542 2.25 10.8215 2.52211 10.3182 2.90885C9.83194 3.28246 9.29106 3.82945 8.63937 4.48578L9.70378 5.54267Z' fill='#6c6e76'/> </g></svg>
+    Home
+  </a>
+  <a href='#movies'>
+   <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3.35288 8.95043C4.00437 6.17301 6.17301 4.00437 8.95043 3.35288C10.9563 2.88237 13.0437 2.88237 15.0496 3.35288C17.827 4.00437 19.9956 6.17301 20.6471 8.95044C21.1176 10.9563 21.1176 13.0437 20.6471 15.0496C19.9956 17.827 17.827 19.9956 15.0496 20.6471C13.0437 21.1176 10.9563 21.1176 8.95044 20.6471C6.17301 19.9956 4.00437 17.827 3.35288 15.0496C2.88237 13.0437 2.88237 10.9563 3.35288 8.95043Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M14.1618 10.8707C14.9461 11.3726 14.9461 12.6274 14.1618 13.1293L11.5147 14.8233C10.7304 15.3253 9.75 14.6979 9.75 13.694L9.75 10.306C9.75 9.30214 10.7304 8.67473 11.5147 9.17665L14.1618 10.8707Z' stroke='var(--keycolor)' stroke-width='1.5'/> </g></svg>
+    Movies
+  </a>
+  <a href='#tvseries'>
+  <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M15.8669 3.54428C16.1675 3.25931 16.1802 2.7846 15.8952 2.484C15.6102 2.1834 15.1355 2.17074 14.8349 2.45572L15.8669 3.54428ZM12.0003 6.17647L11.4843 6.72075L12.0003 7.20994L12.5163 6.72075L12.0003 6.17647ZM9.16573 2.45572C8.86513 2.17074 8.39042 2.1834 8.10544 2.484C7.82046 2.7846 7.83313 3.25931 8.13373 3.54428L9.16573 2.45572ZM9.28151 19.8417C9.51896 19.5023 9.43633 19.0347 9.09693 18.7972C8.75754 18.5598 8.28991 18.6424 8.05246 18.9818L9.28151 19.8417ZM6.94126 20.5701C6.7038 20.9094 6.78644 21.3771 7.12584 21.6145C7.46523 21.852 7.93286 21.7693 8.17031 21.4299L6.94126 20.5701ZM15.9487 18.9818C15.7112 18.6424 15.2436 18.5598 14.9042 18.7972C14.5648 19.0347 14.4822 19.5023 14.7196 19.8417L15.9487 18.9818ZM15.8308 21.4299C16.0683 21.7693 16.5359 21.852 16.8753 21.6145C17.2147 21.3771 17.2973 20.9094 17.0599 20.5701L15.8308 21.4299ZM14.8349 2.45572L11.4843 5.63219L12.5163 6.72075L15.8669 3.54428L14.8349 2.45572ZM8.13373 3.54428L11.4843 6.72075L12.5163 5.63219L9.16573 2.45572L8.13373 3.54428ZM8.05246 18.9818L6.94126 20.5701L8.17031 21.4299L9.28151 19.8417L8.05246 18.9818ZM14.7196 19.8417L15.8308 21.4299L17.0599 20.5701L15.9487 18.9818L14.7196 19.8417Z' fill='var(--keycolor)'/> <path d='M4.80827 15.4094L4.08356 15.6025L4.80827 15.4094ZM4.80827 10.7083L5.53299 10.9014L4.80827 10.7083ZM19.1917 10.7083L18.467 10.9014L19.1917 10.7083ZM19.1917 15.4094L19.9164 15.6025L19.1917 15.4094ZM14.429 19.4396L14.2774 18.7051L14.2773 18.7051L14.429 19.4396ZM9.57098 19.4396L9.41931 20.1741H9.41931L9.57098 19.4396ZM9.57098 6.67809L9.72265 7.41259L9.57098 6.67809ZM14.429 6.67809L14.5807 5.94358V5.94358L14.429 6.67809ZM9.07917 19.3381L9.23084 18.6036H9.23084L9.07917 19.3381ZM14.9208 19.3381L15.0725 20.0726L15.0725 20.0726L14.9208 19.3381ZM14.9208 6.77964L14.7692 7.51415V7.51415L14.9208 6.77964ZM9.07917 6.77964L8.9275 6.04514V6.04514L9.07917 6.77964ZM9.23084 7.51415L9.72265 7.41259L9.41931 5.94358L8.9275 6.04514L9.23084 7.51415ZM14.2774 7.41259L14.7692 7.51415L15.0725 6.04514L14.5807 5.94358L14.2774 7.41259ZM14.7692 18.6036L14.2774 18.7051L14.5807 20.1741L15.0725 20.0726L14.7692 18.6036ZM9.72265 18.7051L9.23084 18.6036L8.9275 20.0726L9.41931 20.1741L9.72265 18.7051ZM5.53299 15.2163C5.15567 13.8003 5.15567 12.3174 5.53299 10.9014L4.08356 10.5152C3.63881 12.1843 3.63881 13.9334 4.08356 15.6025L5.53299 15.2163ZM18.467 10.9014C18.8443 12.3175 18.8443 13.8003 18.467 15.2163L19.9164 15.6025C20.3612 13.9334 20.3612 12.1843 19.9164 10.5152L18.467 10.9014ZM14.2773 18.7051C12.7766 19.015 11.2234 19.015 9.72265 18.7051L9.41931 20.1741C11.1201 20.5254 12.8799 20.5254 14.5807 20.1741L14.2773 18.7051ZM9.72265 7.41259C11.2234 7.1027 12.7766 7.1027 14.2774 7.41259L14.5807 5.94358C12.8799 5.59237 11.1201 5.59237 9.41931 5.94358L9.72265 7.41259ZM9.23084 18.6036C7.40303 18.2261 5.98226 16.9024 5.53299 15.2163L4.08356 15.6025C4.68704 17.8673 6.57448 19.5867 8.9275 20.0726L9.23084 18.6036ZM15.0725 20.0726C17.4255 19.5867 19.313 17.8673 19.9164 15.6025L18.467 15.2163C18.0177 16.9024 16.597 18.2261 14.7692 18.6036L15.0725 20.0726ZM14.7692 7.51415C16.597 7.89158 18.0177 9.21534 18.467 10.9014L19.9164 10.5152C19.313 8.25039 17.4255 6.53102 15.0725 6.04514L14.7692 7.51415ZM8.9275 6.04514C6.57449 6.53102 4.68704 8.25039 4.08356 10.5152L5.53299 10.9014C5.98226 9.21534 7.40303 7.89158 9.23084 7.51415L8.9275 6.04514Z' fill='#6c6e76'/> </g></svg>
+    Series
+  </a>
+  <a href='#animation'>
+ <svg fill='none' height='256px' stroke='#ffffff' viewBox='-2.4 -2.4 28.80 28.80' width='256px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke='#CCCCCC' stroke-linecap='round' stroke-linejoin='round' stroke-width='0.288'/><g id='SVGRepo_iconCarrier'> <path d='M18.1579 8.60503C20.614 10.1139 20.614 13.8861 18.1579 15.395L11.5263 19.4689C9.07017 20.9778 6 19.0917 6 16.074L6 7.92602C6 4.90827 9.07018 3.02218 11.5263 4.53105L18.1579 8.60503Z' stroke='var(--keycolor)' stroke-width='1.6'/> <path d='M11.5263 19.4689C9.07017 20.9778 6 19.0917 6 16.074L6 7.92602C6 4.90827 9.07018 3.02218 11.5263 4.53105L18.1579 8.60503' stroke='#6c6e76' stroke-linecap='round' stroke-width='2.4'/> </g></svg>
+
+    Animation
+  </a>
+    <div class='more'>
+  <a href='/p/privacy-policy.html'>
+    <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3.83327 15.2485L3.10223 15.416L3.83327 15.2485ZM3.83327 9.3532L3.10223 9.18565L3.83327 9.3532ZM20.1667 9.35321L20.8978 9.18565L20.1667 9.35321ZM20.1667 15.2485L19.4357 15.0809L20.1667 15.2485ZM14.8801 20.6589L15.0552 21.3882L14.8801 20.6589ZM9.11986 20.6589L8.94478 21.3882L9.11986 20.6589ZM9.11985 3.94277L8.94478 3.21349L9.11985 3.94277ZM14.8801 3.94276L15.0552 3.21348L14.8801 3.94276ZM4.56432 15.0809C4.14523 13.2524 4.14523 11.3493 4.56432 9.52076L3.10223 9.18565C2.63259 11.2347 2.63259 13.367 3.10223 15.416L4.56432 15.0809ZM19.4357 9.52076C19.8548 11.3493 19.8548 13.2524 19.4357 15.0809L20.8978 15.416C21.3674 13.367 21.3674 11.2347 20.8978 9.18565L19.4357 9.52076ZM14.7051 19.9296C12.9258 20.3568 11.0742 20.3568 9.29493 19.9296L8.94478 21.3882C10.9543 21.8706 13.0458 21.8706 15.0552 21.3882L14.7051 19.9296ZM9.29493 4.67205C11.0742 4.2449 12.9258 4.2449 14.7051 4.67204L15.0552 3.21348C13.0458 2.73108 10.9542 2.73108 8.94478 3.21349L9.29493 4.67205ZM9.29493 19.9296C6.95607 19.3681 5.11769 17.4953 4.56432 15.0809L3.10223 15.416C3.77946 18.3708 6.03739 20.6902 8.94478 21.3882L9.29493 19.9296ZM15.0552 21.3882C17.9626 20.6902 20.2205 18.3708 20.8978 15.416L19.4357 15.0809C18.8823 17.4953 17.0439 19.3681 14.7051 19.9296L15.0552 21.3882ZM14.7051 4.67204C17.0439 5.23352 18.8823 7.10639 19.4357 9.52076L20.8978 9.18565C20.2205 6.23086 17.9626 3.91144 15.0552 3.21348L14.7051 4.67204ZM8.94478 3.21349C6.03739 3.91144 3.77946 6.23086 3.10223 9.18565L4.56432 9.52076C5.11769 7.10638 6.95607 5.23352 9.29493 4.67205L8.94478 3.21349Z' fill='#6c6e76'/> <path d='M8.82007 3C8.82007 2.58579 8.48428 2.25 8.07007 2.25C7.65585 2.25 7.32007 2.58579 7.32007 3H8.82007ZM7.32007 5.51375C7.32007 5.92796 7.65585 6.26375 8.07007 6.26375C8.48428 6.26375 8.82007 5.92796 8.82007 5.51375H7.32007ZM16.6799 3C16.6799 2.58579 16.3441 2.25 15.9299 2.25C15.5157 2.25 15.1799 2.58579 15.1799 3H16.6799ZM15.1799 5.51375C15.1799 5.92796 15.5157 6.26375 15.9299 6.26375C16.3441 6.26375 16.6799 5.92796 16.6799 5.51375H15.1799ZM7.32007 3V5.51375H8.82007V3H7.32007ZM15.1799 3V5.51375H16.6799V3H15.1799Z' fill='var(--keycolor)'/> <path d='M12 13H15M9 16H15' stroke='var(--keycolor)' stroke-linecap='round' stroke-width='1.5'/> </g></svg>
+    Privacy Policy</a>
+   <a href='/p/disclaimer.html'><svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M8.95043 20.6471C6.17301 19.9956 4.00437 17.827 3.35287 15.0496C2.88237 13.0437 2.88237 10.9563 3.35287 8.95043C4.00437 6.17301 6.17301 4.00437 8.95043 3.35288C10.9563 2.88237 13.0437 2.88237 15.0496 3.35287C17.827 4.00437 19.9956 6.173 20.6471 8.95043C21.1176 10.9563 21.1176 13.0437 20.6471 15.0496C19.9956 17.827 17.827 19.9956 15.0496 20.6471C13.0437 21.1176 10.9563 21.1176 8.95043 20.6471Z' stroke='var(--keycolor)' stroke-width='1.5'/> <path d='M8.95043 20.6471C10.9563 21.1176 13.0437 21.1176 15.0496 20.6471C17.827 19.9956 19.9956 17.827 20.6471 15.0496C21.1176 13.0437 21.1176 10.9563 20.6471 8.95043C19.9956 6.173 17.827 4.00437 15.0496 3.35288C13.0437 2.88237 10.9563 2.88237 8.95043 3.35288C6.173 4.00437 4.00437 6.17301 3.35287 8.95043' stroke='#6c6e76' stroke-linecap='round' stroke-width='1.5'/> <path d='M12 15.5V11.5' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> <circle cx='12' cy='9' r='0.5' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round'/> </g></svg> Disclaimer</a>        
+  <a href='/p/about-us.html'><svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3 18.433C3 16.4308 4.45485 14.7254 6.43204 14.4098L6.61013 14.3814C8.19336 14.1287 9.80664 14.1287 11.3899 14.3814L11.568 14.4098C13.5451 14.7254 15 16.4308 15 18.433C15 19.2984 14.2984 20 13.433 20H4.56697C3.70156 20 3 19.2984 3 18.433Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M12.5 7.5C12.5 9.433 10.933 11 9 11C7.067 11 5.5 9.433 5.5 7.5C5.5 5.567 7.067 4 9 4C10.933 4 12.5 5.567 12.5 7.5Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M15 11C16.933 11 18.5 9.433 18.5 7.5C18.5 5.567 16.933 4 15 4M17.3899 20H19.433C20.2984 20 21 19.2984 21 18.433C21 16.4308 19.5451 14.7254 17.568 14.4098V14.4098C17.4494 14.3909 17.3293 14.3814 17.2093 14.3814C16.8895 14.3814 16.7902 14.3814 16.2412 14.3814' stroke='var(--keycolor)' stroke-linecap='round' stroke-width='1.5'/> </g></svg> About Us</a>
+ 
+</div>
+    <div class='not-mobile'>
+ <div class='download-app'>
+  <a href='https://yourappdownloadlink.com' target='_blank'>
+    <img alt='Download App' src='https://h5-static.aoneroom.com/oneroomStatic/public/_nuxt/apk-download.BsXVshUu.svg'/>
+  </a>
+</div>
+ <div class='social-icons'>
+   <a href='https://www.facebook.com/groups/abeflixtv' target='_blank'>
+    <img alt='Facebook' src='https://i.imgur.com/EJWGmT5.png'/>
+  </a>
+  <a href='https://t.me/abeflixgroupchat' target='_blank'>
+    <img alt='Telegram' src='https://i.imgur.com/T8ldqvZ.png'/>
+  </a>
+  <a href='https://wa.me/09074644272' target='_blank'>
+    <img alt='WhatsApp' src='https://i.imgur.com/G0vD4Ew.png'/>
+  </a>
+   <span class='follow-us'>Follow Us on Socials</span>
+</div>
+  </div>
+</div>  
+ <div class='sidebar-overlay' id='sidebarOverlay'/>  
+ <div class='mobile-sidebar' id='mobileSidebar'>  
+<img alt='Logo' class='logo-img' src='https://i.imgur.com/X6kebKx.png'/>
+ <a class='active' href='#home'>
+   <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M9.71841 18.3202L8.98129 18.1819L8.98129 18.1819L9.71841 18.3202ZM9.73775 18.2172L10.4749 18.3556L10.4749 18.3556L9.73775 18.2172ZM14.2622 18.2172L13.5251 18.3556L13.5251 18.3556L14.2622 18.2172ZM14.2816 18.3202L15.0187 18.1819L15.0187 18.1819L14.2816 18.3202ZM13.9918 20.5518L14.669 20.8741L14.669 20.8741L13.9918 20.5518ZM13.1978 20.4749C13.0198 20.849 13.1787 21.2964 13.5527 21.4744C13.9267 21.6524 14.3742 21.4935 14.5522 21.1195L13.1978 20.4749ZM10.0082 20.5518L9.33099 20.8741L9.33099 20.8741L10.0082 20.5518ZM9.44777 21.1195C9.62576 21.4935 10.0733 21.6524 10.4473 21.4744C10.8213 21.2964 10.9802 20.8489 10.8022 20.4749L9.44777 21.1195ZM11.361 16.4425L11.1605 15.7198L11.1605 15.7198L11.361 16.4425ZM12.6389 16.4425L12.8395 15.7198L12.8395 15.7198L12.6389 16.4425ZM10.4555 18.4586L10.4749 18.3556L9.00063 18.0788L8.98129 18.1819L10.4555 18.4586ZM13.5251 18.3556L13.5444 18.4586L15.0187 18.1819L14.9994 18.0788L13.5251 18.3556ZM13.3145 20.2295L13.1978 20.4749L14.5522 21.1195L14.669 20.8741L13.3145 20.2295ZM9.33099 20.8741L9.44777 21.1195L10.8022 20.4749L10.6854 20.2295L9.33099 20.8741ZM13.5444 18.4586C13.6571 19.0587 13.5764 19.6793 13.3145 20.2295L14.669 20.8741C15.0674 20.0368 15.1898 19.0937 15.0187 18.1819L13.5444 18.4586ZM8.98129 18.1819C8.81014 19.0937 8.93253 20.0368 9.33099 20.8741L10.6854 20.2295C10.4236 19.6793 10.3429 19.0587 10.4555 18.4586L8.98129 18.1819ZM11.5616 17.1652C11.8485 17.0856 12.1514 17.0856 12.4384 17.1652L12.8395 15.7198C12.2901 15.5674 11.7099 15.5674 11.1605 15.7198L11.5616 17.1652ZM14.9994 18.0788C14.7865 16.9449 13.9504 16.028 12.8395 15.7198L12.4384 17.1652C12.9935 17.3192 13.4169 17.7794 13.5251 18.3556L14.9994 18.0788ZM10.4749 18.3556C10.583 17.7794 11.0065 17.3192 11.5616 17.1652L11.1605 15.7198C10.0496 16.028 9.21348 16.9449 9.00063 18.0788L10.4749 18.3556Z' fill='var(--keycolor)'/> <path d='M20.04 9.71903C20.04 9.30482 19.7042 8.96903 19.29 8.96903C18.8758 8.96903 18.54 9.30482 18.54 9.71903H20.04ZM5.45999 9.71903C5.45999 9.30482 5.12421 8.96903 4.70999 8.96903C4.29578 8.96903 3.95999 9.30482 3.95999 9.71903H5.45999ZM14.5132 20.7071L14.3408 19.9772L14.5132 20.7071ZM9.48673 20.7071L9.65916 19.9772L9.48673 20.7071ZM14.8284 5.01423L14.2962 5.54267L14.8284 5.01423ZM20.4678 11.7582C20.7596 12.0521 21.2345 12.0538 21.5284 11.7619C21.8224 11.4701 21.8241 10.9952 21.5322 10.7013L20.4678 11.7582ZM9.17157 5.01423L9.70378 5.54267L9.17157 5.01423ZM2.46779 10.7013C2.17594 10.9952 2.17762 11.4701 2.47155 11.7619C2.76548 12.0538 3.24035 12.0521 3.53221 11.7582L2.46779 10.7013ZM18.54 9.71903V14.6374H20.04V9.71903H18.54ZM5.45999 14.6374V9.71903H3.95999V14.6374H5.45999ZM14.3408 19.9772C12.8011 20.3409 11.1988 20.3409 9.65916 19.9772L9.3143 21.437C11.0808 21.8543 12.9192 21.8543 14.6857 21.437L14.3408 19.9772ZM9.65916 19.9772C7.2026 19.3969 5.45999 17.1877 5.45999 14.6374H3.95999C3.95999 17.8765 6.17421 20.6952 9.3143 21.437L9.65916 19.9772ZM14.6857 21.437C17.8258 20.6952 20.04 17.8765 20.04 14.6374H18.54C18.54 17.1877 16.7974 19.3969 14.3408 19.9772L14.6857 21.437ZM14.2962 5.54267L20.4678 11.7582L21.5322 10.7013L15.3606 4.48578L14.2962 5.54267ZM8.63937 4.48578L2.46779 10.7013L3.53221 11.7582L9.70378 5.54267L8.63937 4.48578ZM15.3606 4.48578C14.7089 3.82945 14.1681 3.28246 13.6818 2.90885C13.1785 2.52211 12.6458 2.25 12 2.25V3.75C12.1827 3.75 12.3974 3.81359 12.7679 4.09826C13.1555 4.39606 13.6146 4.85618 14.2962 5.54267L15.3606 4.48578ZM9.70378 5.54267C10.3854 4.85618 10.8445 4.39606 11.2321 4.09826C11.6026 3.81359 11.8173 3.75 12 3.75V2.25C11.3542 2.25 10.8215 2.52211 10.3182 2.90885C9.83194 3.28246 9.29106 3.82945 8.63937 4.48578L9.70378 5.54267Z' fill='#6c6e76'/> </g></svg>
+    Home
+  </a>
+ <a class='library-btn' href='/p/library.html' title='Library'>
+     <svg fill='none' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3.35288 8.95043C4.00437 6.17301 6.17301 4.00437 8.95043 3.35288C10.9563 2.88237 13.0437 2.88237 15.0496 3.35288C17.827 4.00437 19.9956 6.17301 20.6471 8.95044C21.1176 10.9563 21.1176 13.0437 20.6471 15.0496C19.9956 17.827 17.827 19.9956 15.0496 20.6471C13.0437 21.1176 10.9563 21.1176 8.95044 20.6471C6.17301 19.9956 4.00437 17.827 3.35288 15.0496C2.88237 13.0437 2.88237 10.9563 3.35288 8.95043Z' stroke='var(--keycolor)' stroke-width='1.4'/> <path d='M20.6471 8.95044C19.9956 6.17301 17.827 4.00437 15.0496 3.35288C13.0437 2.88237 10.9563 2.88237 8.95043 3.35288C6.17301 4.00437 4.00437 6.17301 3.35288 8.95043C2.88237 10.9563 2.88237 13.0437 3.35288 15.0496C4.00437 17.827 6.17301 19.9956 8.95044 20.6471C10.9563 21.1176 13.0437 21.1176 15.0496 20.6471' stroke='#6c6e76' stroke-linecap='round' stroke-width='2'/> <path d='M10.1818 11.2959C10.3851 10.7877 10.7878 10.385 11.296 10.1817L13.3337 9.3666C14.15 9.04008 14.9601 9.85016 14.6336 10.6665L13.8185 12.7042C13.6152 13.2124 13.2125 13.6151 12.7043 13.8184L10.6666 14.6334C9.85028 14.96 9.0402 14.1499 9.36673 13.3336L10.1818 11.2959Z' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> </g></svg>
+    <span class='label'>Library</span>
+    </a>
+   <div class='more'>
+  <a href='/p/privacy-policy.html'>
+    <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3.83327 15.2485L3.10223 15.416L3.83327 15.2485ZM3.83327 9.3532L3.10223 9.18565L3.83327 9.3532ZM20.1667 9.35321L20.8978 9.18565L20.1667 9.35321ZM20.1667 15.2485L19.4357 15.0809L20.1667 15.2485ZM14.8801 20.6589L15.0552 21.3882L14.8801 20.6589ZM9.11986 20.6589L8.94478 21.3882L9.11986 20.6589ZM9.11985 3.94277L8.94478 3.21349L9.11985 3.94277ZM14.8801 3.94276L15.0552 3.21348L14.8801 3.94276ZM4.56432 15.0809C4.14523 13.2524 4.14523 11.3493 4.56432 9.52076L3.10223 9.18565C2.63259 11.2347 2.63259 13.367 3.10223 15.416L4.56432 15.0809ZM19.4357 9.52076C19.8548 11.3493 19.8548 13.2524 19.4357 15.0809L20.8978 15.416C21.3674 13.367 21.3674 11.2347 20.8978 9.18565L19.4357 9.52076ZM14.7051 19.9296C12.9258 20.3568 11.0742 20.3568 9.29493 19.9296L8.94478 21.3882C10.9543 21.8706 13.0458 21.8706 15.0552 21.3882L14.7051 19.9296ZM9.29493 4.67205C11.0742 4.2449 12.9258 4.2449 14.7051 4.67204L15.0552 3.21348C13.0458 2.73108 10.9542 2.73108 8.94478 3.21349L9.29493 4.67205ZM9.29493 19.9296C6.95607 19.3681 5.11769 17.4953 4.56432 15.0809L3.10223 15.416C3.77946 18.3708 6.03739 20.6902 8.94478 21.3882L9.29493 19.9296ZM15.0552 21.3882C17.9626 20.6902 20.2205 18.3708 20.8978 15.416L19.4357 15.0809C18.8823 17.4953 17.0439 19.3681 14.7051 19.9296L15.0552 21.3882ZM14.7051 4.67204C17.0439 5.23352 18.8823 7.10639 19.4357 9.52076L20.8978 9.18565C20.2205 6.23086 17.9626 3.91144 15.0552 3.21348L14.7051 4.67204ZM8.94478 3.21349C6.03739 3.91144 3.77946 6.23086 3.10223 9.18565L4.56432 9.52076C5.11769 7.10638 6.95607 5.23352 9.29493 4.67205L8.94478 3.21349Z' fill='#6c6e76'/> <path d='M8.82007 3C8.82007 2.58579 8.48428 2.25 8.07007 2.25C7.65585 2.25 7.32007 2.58579 7.32007 3H8.82007ZM7.32007 5.51375C7.32007 5.92796 7.65585 6.26375 8.07007 6.26375C8.48428 6.26375 8.82007 5.92796 8.82007 5.51375H7.32007ZM16.6799 3C16.6799 2.58579 16.3441 2.25 15.9299 2.25C15.5157 2.25 15.1799 2.58579 15.1799 3H16.6799ZM15.1799 5.51375C15.1799 5.92796 15.5157 6.26375 15.9299 6.26375C16.3441 6.26375 16.6799 5.92796 16.6799 5.51375H15.1799ZM7.32007 3V5.51375H8.82007V3H7.32007ZM15.1799 3V5.51375H16.6799V3H15.1799Z' fill='var(--keycolor)'/> <path d='M12 13H15M9 16H15' stroke='var(--keycolor)' stroke-linecap='round' stroke-width='1.5'/> </g></svg>
+    Privacy Policy</a>
+     <a href='/p/disclaimer.html'><svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M8.95043 20.6471C6.17301 19.9956 4.00437 17.827 3.35287 15.0496C2.88237 13.0437 2.88237 10.9563 3.35287 8.95043C4.00437 6.17301 6.17301 4.00437 8.95043 3.35288C10.9563 2.88237 13.0437 2.88237 15.0496 3.35287C17.827 4.00437 19.9956 6.173 20.6471 8.95043C21.1176 10.9563 21.1176 13.0437 20.6471 15.0496C19.9956 17.827 17.827 19.9956 15.0496 20.6471C13.0437 21.1176 10.9563 21.1176 8.95043 20.6471Z' stroke='var(--keycolor)' stroke-width='1.5'/> <path d='M8.95043 20.6471C10.9563 21.1176 13.0437 21.1176 15.0496 20.6471C17.827 19.9956 19.9956 17.827 20.6471 15.0496C21.1176 13.0437 21.1176 10.9563 20.6471 8.95043C19.9956 6.173 17.827 4.00437 15.0496 3.35288C13.0437 2.88237 10.9563 2.88237 8.95043 3.35288C6.173 4.00437 4.00437 6.17301 3.35287 8.95043' stroke='#6c6e76' stroke-linecap='round' stroke-width='1.5'/> <path d='M12 15.5V11.5' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> <circle cx='12' cy='9' r='0.5' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round'/> </g></svg> Disclaimer</a>     
+  <a href='/p/about-us.html'><svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3 18.433C3 16.4308 4.45485 14.7254 6.43204 14.4098L6.61013 14.3814C8.19336 14.1287 9.80664 14.1287 11.3899 14.3814L11.568 14.4098C13.5451 14.7254 15 16.4308 15 18.433C15 19.2984 14.2984 20 13.433 20H4.56697C3.70156 20 3 19.2984 3 18.433Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M12.5 7.5C12.5 9.433 10.933 11 9 11C7.067 11 5.5 9.433 5.5 7.5C5.5 5.567 7.067 4 9 4C10.933 4 12.5 5.567 12.5 7.5Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M15 11C16.933 11 18.5 9.433 18.5 7.5C18.5 5.567 16.933 4 15 4M17.3899 20H19.433C20.2984 20 21 19.2984 21 18.433C21 16.4308 19.5451 14.7254 17.568 14.4098V14.4098C17.4494 14.3909 17.3293 14.3814 17.2093 14.3814C16.8895 14.3814 16.7902 14.3814 16.2412 14.3814' stroke='var(--keycolor)' stroke-linecap='round' stroke-width='1.5'/> </g></svg> About Us</a>
+</div>
+    <div class='not-mobile'>
+ <div class='download-app'>
+  <a href='https://yourappdownloadlink.com' target='_blank'>
+    <img alt='Download App' src='https://h5-static.aoneroom.com/oneroomStatic/public/_nuxt/apk-download.BsXVshUu.svg'/>
+  </a>
+</div>
+ <div class='social-icons'>
+  <div class='icon-row'>
+     <a href='https://www.facebook.com/groups/abeflixtv' target='_blank'>
+    <img alt='Facebook' src='https://i.imgur.com/EJWGmT5.png'/>
+  </a>
+  <a href='https://t.me/abeflixgroupchat' target='_blank'>
+    <img alt='Telegram' src='https://i.imgur.com/T8ldqvZ.png'/>
+  </a>
+  <a href='https://wa.me/639074644272' target='_blank'>
+    <img alt='WhatsApp' src='https://i.imgur.com/G0vD4Ew.png'/>
+  </a>
+  </div>
+  <div class='follow-us'>Follow Us on Socials</div>
+</div>
+  </div>  
+</div>   
+<div class='bottom-navbar'>
+  <a class='active' href='#home'>
+   <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M9.71841 18.3202L8.98129 18.1819L8.98129 18.1819L9.71841 18.3202ZM9.73775 18.2172L10.4749 18.3556L10.4749 18.3556L9.73775 18.2172ZM14.2622 18.2172L13.5251 18.3556L13.5251 18.3556L14.2622 18.2172ZM14.2816 18.3202L15.0187 18.1819L15.0187 18.1819L14.2816 18.3202ZM13.9918 20.5518L14.669 20.8741L14.669 20.8741L13.9918 20.5518ZM13.1978 20.4749C13.0198 20.849 13.1787 21.2964 13.5527 21.4744C13.9267 21.6524 14.3742 21.4935 14.5522 21.1195L13.1978 20.4749ZM10.0082 20.5518L9.33099 20.8741L9.33099 20.8741L10.0082 20.5518ZM9.44777 21.1195C9.62576 21.4935 10.0733 21.6524 10.4473 21.4744C10.8213 21.2964 10.9802 20.8489 10.8022 20.4749L9.44777 21.1195ZM11.361 16.4425L11.1605 15.7198L11.1605 15.7198L11.361 16.4425ZM12.6389 16.4425L12.8395 15.7198L12.8395 15.7198L12.6389 16.4425ZM10.4555 18.4586L10.4749 18.3556L9.00063 18.0788L8.98129 18.1819L10.4555 18.4586ZM13.5251 18.3556L13.5444 18.4586L15.0187 18.1819L14.9994 18.0788L13.5251 18.3556ZM13.3145 20.2295L13.1978 20.4749L14.5522 21.1195L14.669 20.8741L13.3145 20.2295ZM9.33099 20.8741L9.44777 21.1195L10.8022 20.4749L10.6854 20.2295L9.33099 20.8741ZM13.5444 18.4586C13.6571 19.0587 13.5764 19.6793 13.3145 20.2295L14.669 20.8741C15.0674 20.0368 15.1898 19.0937 15.0187 18.1819L13.5444 18.4586ZM8.98129 18.1819C8.81014 19.0937 8.93253 20.0368 9.33099 20.8741L10.6854 20.2295C10.4236 19.6793 10.3429 19.0587 10.4555 18.4586L8.98129 18.1819ZM11.5616 17.1652C11.8485 17.0856 12.1514 17.0856 12.4384 17.1652L12.8395 15.7198C12.2901 15.5674 11.7099 15.5674 11.1605 15.7198L11.5616 17.1652ZM14.9994 18.0788C14.7865 16.9449 13.9504 16.028 12.8395 15.7198L12.4384 17.1652C12.9935 17.3192 13.4169 17.7794 13.5251 18.3556L14.9994 18.0788ZM10.4749 18.3556C10.583 17.7794 11.0065 17.3192 11.5616 17.1652L11.1605 15.7198C10.0496 16.028 9.21348 16.9449 9.00063 18.0788L10.4749 18.3556Z' fill='var(--keycolor)'/> <path d='M20.04 9.71903C20.04 9.30482 19.7042 8.96903 19.29 8.96903C18.8758 8.96903 18.54 9.30482 18.54 9.71903H20.04ZM5.45999 9.71903C5.45999 9.30482 5.12421 8.96903 4.70999 8.96903C4.29578 8.96903 3.95999 9.30482 3.95999 9.71903H5.45999ZM14.5132 20.7071L14.3408 19.9772L14.5132 20.7071ZM9.48673 20.7071L9.65916 19.9772L9.48673 20.7071ZM14.8284 5.01423L14.2962 5.54267L14.8284 5.01423ZM20.4678 11.7582C20.7596 12.0521 21.2345 12.0538 21.5284 11.7619C21.8224 11.4701 21.8241 10.9952 21.5322 10.7013L20.4678 11.7582ZM9.17157 5.01423L9.70378 5.54267L9.17157 5.01423ZM2.46779 10.7013C2.17594 10.9952 2.17762 11.4701 2.47155 11.7619C2.76548 12.0538 3.24035 12.0521 3.53221 11.7582L2.46779 10.7013ZM18.54 9.71903V14.6374H20.04V9.71903H18.54ZM5.45999 14.6374V9.71903H3.95999V14.6374H5.45999ZM14.3408 19.9772C12.8011 20.3409 11.1988 20.3409 9.65916 19.9772L9.3143 21.437C11.0808 21.8543 12.9192 21.8543 14.6857 21.437L14.3408 19.9772ZM9.65916 19.9772C7.2026 19.3969 5.45999 17.1877 5.45999 14.6374H3.95999C3.95999 17.8765 6.17421 20.6952 9.3143 21.437L9.65916 19.9772ZM14.6857 21.437C17.8258 20.6952 20.04 17.8765 20.04 14.6374H18.54C18.54 17.1877 16.7974 19.3969 14.3408 19.9772L14.6857 21.437ZM14.2962 5.54267L20.4678 11.7582L21.5322 10.7013L15.3606 4.48578L14.2962 5.54267ZM8.63937 4.48578L2.46779 10.7013L3.53221 11.7582L9.70378 5.54267L8.63937 4.48578ZM15.3606 4.48578C14.7089 3.82945 14.1681 3.28246 13.6818 2.90885C13.1785 2.52211 12.6458 2.25 12 2.25V3.75C12.1827 3.75 12.3974 3.81359 12.7679 4.09826C13.1555 4.39606 13.6146 4.85618 14.2962 5.54267L15.3606 4.48578ZM9.70378 5.54267C10.3854 4.85618 10.8445 4.39606 11.2321 4.09826C11.6026 3.81359 11.8173 3.75 12 3.75V2.25C11.3542 2.25 10.8215 2.52211 10.3182 2.90885C9.83194 3.28246 9.29106 3.82945 8.63937 4.48578L9.70378 5.54267Z' fill='#6c6e76'/> </g></svg>
+    Home
+  </a>
+  <a href='#movies'>
+   <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3.35288 8.95043C4.00437 6.17301 6.17301 4.00437 8.95043 3.35288C10.9563 2.88237 13.0437 2.88237 15.0496 3.35288C17.827 4.00437 19.9956 6.17301 20.6471 8.95044C21.1176 10.9563 21.1176 13.0437 20.6471 15.0496C19.9956 17.827 17.827 19.9956 15.0496 20.6471C13.0437 21.1176 10.9563 21.1176 8.95044 20.6471C6.17301 19.9956 4.00437 17.827 3.35288 15.0496C2.88237 13.0437 2.88237 10.9563 3.35288 8.95043Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M14.1618 10.8707C14.9461 11.3726 14.9461 12.6274 14.1618 13.1293L11.5147 14.8233C10.7304 15.3253 9.75 14.6979 9.75 13.694L9.75 10.306C9.75 9.30214 10.7304 8.67473 11.5147 9.17665L14.1618 10.8707Z' stroke='var(--keycolor)' stroke-width='1.5'/> </g></svg>
+    Movies
+  </a>
+   <a class='sidebar-btn' id='toggleSidebar' title='sidebar'>
+    <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M3.29701 5.2338C3.52243 4.27279 4.27279 3.52243 5.2338 3.29701V3.29701C6.06663 3.10165 6.93337 3.10165 7.7662 3.29701V3.29701C8.72721 3.52243 9.47757 4.27279 9.70299 5.2338V5.2338C9.89835 6.06663 9.89835 6.93337 9.70299 7.7662V7.7662C9.47757 8.72721 8.72721 9.47757 7.7662 9.70299V9.70299C6.93337 9.89835 6.06663 9.89835 5.2338 9.70299V9.70299C4.27279 9.47757 3.52243 8.72721 3.29701 7.7662V7.7662C3.10166 6.93337 3.10166 6.06663 3.29701 5.2338V5.2338Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M3.29701 16.2338C3.52243 15.2728 4.27279 14.5224 5.2338 14.297V14.297C6.06663 14.1017 6.93337 14.1017 7.7662 14.297V14.297C8.72721 14.5224 9.47757 15.2728 9.70299 16.2338V16.2338C9.89835 17.0666 9.89835 17.9334 9.70299 18.7662V18.7662C9.47757 19.7272 8.72721 20.4776 7.7662 20.703V20.703C6.93337 20.8983 6.06663 20.8983 5.2338 20.703V20.703C4.27279 20.4776 3.52243 19.7272 3.29701 18.7662V18.7662C3.10166 17.9334 3.10166 17.0666 3.29701 16.2338V16.2338Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M14.297 5.2338C14.5224 4.27279 15.2728 3.52243 16.2338 3.29701V3.29701C17.0666 3.10165 17.9334 3.10165 18.7662 3.29701V3.29701C19.7272 3.52243 20.4776 4.27279 20.703 5.2338V5.2338C20.8983 6.06663 20.8983 6.93337 20.703 7.7662V7.7662C20.4776 8.72721 19.7272 9.47757 18.7662 9.70299V9.70299C17.9334 9.89835 17.0666 9.89835 16.2338 9.70299V9.70299C15.2728 9.47757 14.5224 8.72721 14.297 7.7662V7.7662C14.1017 6.93337 14.1017 6.06663 14.297 5.2338V5.2338Z' stroke='#6c6e76' stroke-width='1.5'/> <path d='M14.297 16.2338C14.5224 15.2728 15.2728 14.5224 16.2338 14.297V14.297C17.0666 14.1017 17.9334 14.1017 18.7662 14.297V14.297C19.7272 14.5224 20.4776 15.2728 20.703 16.2338V16.2338C20.8983 17.0666 20.8983 17.9334 20.703 18.7662V18.7662C20.4776 19.7272 19.7272 20.4776 18.7662 20.703V20.703C17.9334 20.8983 17.0666 20.8983 16.2338 20.703V20.703C15.2728 20.4776 14.5224 19.7272 14.297 18.7662V18.7662C14.1017 17.9334 14.1017 17.0666 14.297 16.2338V16.2338Z' stroke='var(--keycolor)' stroke-width='1.5'/> </g></svg>
+  <span class='label'>Menu</span>
+</a>
+  <a href='#tvseries'>
+  <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M15.8669 3.54428C16.1675 3.25931 16.1802 2.7846 15.8952 2.484C15.6102 2.1834 15.1355 2.17074 14.8349 2.45572L15.8669 3.54428ZM12.0003 6.17647L11.4843 6.72075L12.0003 7.20994L12.5163 6.72075L12.0003 6.17647ZM9.16573 2.45572C8.86513 2.17074 8.39042 2.1834 8.10544 2.484C7.82046 2.7846 7.83313 3.25931 8.13373 3.54428L9.16573 2.45572ZM9.28151 19.8417C9.51896 19.5023 9.43633 19.0347 9.09693 18.7972C8.75754 18.5598 8.28991 18.6424 8.05246 18.9818L9.28151 19.8417ZM6.94126 20.5701C6.7038 20.9094 6.78644 21.3771 7.12584 21.6145C7.46523 21.852 7.93286 21.7693 8.17031 21.4299L6.94126 20.5701ZM15.9487 18.9818C15.7112 18.6424 15.2436 18.5598 14.9042 18.7972C14.5648 19.0347 14.4822 19.5023 14.7196 19.8417L15.9487 18.9818ZM15.8308 21.4299C16.0683 21.7693 16.5359 21.852 16.8753 21.6145C17.2147 21.3771 17.2973 20.9094 17.0599 20.5701L15.8308 21.4299ZM14.8349 2.45572L11.4843 5.63219L12.5163 6.72075L15.8669 3.54428L14.8349 2.45572ZM8.13373 3.54428L11.4843 6.72075L12.5163 5.63219L9.16573 2.45572L8.13373 3.54428ZM8.05246 18.9818L6.94126 20.5701L8.17031 21.4299L9.28151 19.8417L8.05246 18.9818ZM14.7196 19.8417L15.8308 21.4299L17.0599 20.5701L15.9487 18.9818L14.7196 19.8417Z' fill='var(--keycolor)'/> <path d='M4.80827 15.4094L4.08356 15.6025L4.80827 15.4094ZM4.80827 10.7083L5.53299 10.9014L4.80827 10.7083ZM19.1917 10.7083L18.467 10.9014L19.1917 10.7083ZM19.1917 15.4094L19.9164 15.6025L19.1917 15.4094ZM14.429 19.4396L14.2774 18.7051L14.2773 18.7051L14.429 19.4396ZM9.57098 19.4396L9.41931 20.1741H9.41931L9.57098 19.4396ZM9.57098 6.67809L9.72265 7.41259L9.57098 6.67809ZM14.429 6.67809L14.5807 5.94358V5.94358L14.429 6.67809ZM9.07917 19.3381L9.23084 18.6036H9.23084L9.07917 19.3381ZM14.9208 19.3381L15.0725 20.0726L15.0725 20.0726L14.9208 19.3381ZM14.9208 6.77964L14.7692 7.51415V7.51415L14.9208 6.77964ZM9.07917 6.77964L8.9275 6.04514V6.04514L9.07917 6.77964ZM9.23084 7.51415L9.72265 7.41259L9.41931 5.94358L8.9275 6.04514L9.23084 7.51415ZM14.2774 7.41259L14.7692 7.51415L15.0725 6.04514L14.5807 5.94358L14.2774 7.41259ZM14.7692 18.6036L14.2774 18.7051L14.5807 20.1741L15.0725 20.0726L14.7692 18.6036ZM9.72265 18.7051L9.23084 18.6036L8.9275 20.0726L9.41931 20.1741L9.72265 18.7051ZM5.53299 15.2163C5.15567 13.8003 5.15567 12.3174 5.53299 10.9014L4.08356 10.5152C3.63881 12.1843 3.63881 13.9334 4.08356 15.6025L5.53299 15.2163ZM18.467 10.9014C18.8443 12.3175 18.8443 13.8003 18.467 15.2163L19.9164 15.6025C20.3612 13.9334 20.3612 12.1843 19.9164 10.5152L18.467 10.9014ZM14.2773 18.7051C12.7766 19.015 11.2234 19.015 9.72265 18.7051L9.41931 20.1741C11.1201 20.5254 12.8799 20.5254 14.5807 20.1741L14.2773 18.7051ZM9.72265 7.41259C11.2234 7.1027 12.7766 7.1027 14.2774 7.41259L14.5807 5.94358C12.8799 5.59237 11.1201 5.59237 9.41931 5.94358L9.72265 7.41259ZM9.23084 18.6036C7.40303 18.2261 5.98226 16.9024 5.53299 15.2163L4.08356 15.6025C4.68704 17.8673 6.57448 19.5867 8.9275 20.0726L9.23084 18.6036ZM15.0725 20.0726C17.4255 19.5867 19.313 17.8673 19.9164 15.6025L18.467 15.2163C18.0177 16.9024 16.597 18.2261 14.7692 18.6036L15.0725 20.0726ZM14.7692 7.51415C16.597 7.89158 18.0177 9.21534 18.467 10.9014L19.9164 10.5152C19.313 8.25039 17.4255 6.53102 15.0725 6.04514L14.7692 7.51415ZM8.9275 6.04514C6.57449 6.53102 4.68704 8.25039 4.08356 10.5152L5.53299 10.9014C5.98226 9.21534 7.40303 7.89158 9.23084 7.51415L8.9275 6.04514Z' fill='#6c6e76'/> </g></svg>
+    Series
+  </a>
+  <a href='#animation'>
+<svg fill='none' height='256px' stroke='#ffffff' viewBox='-2.4 -2.4 28.80 28.80' width='256px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke='#CCCCCC' stroke-linecap='round' stroke-linejoin='round' stroke-width='0.288'/><g id='SVGRepo_iconCarrier'> <path d='M18.1579 8.60503C20.614 10.1139 20.614 13.8861 18.1579 15.395L11.5263 19.4689C9.07017 20.9778 6 19.0917 6 16.074L6 7.92602C6 4.90827 9.07018 3.02218 11.5263 4.53105L18.1579 8.60503Z' stroke='var(--keycolor)' stroke-width='2'/> <path d='M11.5263 19.4689C9.07017 20.9778 6 19.0917 6 16.074L6 7.92602C6 4.90827 9.07018 3.02218 11.5263 4.53105L18.1579 8.60503' stroke='#6c6e76' stroke-linecap='round' stroke-width='2.4'/> </g></svg>
+
+    Animation
+  </a>
+</div>   
+<b:if cond='data:view.isHomepage'>
+  
+  <div id='content-wrapper'>
+  <div class='content-slider'>
+    <div class='slider-wrapper'>
+      <div id='tmdb-slider'/>
+      <button class='slider-arrow left' onclick='changeSlide(-1)'>&#10094;</button>
+      <button class='slider-arrow right' onclick='changeSlide(1)'>&#10095;</button>
+<div class='slider-thumbnails'>
+  <div class='slider-title' id='slider-title'/>
+  <div class='slider-thumbnails-row' id='slider-dots'/>
+</div>
+    </div>
+ </div>
+    <div class='carousel-bottom-overlay'/>
+  </div>
+<div class='bookmark-modal' id='bookmark-modal'>
+  <div class='bookmark-content'>
+    <h3>My Watchlist</h3>
+    <ul id='bookmark-list'/>
+  </div>
+</div>
+
+<b:section class='image-carousel' id='image-carousel' maxwidgets='1' name='Image Carousel Slider' showaddelement='true'>
+  <b:widget id='Text1' locked='true' title='image-carousel' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>movie/popular</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section>
+<b:section class='loader' id='loader' maxwidgets='1' name='Loader Logo' showaddelement='true'>
+  <b:widget id='Text2' locked='true' title='Loader Logo' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>https://cdn-icons-png.flaticon.com/128/17115/17115490.png</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section> 
+
+
+<b:section class='tmdb-section' id='tmdb-section-1' name='Homepage Section' showaddelement='true'>
+   <b:widget id='HTML5' locked='false' title='Now Showing' type='HTML' visible='true'>
+     <b:widget-settings>
+       <b:widget-setting name='content'>movie/now_playing</b:widget-setting>
+     </b:widget-settings>
+     <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+   </b:widget>
+   <b:widget id='HTML4' locked='false' title='Popular Series' type='HTML' visible='true'>
+     <b:widget-settings>
+       <b:widget-setting name='content'><![CDATA[discover/tv?sort_by=popularity.desc&first_air_date.gte=2020-01-01&first_air_date.lte=2025-12-31]]></b:widget-setting>
+     </b:widget-settings>
+     <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+   </b:widget>
+   <b:widget id='HTML2' locked='false' title='Popular Movies' type='HTML' visible='true'>
+     <b:widget-settings>
+       <b:widget-setting name='content'><![CDATA[discover/movie?sort_by=popularity.desc&primary_release_date.gte=2020-01-01&primary_release_date.lte=2025-12-31]]></b:widget-setting>
+     </b:widget-settings>
+     <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+   </b:widget>
+   <b:widget id='HTML6' locked='false' title='Top Rated Series' type='HTML' visible='true'>
+     <b:widget-settings>
+       <b:widget-setting name='content'>tv/top_rated</b:widget-setting>
+     </b:widget-settings>
+     <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+   </b:widget>
+   <b:widget id='HTML3' locked='false' title='Top Rated Movies' type='HTML' visible='true'>
+     <b:widget-settings>
+       <b:widget-setting name='content'>movie/top_rated</b:widget-setting>
+     </b:widget-settings>
+     <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+   </b:widget>
+   <b:widget id='HTML1' locked='false' title='Trending All Week' type='HTML' visible='true'>
+     <b:widget-settings>
+       <b:widget-setting name='content'>trending/all/week</b:widget-setting>
+     </b:widget-settings>
+     <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+   </b:widget>
+ </b:section>
+<b:section class='tmdb-section' id='tmdb-section-2' name='Movie Section' showaddelement='true'>
+  <b:widget id='HTML11' locked='false' title='Now Playing' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>movie/now_playing</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML7' locked='false' title='Popular Movies' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>movie/popular</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML8' locked='false' title='Top Rated Movies' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>movie/top_rated</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section>
+<b:section class='tmdb-section' id='tmdb-section-3' name='TV Series Section' showaddelement='true'>
+  <b:widget id='HTML12' locked='false' title='Airing Today' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>tv/airing_today</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML9' locked='false' title='On the Air' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>tv/on_the_air</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML14' locked='false' title='Top Rated Series' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>tv/top_rated</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML13' locked='false' title='Popular Series' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>tv/popular</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section>
+<b:section class='tmdb-section' id='tmdb-section-4' name='Animation Section' showaddelement='true'>
+  <b:widget id='HTML15' locked='false' title='Animation Movies' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>discover/movie?with_genres=16</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML10' locked='false' title='Animation Series' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>discover/tv?with_genres=16</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section>
+<b:section class='tmdb-section' id='tmdb-section-5' name='Kdrama Widget' showaddelement='true'>
+  <b:widget id='HTML23' locked='false' title='US' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[discover/movie?with_genres=28&region=US&primary_release_year=2024&sort_by=popularity.desc]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML18' locked='false' title='Action' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[discover/tv?with_genres=18,10759&with_original_language=ko]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML17' locked='false' title='Romance' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[discover/tv?with_genres=18,10749&with_original_language=ko]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML16' locked='false' title='Korean Drama' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[discover/tv?with_genres=18&with_original_language=ko]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section>
+<b:section class='tmdb-section' id='tmdb-section-6' name='Cdrama Widget' showaddelement='true'>
+  <b:widget id='HTML19' locked='false' title='Cdrama' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[discover/tv?with_genres=18,10759&with_original_language=ko]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section> 
+<b:section class='tmdb-section' id='tmdb-section-7' name='Anime Widget' showaddelement='true'>
+   <b:widget id='HTML20' locked='false' title='Anime' type='HTML' visible='true'>
+     <b:widget-settings>
+       <b:widget-setting name='content'><![CDATA[discover/tv?with_genres=18,10759&with_original_language=ko]]></b:widget-setting>
+     </b:widget-settings>
+     <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+   </b:widget>
+ </b:section>
+<b:section class='tmdb-section' id='tmdb-section-8' name='Western Movies Widget ' showaddelement='true'>
+  <b:widget id='HTML21' locked='false' title='Western Movies' type='HTML' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[discover/tv?with_genres=18,10759&with_original_language=ko]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section> 
+<b:section class='tmdb-section' id='tmdb-section-9' name='Western Series Widget' showaddelement='true'>
+   <b:widget id='HTML22' locked='false' title='Western Series' type='HTML' visible='true'>
+     <b:widget-settings>
+       <b:widget-setting name='content'><![CDATA[discover/tv?with_genres=18,10759&with_original_language=ko]]></b:widget-setting>
+     </b:widget-settings>
+     <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+   </b:widget>
+ </b:section>  
+</b:if>
+<b:if cond='data:view.isPage'>
+  <div class='bottom-navbar'>
+  <a class='active' href='#home'>
+   <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M9.71841 18.3202L8.98129 18.1819L8.98129 18.1819L9.71841 18.3202ZM9.73775 18.2172L10.4749 18.3556L10.4749 18.3556L9.73775 18.2172ZM14.2622 18.2172L13.5251 18.3556L13.5251 18.3556L14.2622 18.2172ZM14.2816 18.3202L15.0187 18.1819L15.0187 18.1819L14.2816 18.3202ZM13.9918 20.5518L14.669 20.8741L14.669 20.8741L13.9918 20.5518ZM13.1978 20.4749C13.0198 20.849 13.1787 21.2964 13.5527 21.4744C13.9267 21.6524 14.3742 21.4935 14.5522 21.1195L13.1978 20.4749ZM10.0082 20.5518L9.33099 20.8741L9.33099 20.8741L10.0082 20.5518ZM9.44777 21.1195C9.62576 21.4935 10.0733 21.6524 10.4473 21.4744C10.8213 21.2964 10.9802 20.8489 10.8022 20.4749L9.44777 21.1195ZM11.361 16.4425L11.1605 15.7198L11.1605 15.7198L11.361 16.4425ZM12.6389 16.4425L12.8395 15.7198L12.8395 15.7198L12.6389 16.4425ZM10.4555 18.4586L10.4749 18.3556L9.00063 18.0788L8.98129 18.1819L10.4555 18.4586ZM13.5251 18.3556L13.5444 18.4586L15.0187 18.1819L14.9994 18.0788L13.5251 18.3556ZM13.3145 20.2295L13.1978 20.4749L14.5522 21.1195L14.669 20.8741L13.3145 20.2295ZM9.33099 20.8741L9.44777 21.1195L10.8022 20.4749L10.6854 20.2295L9.33099 20.8741ZM13.5444 18.4586C13.6571 19.0587 13.5764 19.6793 13.3145 20.2295L14.669 20.8741C15.0674 20.0368 15.1898 19.0937 15.0187 18.1819L13.5444 18.4586ZM8.98129 18.1819C8.81014 19.0937 8.93253 20.0368 9.33099 20.8741L10.6854 20.2295C10.4236 19.6793 10.3429 19.0587 10.4555 18.4586L8.98129 18.1819ZM11.5616 17.1652C11.8485 17.0856 12.1514 17.0856 12.4384 17.1652L12.8395 15.7198C12.2901 15.5674 11.7099 15.5674 11.1605 15.7198L11.5616 17.1652ZM14.9994 18.0788C14.7865 16.9449 13.9504 16.028 12.8395 15.7198L12.4384 17.1652C12.9935 17.3192 13.4169 17.7794 13.5251 18.3556L14.9994 18.0788ZM10.4749 18.3556C10.583 17.7794 11.0065 17.3192 11.5616 17.1652L11.1605 15.7198C10.0496 16.028 9.21348 16.9449 9.00063 18.0788L10.4749 18.3556Z' fill='var(--keycolor)'/> <path d='M20.04 9.71903C20.04 9.30482 19.7042 8.96903 19.29 8.96903C18.8758 8.96903 18.54 9.30482 18.54 9.71903H20.04ZM5.45999 9.71903C5.45999 9.30482 5.12421 8.96903 4.70999 8.96903C4.29578 8.96903 3.95999 9.30482 3.95999 9.71903H5.45999ZM14.5132 20.7071L14.3408 19.9772L14.5132 20.7071ZM9.48673 20.7071L9.65916 19.9772L9.48673 20.7071ZM14.8284 5.01423L14.2962 5.54267L14.8284 5.01423ZM20.4678 11.7582C20.7596 12.0521 21.2345 12.0538 21.5284 11.7619C21.8224 11.4701 21.8241 10.9952 21.5322 10.7013L20.4678 11.7582ZM9.17157 5.01423L9.70378 5.54267L9.17157 5.01423ZM2.46779 10.7013C2.17594 10.9952 2.17762 11.4701 2.47155 11.7619C2.76548 12.0538 3.24035 12.0521 3.53221 11.7582L2.46779 10.7013ZM18.54 9.71903V14.6374H20.04V9.71903H18.54ZM5.45999 14.6374V9.71903H3.95999V14.6374H5.45999ZM14.3408 19.9772C12.8011 20.3409 11.1988 20.3409 9.65916 19.9772L9.3143 21.437C11.0808 21.8543 12.9192 21.8543 14.6857 21.437L14.3408 19.9772ZM9.65916 19.9772C7.2026 19.3969 5.45999 17.1877 5.45999 14.6374H3.95999C3.95999 17.8765 6.17421 20.6952 9.3143 21.437L9.65916 19.9772ZM14.6857 21.437C17.8258 20.6952 20.04 17.8765 20.04 14.6374H18.54C18.54 17.1877 16.7974 19.3969 14.3408 19.9772L14.6857 21.437ZM14.2962 5.54267L20.4678 11.7582L21.5322 10.7013L15.3606 4.48578L14.2962 5.54267ZM8.63937 4.48578L2.46779 10.7013L3.53221 11.7582L9.70378 5.54267L8.63937 4.48578ZM15.3606 4.48578C14.7089 3.82945 14.1681 3.28246 13.6818 2.90885C13.1785 2.52211 12.6458 2.25 12 2.25V3.75C12.1827 3.75 12.3974 3.81359 12.7679 4.09826C13.1555 4.39606 13.6146 4.85618 14.2962 5.54267L15.3606 4.48578ZM9.70378 5.54267C10.3854 4.85618 10.8445 4.39606 11.2321 4.09826C11.6026 3.81359 11.8173 3.75 12 3.75V2.25C11.3542 2.25 10.8215 2.52211 10.3182 2.90885C9.83194 3.28246 9.29106 3.82945 8.63937 4.48578L9.70378 5.54267Z' fill='#6c6e76'/> </g></svg>
+    Home
+  </a>
+   <a id='comment-nav-button' style='cursor: pointer;'>
+   <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M12.3142 19.4902L11.6158 19.217L12.3142 19.4902ZM3.77909 14.1378L4.51003 13.9698L3.77909 14.1378ZM3.77571 9.22642L3.04477 9.05841V9.05841L3.77571 9.22642ZM20.2476 9.44741L20.9786 9.2794L20.9786 9.27939L20.2476 9.44741ZM20.2476 13.9021L19.5167 13.7341L20.2476 13.9021ZM9.31593 20.8233L9.0211 21.5129L9.0211 21.5129L9.31593 20.8233ZM9.68953 3.27141L9.86413 4.00081L9.86413 4.00081L9.68953 3.27141ZM14.283 3.27141L14.1084 4.00081L14.283 3.27141ZM9.19777 20.7728L9.4926 20.0832L9.4926 20.0832L9.19777 20.7728ZM14.6641 3.36264L14.8387 2.63325L14.6641 3.36264ZM20.1588 9.06088L19.4279 9.22889V9.22889L20.1588 9.06088ZM9.46648 3.32481L9.29188 2.59541L9.29188 2.59541L9.46648 3.32481ZM9.64108 4.0542L9.86413 4.00081L9.51493 2.54202L9.29188 2.59541L9.64108 4.0542ZM14.1084 4.00081L14.4895 4.09204L14.8387 2.63325L14.4576 2.54202L14.1084 4.00081ZM9.61077 20.1337L9.4926 20.0832L8.90294 21.4624L9.0211 21.5129L9.61077 20.1337ZM19.4279 9.22889L19.5167 9.61542L20.9786 9.27939L20.8897 8.89286L19.4279 9.22889ZM14.1721 18.1768H13.1107V19.6768H14.1721V18.1768ZM13.1107 18.1768C12.4324 18.1768 11.8529 18.6108 11.6158 19.217L13.0127 19.7634C13.0406 19.6921 13.092 19.6768 13.1107 19.6768V18.1768ZM4.51003 13.9698C4.16535 12.4702 4.16244 10.8919 4.50665 9.39443L3.04477 9.05841C2.64926 10.7791 2.65311 12.5871 3.04815 14.3058L4.51003 13.9698ZM19.5167 9.61542C19.8278 10.9687 19.8278 12.3808 19.5167 13.7341L20.9786 14.0701C21.3405 12.4957 21.3405 10.8538 20.9786 9.2794L19.5167 9.61542ZM9.0211 21.5129C10.6131 22.1936 12.3891 21.3576 13.0127 19.7634L11.6158 19.217C11.2766 20.084 10.365 20.4561 9.61076 20.1337L9.0211 21.5129ZM9.86413 4.00081C11.2611 3.6664 12.7114 3.6664 14.1084 4.00081L14.4576 2.54202C12.8311 2.15266 11.1415 2.15266 9.51493 2.54202L9.86413 4.00081ZM9.4926 20.0832C7.01453 19.0237 5.14644 16.7384 4.51003 13.9698L3.04815 14.3058C3.78571 17.5145 5.95924 20.2039 8.90294 21.4624L9.4926 20.0832ZM19.5167 13.7341C18.912 16.3647 16.6859 18.1768 14.1721 18.1768V19.6768C17.4318 19.6768 20.2281 17.3351 20.9786 14.0701L19.5167 13.7341ZM14.4895 4.09204C16.91 4.67142 18.8349 6.64932 19.4279 9.22889L20.8897 8.89287C20.1765 5.78984 17.8441 3.35266 14.8387 2.63325L14.4895 4.09204ZM9.29188 2.59541C6.18969 3.338 3.78134 5.85397 3.04477 9.05841L4.50665 9.39443C5.1229 6.71346 7.12384 4.65676 9.64108 4.0542L9.29188 2.59541Z' fill='#6c6e76'/> <path d='M8.69629 8.30786C8.28208 8.30786 7.94629 8.64365 7.94629 9.05786C7.94629 9.47207 8.28208 9.80786 8.69629 9.80786V8.30786ZM14.728 9.80786C15.1422 9.80786 15.478 9.47207 15.478 9.05786C15.478 8.64365 15.1422 8.30786 14.728 8.30786V9.80786ZM8.69629 11.764C8.28208 11.764 7.94629 12.0998 7.94629 12.514C7.94629 12.9282 8.28208 13.264 8.69629 13.264V11.764ZM12.5346 13.264C12.9488 13.264 13.2846 12.9282 13.2846 12.514C13.2846 12.0998 12.9488 11.764 12.5346 11.764V13.264ZM8.69629 9.80786H14.728V8.30786H8.69629V9.80786ZM8.69629 13.264H12.5346V11.764H8.69629V13.264Z' fill='var(--keycolor)'/> </g></svg>
+    Comment
+  </a>
+
+  <a class='share-btn'>
+    <svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M5.5 9H3.5' stroke='var(--keycolor)' stroke-linecap='round' stroke-width='1.5'/> <path d='M5 15L4 15' stroke='var(--keycolor)' stroke-linecap='round' stroke-width='1.5'/> <path d='M4 12H2' stroke='var(--keycolor)' stroke-linecap='round' stroke-width='1.5'/> <path d='M12.0409 12.7649C12.4551 12.7649 12.7909 12.4291 12.7909 12.0149C12.7909 11.6007 12.4551 11.2649 12.0409 11.2649V12.7649ZM9.26797 12.7649H12.0409V11.2649H9.26797V12.7649Z' fill='var(--keycolor)'/> <path d='M11.8369 4.80857L12.1914 4.14766L11.8369 4.80857ZM20.5392 9.47684L20.1846 10.1377L20.5392 9.47684ZM20.5356 14.5453L20.8891 15.2068L20.5356 14.5453ZM11.8379 19.1934L11.4844 18.5319H11.4844L11.8379 19.1934ZM8.13677 15.7931L7.41828 15.578L8.13677 15.7931ZM8.13127 8.2039L7.41256 8.41827L8.13127 8.2039ZM9.18255 11.7286L8.46384 11.9429L9.18255 11.7286ZM11.4823 5.46948L20.1846 10.1377L20.8937 8.81593L12.1914 4.14766L11.4823 5.46948ZM20.1821 13.8839L11.4844 18.5319L12.1914 19.8548L20.8891 15.2068L20.1821 13.8839ZM8.85526 16.0082L9.90074 12.5163L8.46376 12.0861L7.41828 15.578L8.85526 16.0082ZM9.90126 11.5142L8.84998 7.98954L7.41256 8.41827L8.46384 11.9429L9.90126 11.5142ZM11.4844 18.5319C10.7513 18.9237 9.98824 18.7591 9.44091 18.2563C8.88829 17.7486 8.58451 16.9125 8.85526 16.0082L7.41828 15.578C6.97411 17.0615 7.47325 18.4855 8.4261 19.3609C9.38423 20.2411 10.8292 20.5828 12.1914 19.8548L11.4844 18.5319ZM20.1846 10.1377C21.6065 10.9005 21.6046 13.1236 20.1821 13.8839L20.8891 15.2068C23.3683 13.8819 23.3707 10.1447 20.8937 8.81593L20.1846 10.1377ZM12.1914 4.14766C10.8301 3.41739 9.38432 3.75692 8.42486 4.63604C7.47072 5.5103 6.96983 6.93392 7.41256 8.41827L8.84998 7.98954C8.5801 7.08467 8.88494 6.24894 9.43821 5.74199C9.98618 5.23991 10.7495 5.07638 11.4823 5.46948L12.1914 4.14766ZM9.90074 12.5163C9.9986 12.1895 9.99878 11.8412 9.90126 11.5142L8.46384 11.9429C8.47777 11.9896 8.47774 12.0394 8.46376 12.0861L9.90074 12.5163Z' fill='#6c6e76'/> </g></svg>
+     Share
+  </a>
+   <a class='back-history'>
+<svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M17.5 12L7 12' stroke='#6c6e76' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> <path d='M11.0883 16L6.50002 12L11.0883 8' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> </g></svg>
+  Back
+  </a> 
+    
+  <a class='top-btn'>
+<svg fill='none' height='64px' viewBox='0 0 24 24' width='64px' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'/><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'/><g id='SVGRepo_iconCarrier'> <path d='M12 17.5L12 7' stroke='#6c6e76' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> <path d='M8 11.0883L12 6.50002L16 11.0883' stroke='var(--keycolor)' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/> </g></svg>
+  Top
+  </a>
+</div>
+<div id='details-content'>
+  <div id='movie-details-container'>
+  </div>
+</div>
+<div id='player-content'>
+  <div class='player-container'>
+    <div class='player-wrapper' id='player'>
+      <div class='video-section' id='video-left'/>
+      <div class='episode-section' id='sidediv-right'>
+        <div class='server-switch' id='server-buttons'/>
+        <h3>Episodes</h3>
+        <div class='player-episode-wrap' id='player-episode-buttons'/>
+      </div>
+    </div>
+    <div class='player-footer' id='footer-bottom'>
+      <div class='footer-left'/>  
+      <div class='footer-right'>
+        <h3>Recommended</h3>
+        <div class='recommendation-grid'/>
+      </div>
+    </div>
+  </div>
+</div>
+<div id='library'>  
+    <div class='library-header'>Browse Library</div>
+<div id='library-filters-wrapper'>
+  <input id='search-bar' placeholder='Search titles...' type='text'/>
+  <div id='library-filters'>
+    <select id='type-filter'>
+      <option value='movie'>Movies</option>
+      <option value='tv'>Series</option>
+    </select>
+    <select id='status-filter'>
+      <option value='all'>All</option>
+      <option value='released'>Released</option>
+      <option value='upcoming'>Upcoming</option>
+    </select>
+    <select id='year-filter'>
+      <option value=''>All Years</option>
+    </select>
+    <select id='genre-filter'>
+      <option value=''>All Genres</option>
+    </select>
+    <select id='country-filter'>
+      <option value=''>All Countries</option>
+      <option value='US'>USA</option>
+      <option value='KR'>Korea</option>
+      <option value='JP'>Japan</option>
+      <option value='PH'>Philippines</option>
+    </select>
+    <select id='rating-filter'>
+  <option value=''>All Ratings</option>
+  <option value='9'>9+</option>
+  <option value='8'>8+</option>
+  <option value='7'>7+</option>
+  <option value='6'>6+</option>
+  <option value='5'>5+</option>
+</select>
+  </div>
+</div>
+<div id='library-content'/>
+  </div>
+<div class='bookmark-modal' id='bookmark-modal'>
+  <div class='bookmark-content'>
+    <h3>My Bookmarks</h3>
+    <ul id='bookmark-list'/>
+  </div>
+</div>
+<div id='about-us'>
+</div>
+<div id='privacy-policy'>
+</div>
+<div id='disclaimer'>
+</div>
+<div class='comment-container' id='comment-section'>
+  <div class='reaction-container'>
+    <h4>What&#8217;s your opinion on this?</h4>
+    <div class='responses'><span id='totalResponses'>0</span> Responses</div>
+    <div class='reaction-bar'>
+      <div class='reaction' data-reaction='upvote'>
+        <div class='emoji'>👍</div>
+        <div class='label'>Upvote</div>
+        <div class='count' id='upvote-count'>0</div>
+      </div>
+      <div class='reaction' data-reaction='funny'>
+        <div class='emoji'>😝</div>
+        <div class='label'>Funny</div>
+        <div class='count' id='funny-count'>0</div>
+      </div>
+      <div class='reaction' data-reaction='love'>
+        <div class='emoji'>😍</div>
+        <div class='label'>Love</div>
+        <div class='count' id='love-count'>0</div>
+      </div>
+      <div class='reaction' data-reaction='surprised'>
+        <div class='emoji'>😮</div>
+        <div class='label'>Surprised</div>
+        <div class='count' id='surprised-count'>0</div>
+      </div>
+      <div class='reaction' data-reaction='angry'>
+        <div class='emoji'>😠</div>
+        <div class='label'>Angry</div>
+        <div class='count' id='angry-count'>0</div>
+      </div>
+      <div class='reaction' data-reaction='sad'>
+        <div class='emoji'>😢</div>
+        <div class='label'>Sad</div>
+        <div class='count' id='sad-count'>0</div>
+      </div>
+    </div>
+  </div>
+  <div class='comment-box'>
+    <h3>Add Comment</h3>
+
+    <div id='loginPrompt'>
+      <p>Please log in or sign up to add a comment.</p>
+      <button class='comment-btn' id='showAuthModalBtn'>Login / Sign Up</button>
+    </div>
+
+    <div class='comment-form-container' id='commentFormContainer'>
+      <div id='userInfoDisplay'>
+        <img alt='User Avatar' id='currentUserAvatar' src='https://cdn-icons-png.flaticon.com/128/1046/1046929.png'/>
+        <span> <strong id='currentUsernameDisplay'>Guest</strong></span>
+        <button class='comment-btn' id='logoutBtn'>Logout</button>
+      </div>
+
+      <div class='comment-input-area'>
+          <textarea id='message' placeholder='What&apos;s on your mind?' required='true'/>
+          <button class='comment-btn' id='submit'>Comment</button>
+      </div>
+    </div>
+  </div>
+  <div class='sort-container'>
+    <div><strong>Comments (<span id='commentCount'>0</span>)</strong></div>
+    <div style='display: flex; align-items: center;'>
+      <label for='sortDropdown'>Sort by:</label>
+      <div class='custom-dropdown' id='customSortDropdown'>
+        <div class='selected-option'>Most Recent</div>
+        <ul class='dropdown-options'>
+          <li class='active' data-value='recent'>Most Recent</li>
+          <li data-value='oldest'>Oldest</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id='comments-list'/>
+  <!-- Avatar Modal (for changing avatar after login) -->
+  <div class='modal' id='avatarModal'>
+    <div class='modal-content'>
+      <span class='close' id='closeAvatarModalBtn'><i class='bi bi-x'/></span>
+      <h4>Choose Your Avatar</h4>
+      <div class='tabs'>
+        <button class='tab-btn active' data-tab='person'>Person</button>
+        <button class='tab-btn' data-tab='animal'>Animal</button>
+        <button class='tab-btn' data-tab='animation'>Animation</button>
+        <button class='tab-btn' data-tab='emoji'>Emoji</button>
+      </div>
+      <div class='tab-content active' id='person'/>
+      <div class='tab-content' id='animal'/>
+      <div class='tab-content' id='animation'/>
+      <div class='tab-content' id='emoji'/>
+      <button class='comment-btn' id='saveAvatarBtn' style='margin-top: 20px;'>Save Avatar</button>
+    </div>
+  </div>
+
+ <div class='modal' id='authModal'>
+    <div class='modal-content'>
+      <span class='close' id='closeAuthModalBtn'>x</span>
+      <h4>Welcome!</h4>
+      <div class='tabs'>
+        <button class='tab-btn comment-btn active' data-tab='login'>Login</button>
+        <button class='tab-btn comment-btn' data-tab='signup'>Sign Up</button>
+      </div>
+
+      <div class='tab-content active' id='login'>
+        <input id='loginEmail' placeholder='Email' required='true' type='email'/>
+        <input id='loginPassword' placeholder='Password' required='true' type='password'/>
+        <button class='comment-btn' id='signInBtn'>Login</button>
+        <button class='comment-btn' id='guestSignInBtn'>Login as Guest</button>
+      </div>
+
+      <div class='tab-content' id='signup'>
+        <input id='signupEmail' placeholder='Email' required='true' type='email'/>
+        <input id='signupPassword' placeholder='Password' required='true' type='password'/>
+        <input id='signupUsername' placeholder='Your Display Name' required='true' type='text'/>
+        <button class='comment-btn' id='signUpBtn'>Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+</b:if>
+<b:section class='video-sources' id='video-sources' name='Video Sources' showaddelement='true'>
+  <b:widget id='Text8' locked='false' title='VIDSRCV2' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>https://vidsrc.cc/v2/embed/movie/${id}
+https://vidsrc.cc/v2/embed/${id}/${season}/${episode}</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='Text7' locked='false' title='VIDLINK' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>https://vidlink.pro/movie/${id}
+https://vidlink.pro/tv/${id}/${season}/${episode}</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='Text6' locked='false' title='VIDEASY' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>https://player.videasy.net/movie/${id}
+https://player.videasy.net/tv/${id}/${season}/${episode}</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='Text5' locked='false' title='VIDROCK' type='Text' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>https://vidrock.net/embed/movie/${id}
+https://vidrock.net/embed/tv/${id}/${season}/${episode}</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+      <b:include name='widget-title'/>
+      <div class='widget-content'>
+        <data:content/>
+      </div>
+    </b:includable>
+  </b:widget>
+  <b:widget id='Text4' locked='false' title='VIDSRC' type='Text' version='2' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>https://vidsrc.to/embed/movie/${id}
+https://vidsrc.to/embed/tv/${id}/${season}/${episode}</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+      <b:include name='widget-title'/>
+      <div class='widget-content'>
+        <data:content/>
+      </div>
+    </b:includable>
+  </b:widget>
+</b:section>
+<b:section class='other-pages' id='other-pages' maxwidgets='3' name='Other Pages' showaddelement='true'>
+  <b:widget id='Text10' locked='true' title='About Us' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<h1>About Us</h1>
+<br/>
+  <p>Welcome to <strong>Movie Box</strong>, your go-to destination for curated movies, series, and premium entertainment content from around the world.</p>
+
+  <p>At Movie Box, we are passionate about storytelling in all its forms — whether it's the heart-fluttering romance of K-dramas, the thrilling plot twists of C-dramas, the rich animation of anime, or the cinematic excellence of Western films and series. We believe that entertainment should be accessible, enjoyable, and organized for all fans, no matter where they are.</p>
+
+  <p>Our platform was built with simplicity and speed in mind. We provide an ad-light, clean, and user-friendly interface that allows you to explore thousands of titles across multiple genres. You can easily find what you're looking for through categorized collections, regular episode updates, and direct video or download links — all in one seamless experience.</p>
+
+  <p>What sets us apart is our commitment to quality and community. We do not simply dump links or trailers — we curate, verify, and organize content so you can enjoy safe and trustworthy access without the noise. We also listen to our users. Your feedback helps shape the features and future of this platform.</p>
+
+  <p>Whether you’re binge-watching the latest drama, exploring classic hits, or looking for a new favorite, <strong>[Movie Box]</strong> is here to make your viewing experience smooth, fun, and worthwhile.</p>
+
+  <p>We’re constantly evolving — with new features, better recommendations, and faster link updates — so make sure to bookmark us and check in often.</p>
+
+  <p>Thank you for visiting and supporting Movie Box. If you have questions, feature suggestions, or partnership inquiries, feel free to reach out through our contact form or social media channels. We’re always happy to hear from our community!</p>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='Text9' locked='true' title='Privacy Policy' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<h1>Privacy Policy</h1>
+<br/>
+  <p><strong>Effective Date:</strong> August 8, 2025</p>
+
+  <p>At <strong>[Your Website Name]</strong>, we value your privacy. This Privacy Policy outlines the types of information we collect and how we use, store, and protect it.</p>
+
+  <h2>1. Information We Collect</h2>
+  <p>We may collect the following types of information:</p>
+  <ul>
+    <li><strong>Personal Information:</strong> such as your name or email address, only when voluntarily submitted (e.g., through a contact form or newsletter).</li>
+    <li><strong>Non-Personal Information:</strong> including browser type, device information, IP address, and pages visited. This data helps us improve user experience.</li>
+  </ul>
+
+  <h2>2. Cookies</h2>
+  <p>Our site may use cookies to:</p>
+  <ul>
+    <li>Analyze traffic and user behavior</li>
+    <li>Enhance your browsing experience</li>
+    <li>Store preferences or session data</li>
+  </ul>
+  <p>You can choose to disable cookies through your browser settings.</p>
+
+  <h2>3. Third-Party Services</h2>
+  <p>We may use third-party services like:</p>
+  <ul>
+    <li><strong>Google Analytics</strong> – for understanding visitor behavior</li>
+    <li><strong>Ad networks</strong> (e.g., Google AdSense) – to serve relevant ads</li>
+    <li><strong>Embedded content</strong> (e.g., videos from other platforms) – which may collect data through their own policies</li>
+  </ul>
+  <p>Please review the privacy policies of these third-party services for more information.</p>
+
+  <h2>4. Data Security</h2>
+  <p>We implement reasonable measures to protect your information. However, no method of transmission over the internet is 100% secure.</p>
+
+  <h2>5. Links to Other Sites</h2>
+  <p>Our website may contain links to other websites. We are not responsible for the privacy practices of those sites.</p>
+
+  <h2>6. Children’s Privacy</h2>
+  <p>We do not knowingly collect personal data from children under the age of 13. If you believe such data has been collected, please contact us immediately.</p>
+
+  <h2>7. Your Consent</h2>
+  <p>By using our website, you consent to this Privacy Policy.</p>
+
+  <h2>8. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy at any time. Any changes will be posted on this page with a new effective date.</p>
+
+  <h2>9. Contact Us</h2>
+  <p>If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
+  <p>📧 abeflixoriginal@gmail.com</p>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='Text11' locked='true' title='Disclaimer' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<h1>Privacy Policy</h1>
+<br/>
+  <p><strong>Effective Date:</strong> August 8, 2025</p>
+
+  <p>At <strong>[Your Website Name]</strong>, we value your privacy. This Privacy Policy outlines the types of information we collect and how we use, store, and protect it.</p>
+
+  <h2>1. Information We Collect</h2>
+  <p>We may collect the following types of information:</p>
+  <ul>
+    <li><strong>Personal Information:</strong> such as your name or email address, only when voluntarily submitted (e.g., through a contact form or newsletter).</li>
+    <li><strong>Non-Personal Information:</strong> including browser type, device information, IP address, and pages visited. This data helps us improve user experience.</li>
+  </ul>
+
+  <h2>2. Cookies</h2>
+  <p>Our site may use cookies to:</p>
+  <ul>
+    <li>Analyze traffic and user behavior</li>
+    <li>Enhance your browsing experience</li>
+    <li>Store preferences or session data</li>
+  </ul>
+  <p>You can choose to disable cookies through your browser settings.</p>
+
+  <h2>3. Third-Party Services</h2>
+  <p>We may use third-party services like:</p>
+  <ul>
+    <li><strong>Google Analytics</strong> – for understanding visitor behavior</li>
+    <li><strong>Ad networks</strong> (e.g., Google AdSense) – to serve relevant ads</li>
+    <li><strong>Embedded content</strong> (e.g., videos from other platforms) – which may collect data through their own policies</li>
+  </ul>
+  <p>Please review the privacy policies of these third-party services for more information.</p>
+
+  <h2>4. Data Security</h2>
+  <p>We implement reasonable measures to protect your information. However, no method of transmission over the internet is 100% secure.</p>
+
+  <h2>5. Links to Other Sites</h2>
+  <p>Our website may contain links to other websites. We are not responsible for the privacy practices of those sites.</p>
+
+  <h2>6. Children’s Privacy</h2>
+  <p>We do not knowingly collect personal data from children under the age of 13. If you believe such data has been collected, please contact us immediately.</p>
+
+  <h2>7. Your Consent</h2>
+  <p>By using our website, you consent to this Privacy Policy.</p>
+
+  <h2>8. Changes to This Policy</h2>
+  <p>We may update this Privacy Policy at any time. Any changes will be posted on this page with a new effective date.</p>
+
+  <h2>9. Contact Us</h2>
+  <p>If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
+  <p>📧 abeflixoriginal@gmail.com</p>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section>
+<b:section class='footer' id='footer' maxwidgets='3' name='Footer' showaddelement='true'>
+  <b:widget id='Text12' locked='false' title='Website Name' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>MovieBox</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='Text13' locked='false' title='Website Description' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>Enjoy the best movies and series for free. Updated daily.</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+  <b:widget id='Text14' locked='false' title='Credit' type='Text' visible='true'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[© <span id="currentYear"></span> MovieBox. All rights reserved.]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:include name='widget-title'/>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+</b:includable>
+  </b:widget>
+</b:section>
+    <footer>
+        <div class='footer-container'>
+      <div class='website-name'/>
+      <div class='website-description'/>
+      <div class='credit'/>
+      </div>
+    </footer>   
+
+</body>
+</html>
