@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:blogger='http://schemas.google.com/blogger/2018'>
+  <id>tag:blogger.com,1999:blog-4834341416825962121</id>
+  <title>MOVIEBOX TMDB</title>
+  <entry>
+    <id>tag:blogger.com,1999:blog-4834341416825962121.post-3402823291039639183</id>
+    <blogger:type>PAGE</blogger:type>
+    <blogger:status>LIVE</blogger:status>
+    <author>
+      <name>ABEFILM</name>
+      <uri>https://abenewsfeed.blogspot.com</uri>
+      <blogger:type>BLOGGER</blogger:type>
+    </author>
+    <title>Disclaimer</title>
+    <content type='html'/>
+    <blogger:metaDescription/>
+    <blogger:created>2025-08-08T03:18:52.031Z</blogger:created>
+    <published>2025-08-08T03:19:00Z</published>
+    <updated>2025-08-08T03:19:02.804Z</updated>
+    <blogger:location/>
+    <category/>
+    <blogger:filename>/p/disclaimer.html</blogger:filename>
+    <link/>
+    <enclosure/>
+    <blogger:trashed/>
+  </entry>
+  <entry>
+    <id>tag:blogger.com,1999:blog-4834341416825962121.post-3617341183368540333</id>
+    <blogger:type>PAGE</blogger:type>
+    <blogger:status>LIVE</blogger:status>
+    <author>
+      <name>ABEFILM</name>
+      <uri>https://abenewsfeed.blogspot.com</uri>
+      <blogger:type>BLOGGER</blogger:type>
+    </author>
+    <title>About Us</title>
+    <content type='html'/>
+    <blogger:metaDescription/>
+    <blogger:created>2025-08-04T12:38:24.320Z</blogger:created>
+    <published>2025-08-04T12:38:00.003Z</published>
+    <updated>2025-08-04T12:38:33.401Z</updated>
+    <blogger:location/>
+    <category/>
+    <blogger:filename>/p/about-us.html</blogger:filename>
+    <link/>
+    <enclosure/>
+    <blogger:trashed/>
+  </entry>
+  <entry>
+    <id>tag:blogger.com,1999:blog-4834341416825962121.post-3705056607114179298</id>
+    <blogger:type>POST</blogger:type>
+    <blogger:status>SOFT_TRASHED</blogger:status>
+    <author>
+      <name>ABEFILM</name>
+      <uri>https://abenewsfeed.blogspot.com</uri>
+      <blogger:type>BLOGGER</blogger:type>
+    </author>
+    <title>Video</title>
+    <content type='html'>&lt;div style="max-width:100%;background:#000;"&gt;
+  &lt;video id="player"
+    controls="controls"
+    autoplay="autoplay"
+    playsinline="playsinline"
+    crossorigin="anonymous"
+    style="width:100%;max-height:100vh;background:#000;object-fit:contain;"&gt;
+  &lt;/video&gt;
+&lt;/div&gt;
+
+&lt;script src="https://cdn.jsdelivr.net/npm/hls.js@latest"&gt;&lt;/script&gt;
+&lt;script&gt;
+  function getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const video = document.getElementById('player');
+    const url = getQueryParam("src");
+
+    if (!url) {
+      video.outerHTML = "&lt;p style='color:white;text-align:center'&gt;No video source provided. Use ?src=yourfile.m3u8&lt;/p&gt;";
+      return;
+    }
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(url);
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = url; // Safari
+    } else {
+      video.outerHTML = "&lt;p style='color:white;text-align:center'&gt;Your browser does not support HLS playback.&lt;/p&gt;";
+    }
+  });
+&lt;/script&gt;
+</content>
+    <blogger:metaDescription/>
+    <blogger:created>2025-07-30T06:13:38.685Z</blogger:created>
+    <published>2025-07-30T06:13:00Z</published>
+    <updated>2025-07-30T11:19:39.311Z</updated>
+    <blogger:location/>
+    <category/>
+    <blogger:filename>/2025/07/video.html</blogger:filename>
+    <link/>
+    <enclosure/>
+    <blogger:trashed>2025-07-30T11:19:39.331Z</blogger:trashed>
+  </entry>
+  <entry>
+    <id>tag:blogger.com,1999:blog-4834341416825962121.post-4239017817508064769</id>
+    <blogger:type>PAGE</blogger:type>
+    <blogger:status>LIVE</blogger:status>
+    <author>
+      <name>ABEFILM</name>
+      <uri>https://abenewsfeed.blogspot.com</uri>
+      <blogger:type>BLOGGER</blogger:type>
+    </author>
+    <title>Player</title>
+    <content type='html'/>
+    <blogger:metaDescription/>
+    <blogger:created>2025-08-03T06:16:55.721Z</blogger:created>
+    <published>2025-08-03T09:51:00Z</published>
+    <updated>2025-08-03T09:56:49.103Z</updated>
+    <blogger:location/>
+    <category/>
+    <blogger:filename>/p/player.html</blogger:filename>
+    <link/>
+    <enclosure/>
+    <blogger:trashed/>
+  </entry>
+  <entry>
+    <id>tag:blogger.com,1999:blog-4834341416825962121.post-6190824635542112001</id>
+    <blogger:type>PAGE</blogger:type>
+    <blogger:status>LIVE</blogger:status>
+    <author>
+      <name>ABEFILM</name>
+      <uri>https://abenewsfeed.blogspot.com</uri>
+      <blogger:type>BLOGGER</blogger:type>
+    </author>
+    <title>Privacy Policy</title>
+    <content type='html'/>
+    <blogger:metaDescription/>
+    <blogger:created>2025-08-04T12:38:11.414Z</blogger:created>
+    <published>2025-08-08T01:23:00Z</published>
+    <updated>2025-08-08T01:23:36.230Z</updated>
+    <blogger:location/>
+    <category/>
+    <blogger:filename>/p/privacy-policy.html</blogger:filename>
+    <link/>
+    <enclosure/>
+    <blogger:trashed/>
+  </entry>
+  <entry>
+    <id>tag:blogger.com,1999:blog-4834341416825962121.post-6387491352628387351</id>
+    <blogger:type>PAGE</blogger:type>
+    <blogger:status>LIVE</blogger:status>
+    <author>
+      <name>ABEFILM</name>
+      <uri>https://abenewsfeed.blogspot.com</uri>
+      <blogger:type>BLOGGER</blogger:type>
+    </author>
+    <title>Details</title>
+    <content type='html'>&lt;script&gt;
+  document.addEventListener("DOMContentLoaded", function () {
+    const isMobile = window.innerWidth &lt;= 767;
+    const isDetailsPage = window.location.pathname.includes("/p/details.html");
+
+    if (isMobile &amp;&amp; isDetailsPage) {
+      const header = document.querySelector(".top-header");
+      if (header) header.style.display = "none";
+    }
+  });
+&lt;/script&gt;
+</content>
+    <blogger:metaDescription/>
+    <blogger:created>2025-07-31T06:42:46.918Z</blogger:created>
+    <published>2025-08-01T04:51:00Z</published>
+    <updated>2025-08-01T04:52:44.105Z</updated>
+    <blogger:location/>
+    <category/>
+    <blogger:filename>/p/details.html</blogger:filename>
+    <link/>
+    <enclosure/>
+    <blogger:trashed/>
+  </entry>
+  <entry>
+    <id>tag:blogger.com,1999:blog-4834341416825962121.post-8852969790297718327</id>
+    <blogger:type>PAGE</blogger:type>
+    <blogger:status>LIVE</blogger:status>
+    <author>
+      <name>ABEFILM</name>
+      <uri>https://abenewsfeed.blogspot.com</uri>
+      <blogger:type>BLOGGER</blogger:type>
+    </author>
+    <title>Library</title>
+    <content type='html'/>
+    <blogger:metaDescription/>
+    <blogger:created>2025-08-05T10:28:12.912Z</blogger:created>
+    <published>2025-08-05T10:28:00.001Z</published>
+    <updated>2025-08-05T10:28:23.281Z</updated>
+    <blogger:location/>
+    <category/>
+    <blogger:filename>/p/library.html</blogger:filename>
+    <link/>
+    <enclosure/>
+    <blogger:trashed/>
+  </entry>
+</feed>
