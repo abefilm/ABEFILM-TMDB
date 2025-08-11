@@ -231,11 +231,17 @@ No posting or data submission is done through this integration. It only fetches 
 
 # How to Use This Template
 
-1.  **Obtain Your API Key**
+1. **Import the Template XML and Feed**
+   - Go to your Blogger dashboard.  
+   - Navigate to **Theme → Edit HTML**.  
+   - Paste the provided **template XML** code into the editor and save.  
+   - Then, import the **feed.atom**.
+     
+2.  **Obtain Your API Key**
     
     Get a free API key from [The Movie Database (TMDb)](https://www.themoviedb.org/settings/api). You will need to create a free account.
 
-2.  **Add Your API Key to Your Site**
+3.  **Add Your API Key to Your Site**
     
   To use this template, your TMDB API key must be available globally. In Blogger go to Layout →  TMDB API Gadget (Top), and paste the code below, replacing YOUR_TMDB_API_KEY with your TMDB API key.
     
@@ -245,7 +251,7 @@ No posting or data submission is done through this integration. It only fetches 
     </script>
 
 
-3.  **Configure Homepage Content via Widgets**
+4.  **Configure Homepage Content via Widgets**
     
     The homepage content is controlled by placing TMDb API endpoints into your platform's **HTML/JavaScript** widgets.
     
@@ -256,14 +262,14 @@ No posting or data submission is done through this integration. It only fetches 
         *   *Example*: `movie/popular`
         *   *Example*: `tv/top_rated`
 
-4.  **Customize Content (Optional)**
+5.  **Customize Content (Optional)**
     
     Filter the content by adding URL parameters to your endpoints.
     
     *   *Example (Show only Action movies)*: `discover/movie?with_genres=28`
     *   *Example (Show popular movies from 2024)*: `discover/movie?sort_by=popularity.desc&year=2024`
 
-5.  **Save and View**
+6.  **Save and View**
     
     Save your changes. The template will automatically fetch the data and build the pages. Navigation between the homepage, details pages (`/p/details.html`), and the player (`/p/player.html`) is handled by the theme's built-in links.
     
