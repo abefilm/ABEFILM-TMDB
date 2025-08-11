@@ -239,11 +239,11 @@ No posting or data submission is done through this integration. It only fetches 
     
   To use this template, your TMDB API key must be available globally. In Blogger go to Layout →  TMDB API Gadget (Top), and paste the code below, replacing YOUR_TMDB_API_KEY with your TMDB API key.
     
-    ```
+    
     <script>
       window.apiKey = "YOUR_TMDB_API_KEY";
     </script>
-    ```
+
 
 3.  **Configure Homepage Content via Widgets**
     
