@@ -235,7 +235,7 @@ No posting or data submission is done through this integration. It only fetches 
    - Go to your Blogger dashboard.  
    - Navigate to **Theme → Edit HTML**.  
    - Paste the provided **template XML** code into the editor and save.  
-   - Then, import the **feed.atom**.
+   - Then, import the **feed.atom** in settings.
      
 2.  **Obtain Your API Key**
     
