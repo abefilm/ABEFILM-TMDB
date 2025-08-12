@@ -4,11 +4,23 @@
   <title>License Management Tool</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abefilm/MOVIEBOX-TMDB@main/css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abefilm/MOVIEBOX-TMDB@main/css/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+      .trial-notice {
+        font-size: 14px;
+        color: #555;
+        background-color: #e9f5ff;
+        border: 1px solid #b3d7ff;
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 20px;
+        text-align: center;
+        line-height: 1.5;
+      }
+  </style>
 </head>
 <body>
-  <!-- Container for the entire tool -->
   <div class="main-tool-container">
     <div class="header-bar">
       <h1>License Tool</h1>
@@ -25,7 +37,6 @@
         <button id="admin-tab" class="tab-button" onclick="switchView('admin')" style="display: none;">Admin Panel</button>
       </div>
 
-      <!-- Views -->
       <div id="register-page" class="page-container" style="display: block;">
           <h2>Register Your License</h2>
           <p>Activate your theme by registering your domain.</p>
@@ -35,6 +46,11 @@
             <button class="btn-primary" onclick="registerLicense()">Register License</button>
             <button class="btn-danger" onclick="removeDomain()">Remove Domain</button>
           </div>
+          <p class="trial-notice">
+            <b>Free Trial:</b> Message me on Telegram for a trial key:<br/> 
+            @acohcayeng or @eunwoosshi
+          </p>
+
           <div id="registerLicenseInfo" class="info-box">
             <h3>License Information</h3>
             <p><strong>Website Registered:</strong> <span id="infoDomain"></span></p>
